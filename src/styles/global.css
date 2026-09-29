@@ -470,6 +470,15 @@ html:not([data-has-hero]) .page::before {
 	mask-composite: intersect;
 	filter: brightness(1.45);
 	opacity: 0.8;
+	/* Own compositing layer, so Safari doesn't repaint the masked image while scrolling. */
+	transform: translateZ(0);
+}
+@supports (height: 100lvh) {
+	html:not([data-has-hero]) .page::before {
+		/* Safari resizes the viewport as its toolbars show and hide, which makes a bottom-anchored
+		   fixed box slide up and down. Anchor to the top of the large viewport instead, which is fixed. */
+		inset: calc(100lvh - 39rem) 0 auto auto;
+	}
 }
 html[data-theme='light']:not([data-has-hero]) .page::before {
 	background-image: url('/art/wiki-outpost-light.webp');
