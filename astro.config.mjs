@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
 import sidebar from './src/sidebar.json' with { type: 'json' };
-import { contactForm, feedbackForm } from './src/nav.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,8 +11,8 @@ export default defineConfig({
 	redirects: {
 		'/others': '/disclaimer',
 		'/others/disclaimer': '/disclaimer',
-		'/others/contact-us': contactForm,
-		'/others/feedback': feedbackForm,
+		'/others/contact-us': '/contact-us',
+		'/others/feedback': '/feedback',
 	},
 	integrations: [
 		starlight({
@@ -39,7 +38,7 @@ export default defineConfig({
 			],
 			social: [
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/7SBMKRy6q9' },
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/getbf2142' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/getbf2142/getbf2142-wiki' },
 			],
 			editLink: { baseUrl: 'https://github.com/getbf2142/getbf2142-wiki/edit/main/' },
 			lastUpdated: true,

@@ -5,7 +5,6 @@
 import Default from '@astrojs/starlight/components/Footer.astro';
 import { iconSvg } from '~/lib/icons';
 import { localize, useT } from '~/lib/i18n';
-import { feedbackForm } from '~/nav';
 
 const { entry, locale } = Astro.locals.starlightRoute;
 const t = useT(locale);
@@ -22,9 +21,13 @@ const showHelp = !isSplash && !Astro.locals.sectionEntries;
 					<Fragment set:html={iconSvg('brand-discord')} />
 					{t('footer.discord')}
 				</a>
-				<a href={feedbackForm} target="_blank" rel="noopener">
+				<a href={localize('/feedback/', locale)}>
 					<Fragment set:html={iconSvg('message-circle')} />
 					{t('footer.feedback')}
+				</a>
+				<a href="https://github.com/getbf2142/getbf2142-wiki" target="_blank" rel="noopener">
+					<Fragment set:html={iconSvg('brand-github')} />
+					{t('footer.star')}
 				</a>
 			</div>
 		</aside>

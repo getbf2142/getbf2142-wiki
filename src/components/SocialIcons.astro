@@ -2,15 +2,15 @@
 // Starlight's social icons, preceded by the top bar menus (which only show in the desktop header)
 // and followed by our contact and feedback forms.
 import Default from '@astrojs/starlight/components/SocialIcons.astro';
-import { useT } from '~/lib/i18n';
-import { contactForm, feedbackForm } from '~/nav';
+import { localize, useT } from '~/lib/i18n';
 import HeaderNav from './HeaderNav.astro';
 import PageIcon from './PageIcon.astro';
 
-const t = useT(Astro.locals.starlightRoute.locale);
+const { locale } = Astro.locals.starlightRoute;
+const t = useT(locale);
 const forms = [
-	{ label: t('form.contact'), href: contactForm, icon: 'mail' },
-	{ label: t('form.feedback'), href: feedbackForm, icon: 'message-star' },
+	{ label: t('form.contact'), href: localize('/contact-us/', locale), icon: 'mail' },
+	{ label: t('form.feedback'), href: localize('/feedback/', locale), icon: 'message-star' },
 ];
 ---
 
@@ -18,7 +18,7 @@ const forms = [
 <Default {...Astro.props}><slot /></Default>
 {
 	forms.map(({ label, href, icon }) => (
-		<a class="form-link sl-flex" {href} target="_blank" rel="noopener" title={label}>
+		<a class="form-link sl-flex" {href} {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})} title={label}>
 			<span class="sr-only">{label}</span>
 			<PageIcon name={icon} />
 		</a>

@@ -18,12 +18,6 @@ export interface NavMenu {
 	items: NavLink[];
 }
 
-/** Google Forms, linked from the header icons and the footer. */
-export const contactForm =
-	'https://docs.google.com/forms/d/e/1FAIpQLSc6iBxekI1mgRURcDypm2HZdFG-mpNDfhib-xH9vvLV-YUX-Q/viewform?usp=sf_link';
-export const feedbackForm =
-	'https://docs.google.com/forms/d/e/1FAIpQLSfaHYWAyOug2eszO0tW3nIUOnNFnU1k3fCL9bI8MS09lUX84g/viewform?usp=sharing&ouid=111707620049591452833';
-
 // Every page in the sidebar's "Addons / Tweaks" section, so the menu never falls out of sync.
 interface SidebarItem {
 	label: string;

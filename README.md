@@ -1,11 +1,12 @@
 # GetBF2142
 
-Documentation site for the GetBF2142 community: Battlefield 2142 installs, patches, multiplayer, mods, and help. Built with [Astro 7](https://astro.build) and [Starlight](https://starlight.astro.build), with Tailwind CSS. English pages live at the site root; Traditional Chinese is under `/zh-tw/`. Production: [docs.getbf2142.net](https://docs.getbf2142.net).
+Documentation site for the GetBF2142 community: Battlefield 2142 installs, patches, multiplayer, mods, and help. Built with [Astro 7](https://astro.build) and [Starlight](https://starlight.astro.build), with Tailwind CSS. English pages live at the site root; Traditional Chinese is under `/zh-tw/`. Contact and feedback use on-site forms that post to [Formspree](https://formspree.io). Production: [docs.getbf2142.net](https://docs.getbf2142.net). Source and “Edit page” links: [getbf2142/getbf2142-wiki](https://github.com/getbf2142/getbf2142-wiki).
 
 ## Requirements
 
-- **Node.js 22.12+** and **npm 9.6+** (matches Astro 7)
-- No environment variables or external services are required for local build or preview
+- **Node.js 20.19+ or 22.12+** and **npm 9.6+** (matches Astro 7)
+- **Formspree**, optional for local work; production contact/feedback delivery uses endpoints configured in `src/components/SiteForm.astro` (no `.env` in this repo)
+- No other environment variables or services are required to build or preview the static site
 
 ## Quick Setup
 
@@ -52,26 +53,28 @@ Scans `dist/` for broken in-page anchors and internal hrefs in article content.
 | `npm run check-links` | Link check on built HTML (run after `build`) |
 | `npm run astro -- …` | Astro CLI (`astro check`, `astro add`, etc.) |
 
-Content edits on GitHub use the “Edit page” link (base repo: [getbf2142/getbf2142-wiki](https://github.com/getbf2142/getbf2142-wiki)).
+## Deployment
+
+Static output from `npm run build` is deployed to **Cloudflare Pages** ([docs.getbf2142.net](https://docs.getbf2142.net)). Cache headers for `/_astro/`, `/assets/`, and `/art/` are defined in `public/_headers`; broader security headers are applied in Cloudflare Transform Rules.
 
 ## Structure
 
 ```
 getbf2142/
-├── public/                 # Favicons, OG images, static art
+├── public/                 # Favicons, OG images, static art; _headers for Pages
 ├── scripts/
 │   └── check-links.mjs     # Post-build internal link validator
 ├── src/
 │   ├── assets/             # Logo and images referenced from config/content
-│   ├── components/         # Starlight layout overrides (Head, Sidebar, Footer, …)
+│   ├── components/         # Starlight overrides (Head, Sidebar, Footer, SiteForm, …)
 │   ├── content/
 │   │   ├── docs/           # English MDX; zh-tw/ mirror for 繁體中文
-│   │   └── i18n/           # UI strings (e.g. zh-TW.json)
-│   ├── lib/                # Shared helpers (e.g. i18n)
+│   │   └── i18n/           # Starlight UI strings (e.g. zh-TW.json)
+│   ├── lib/                # Shared helpers (i18n, icons)
 │   ├── styles/
 │   │   └── global.css      # Site-wide styles (also in Starlight customCss)
 │   ├── content.config.ts   # Content collections schema
-│   ├── nav.ts              # External URLs (contact, feedback forms)
+│   ├── nav.ts              # Desktop header menus (derived from sidebar.json)
 │   ├── routeData.ts        # Route middleware; sidebar marker conventions
 │   └── sidebar.json        # Sidebar tree (loaded in astro.config.mjs)
 ├── astro.config.mjs        # Site URL, locales, redirects, Starlight options
@@ -79,4 +82,4 @@ getbf2142/
 └── package.json
 ```
 
-Starlight maps each file under `src/content/docs/` to a URL. Add or edit `.mdx` there (and under `zh-tw/` when translating). Sidebar entries and icons are driven by `sidebar.json` and markers documented in `routeData.ts`.
+Starlight maps each file under `src/content/docs/` to a URL. Add or edit `.mdx` there (and under `zh-tw/` when translating). Standalone pages such as `contact-us.mdx` and `feedback.mdx` are linked from the header and footer but are not required in `sidebar.json`. Sidebar entries and icons are driven by `sidebar.json` and markers documented in `routeData.ts`.

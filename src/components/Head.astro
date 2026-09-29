@@ -144,8 +144,10 @@ const isRoot404 = Astro.locals.starlightRoute.entry.id === '404';
 	window.addEventListener('hashchange', revealHash);
 	revealHash();
 
-	// External links in page content open in a new tab, so readers keep their place in the guide.
-	for (const link of document.querySelectorAll<HTMLAnchorElement>('.sl-markdown-content a[href^="http"]')) {
+	// External links in page content, the header social icons and "Edit page" open in a new tab, so readers keep their place in the guide.
+	for (const link of document.querySelectorAll<HTMLAnchorElement>(
+			'.sl-markdown-content a[href^="http"], .hero a[href^="http"], .social-icons a[href^="http"], footer .meta a[href^="http"]',
+		)) {
 		if (link.host !== location.host) {
 			link.target = '_blank';
 			link.rel = 'noopener';
