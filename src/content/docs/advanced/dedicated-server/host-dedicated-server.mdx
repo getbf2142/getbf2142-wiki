@@ -1,0 +1,81 @@
+---
+title: Host a dedicated server
+description: Run your own unranked BF2142 dedicated server, vanilla or modded.
+slug: advanced/dedicated-server/host-dedicated-server
+icon: square-rounded-number-3
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+Time to go live! This guide sets up an _unranked_ dedicated server, vanilla with the built-in launcher or modded with a shortcut.
+
+<GuideSummary step={3} total={3} time="15 minutes">
+
+Forward ports `29900` and `17567` for players outside your network. Vanilla: set up and start a server in `BF2142ServerLauncher.exe`. Modded: copy the mod into the server's `mods` folder and start `BF2142_w32ded.exe` with `+modPath mods/<MOD>`. Either way, turn <mark class="ui">Internet</mark> on and NAT negotiation off.
+
+</GuideSummary>
+
+## Before you start
+
+* Want players from outside your home network? In your router, forward these ports to your PC's local IP ([how](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide)):
+  * `29900` (UDP or both)
+  * `17567` (both)
+* The server lives in `C:\Program Files (x86)\Electronic Arts\Battlefield 2142 Server`. Below, we just call it the _server folder_.
+* Can't save a file in the server folder? Copy it to your desktop, edit it there, then copy it back.
+
+## Hosting a vanilla server
+
+<Steps>
+
+1. In the server folder, double-click `BF2142ServerLauncher.exe`.
+
+1. Click the <mark class="ui">Add</mark> icon to create a new configuration.
+
+1. Set up your <mark class="ui">Server Settings</mark> and <mark class="ui">Map List</mark>. Turn <mark class="ui">Internet</mark> on and <mark class="ui">AllowNATNegotiation</mark> off.
+
+   Don't want the server in the public server browser? Leave <mark class="ui">Internet</mark> off.
+
+1. For settings the launcher doesn't show, edit `Documents\Battlefield 2142\ServerConfigs.con`. See the [list of server settings](/advanced/addons-tweaks/server-settings/#list-of-server-settings).
+
+1. Click <mark class="ui">Start</mark>.
+
+</Steps>
+
+## Hosting a modded server
+
+The server launcher doesn't support mods, so you'll start the server with a shortcut instead. We'll use [Project Remaster](/advanced/project-remaster/install-project-remaster/) as the example, so swap in your own mod's folder name.
+
+<Steps>
+
+1. Copy the mod's folder (e.g. `Project_Remaster_v17`) from `Battlefield 2142\mods` into the server folder's `mods`.
+
+1. Right-click `BF2142_w32ded.exe` in the server folder → <mark class="ui">Send to</mark> → <mark class="ui">Desktop (create shortcut)</mark>.
+
+1. Right-click the new shortcut → <mark class="ui">Properties</mark>, and add `+modPath mods/Project_Remaster_v17` to the end of <mark class="ui">Target</mark>:
+
+   ```
+   "C:\Program Files (x86)\Electronic Arts\Battlefield 2142 Server\BF2142_w32ded.exe" +modPath mods/Project_Remaster_v17
+   ```
+
+1. Open `mods\Project_Remaster_v17\Settings\ServerSettings.con` in the server folder. Set `sv.internet` to `1` and `sv.allowNATNegotiation` to `0`, plus any other [server settings](/advanced/addons-tweaks/server-settings/#list-of-server-settings) you like.
+
+   Don't want the server in the public server browser? Set `sv.internet` to `0`.
+
+1. Open `mods\Project_Remaster_v17\Settings\mapList.con` and add a line for each map, e.g.:
+
+   ```
+   mapList.append Suez_Canal gpm_coop 16
+   ```
+
+   ([More on map rotations](https://www.moddb.com/members/antniquiler/blogs/installing-a-battlefield-2142-dedicated-server-on-linux-part-2).)
+
+1. Double-click the shortcut to start the server.
+
+</Steps>
+
+<Aside type="note">
+
+Modded and vanilla servers read their settings from different places. Vanilla uses `Documents\Battlefield 2142`, and modded uses the mod's `Settings` folder.
+
+</Aside>

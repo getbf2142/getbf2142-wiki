@@ -1,0 +1,195 @@
+---
+title: FAQ
+description: Quick answers to the questions we hear most.
+slug: help-centre/faq
+icon: message-question
+---
+
+Quick answers to the questions we hear most. Can't find yours? Try the [Reclamation FAQ](https://battlefield2142.co/faq/) or ask on Discord.
+
+## Getting started
+
+<details id="does-bf2142-run-on-windows-10-and-11">
+
+<summary>Does BF2142 run on Windows 10 and 11?</summary>
+
+Yes. Follow the [Getting Started guides](/getting-started/before-proceeding/) and it runs well on modern Windows. If something goes wrong, [Troubleshoot](/help-centre/troubleshoot/) covers the common fixes.
+
+</details>
+
+<details id="do-i-need-an-ea-account">
+
+<summary>Do I need an EA account? Can I use my old one?</summary>
+
+No EA account needed. EA's servers for BF2142 are gone, so old EA and GameSpy accounts, soldiers and stats no longer exist. You'll [create a new account](/getting-started/create-account/) on OpenSpy right from the game's login screen.
+
+</details>
+
+<details id="which-edition-should-i-get">
+
+<summary>Which edition should I get?</summary>
+
+The Standard Edition, as our guides are written for it. Once patched to v1.51, every edition plays the same. See [Install BF2142](/getting-started/download-and-install-bf2142/#downloads).
+
+</details>
+
+## Account & unlocks
+
+<details id="how-to-get-all-the-unlocks">
+
+<summary>How do I get all the unlocks?</summary>
+
+With the [OpenSpy patches](/getting-started/apply-openspy-patches/), every new soldier starts with all unlocks, in singleplayer and LAN too, as long as you're online.
+
+Want them offline? [BF2142Unlocker](/advanced/addons-tweaks/bf2142unlocker/) runs a master server on your own PC.
+
+</details>
+
+<details id="how-to-reset-my-password">
+
+<summary>How do I reset my password?</summary>
+
+Go to [account.openspy.net](https://account.openspy.net/login) and use partner code <mark class="ui">20 - EA</mark>. You'll need the email address you registered with.
+
+</details>
+
+## Game settings
+
+<details id="how-to-change-the-game-language">
+
+<summary>How do I change the game language?</summary>
+
+With the Remaster mod installed, just switch it in the <mark class="ui">Remaster Launcher</mark>.
+
+Without it, change it in the registry:
+
+1. Press <mark class="ui">Win + R</mark>, type `regedit` and press <mark class="ui">Enter</mark>.
+2. Go to `HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Electronic Arts\EA GAMES\Battlefield 2142`.
+3. Set <mark class="ui">Locale</mark> to a code from the table below.
+
+Can't find those entries? [Install the registry files](/help-centre/troubleshoot/#a04-install-the-registry-files) first.
+
+| Code | Language |
+| --- | --- |
+| cs | Czech |
+| da | Danish |
+| de | German |
+| el | Greek |
+| en\_UK | English (UK) |
+| en\_US | English (US) |
+| es | Spanish |
+| fi | Finnish |
+| fr\_FR | French |
+| hu | Hungarian |
+| it | Italian |
+| ja | Japanese |
+| ko | Korean |
+| nl | Dutch |
+| no | Norwegian |
+| pl | Polish |
+| pt\_BR | Portuguese (Brazil) |
+| pt\_PT | Portuguese (Portugal) |
+| ru | Russian |
+| sv | Swedish |
+| th | Thai |
+| zh\_CN | Chinese (Simplified) |
+| zh\_tw | Chinese (Traditional) |
+
+</details>
+
+<details id="how-do-i-play-in-windowed-mode-or-at-a-custom-resolution">
+
+<summary>How do I play in windowed mode or at a custom resolution?</summary>
+
+You can set the resolution in BF2142 Hub before you hit <mark class="ui">Play</mark>, or in-game under <mark class="ui">OPTIONS</mark> → <mark class="ui">VIDEO</mark>.
+
+For windowed mode or a resolution the menus don't list, launch the game from a desktop shortcut with launch options at the end of its <mark class="ui">Target</mark>, e.g. `+fullscreen 0 +szx 1600 +szy 900` for a 1600×900 window ([how to set up the shortcut](/advanced/addons-tweaks/custom-shortcuts/)). Only use resolutions your monitor supports.
+
+</details>
+
+<details id="how-do-i-play-in-widescreen">
+
+<summary>How do I play in widescreen?</summary>
+
+Tick <mark class="ui">TURN ON WIDESCREEN</mark> in BF2142 Hub, or add `+widescreen 1` to your shortcut. The HUD still looks stretched in vanilla, so add the [Widescreen HUD fix](/advanced/addons-tweaks/hudfix/) too. Project Remaster has both built in.
+
+</details>
+
+<details id="how-to-change-field-of-view-in-game">
+
+<summary>Can I change the field of view?</summary>
+
+Not in the game's menus, but it's an easy file edit. See [Field of View](/advanced/addons-tweaks/fov/).
+
+</details>
+
+<details id="how-to-adjust-the-ticket-counts-team-ratio-and-respawn-time-in-singleplayer">
+
+<summary>Can I change tickets, team ratio or respawn time in singleplayer?</summary>
+
+Yes, and plenty more settings the menus don't show. See [Server Settings](/advanced/addons-tweaks/server-settings/).
+
+</details>
+
+## Bots
+
+<details id="how-to-play-with-bots">
+
+<summary>How do I play with bots?</summary>
+
+Bots spawn in Conquest Co-op (`gpm_coop`) mode.
+
+* **Singleplayer:** it's the default, so there's nothing to do.
+* **LAN:** pick Conquest Co-op when you create the server.
+
+</details>
+
+<details id="how-to-add-more-bots">
+
+<summary>Can I have more than 16 bots?</summary>
+
+Yes! Modern PCs handle 64+ bots easily. See [More Bots](/advanced/addons-tweaks/add-more-bots/).
+
+</details>
+
+<details id="are-there-more-conquestcoop-maps-with-bot-support">
+
+<summary>Are there more maps with bot support?</summary>
+
+Plenty, from Project Remaster, the Reclamation map pack and more. See [Maps w/ Bots](/advanced/addons-tweaks/maps-with-bots/).
+
+</details>
+
+<details id="can-i-play-titan-mode-with-bots">
+
+<summary>Can I play Titan mode with bots?</summary>
+
+Not in vanilla BF2142, where bots only play Conquest Co-op. [Project Remaster](/advanced/project-remaster/install-project-remaster/) adds limited Titan support for 48-player singleplayer and co-op. Bots can't board the Titans yet, but the Titan turrets fire on their own.
+
+</details>
+
+## Other
+
+<details id="how-to-use-battlerecorder-and-battledirector">
+
+<summary>Can I record and replay my matches?</summary>
+
+Yes, with the built-in BattleRecorder and the BattleDirector app. See [BattleRecorder](/advanced/addons-tweaks/battlerecorder-and-battledirector/).
+
+</details>
+
+<details id="can-i-play-project-remaster-online">
+
+<summary>Can I play Project Remaster online?</summary>
+
+Yes, as long as everyone runs the same version of the mod, e.g. on your own [LAN or internet server](/getting-started/host-server/). You can't join vanilla servers like Reclamation with it loaded, as you'll be kicked.
+
+</details>
+
+<details id="can-i-play-this-game-on-linux-steam-deck-or-mac">
+
+<summary>Can I play on Linux, Steam Deck or Mac?</summary>
+
+Linux and Steam Deck: yes. Mac: there is an official Mac version for older Intel Macs, while newer Macs need Windows or a compatibility layer. See the notes on [Install BF2142](/getting-started/download-and-install-bf2142/).
+
+</details>

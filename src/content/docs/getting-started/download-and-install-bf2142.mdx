@@ -1,0 +1,249 @@
+---
+title: Install BF2142
+description: "Get started: where to safely download BF2142 and how to install it properly."
+slug: getting-started/download-and-install-bf2142
+icon: square-rounded-number-1
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideLink from '~/components/GuideLink.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+Let's get the game onto your PC. Below you'll find tested download links and a step-by-step install, including the few setup screens that are easy to trip over.
+
+<GuideSummary step={1} time="15 minutes">
+
+Download the Standard Edition, run `setup.exe` with the serial key from the steps, and skip the extras in the setup wizard. Don't launch the game yet.
+
+Installing the Deluxe Edition? It's already on v1.51, so you can skip guide ②.
+
+</GuideSummary>
+
+<details id="can-my-pc-handle-this-game">
+
+<summary>Can my PC handle this game?</summary>
+
+Almost certainly. If your PC runs Windows 7 or newer and handles everyday apps smoothly, you're good to go.
+
+Minimum requirements:
+
+* OS: Windows XP, with administrator access
+* CPU: 1.7 GHz Intel Pentium 4 / AMD Athlon XP
+* RAM: 512 MB
+* Disk space: 2.2 GB
+* Graphics: NVIDIA GeForce FX 5700 / ATI Radeon 9500[^1]
+* Resolution: 800 × 600, 16-bit colour
+
+</details>
+
+<details id="can-i-play-this-game-on-linux">
+
+<summary>Can I play this game on Linux?</summary>
+
+Yes! Follow Morschi's guide, and if you get stuck, the BF2142 Remastered Discord has players who run the game on Linux.
+
+<Embed url="https://docs.google.com/document/d/1itfdj2IWGuGtT5GOujP4VtLJvvq725ACy8bAE-wwPOI/edit?usp=sharing">
+
+Source: Morschi @ [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+
+</Embed>
+
+You can also use [Wine](https://www.winehq.org/) or [PlayOnLinux](https://www.playonlinux.com/en/). This guide walks you through it:
+
+<Embed url="https://www.gamersonlinux.com/forum/threads/battlefield-2142-guide.1799/" title="Battlefield 2142 Guide">
+
+Source: [GamersOnLinux](https://www.gamersonlinux.com/)
+
+</Embed>
+
+</details>
+
+<details id="can-i-play-this-game-on-steam-deck">
+
+<summary>Can I play this game on Steam Deck?</summary>
+
+Yes! Follow this community guide:
+
+<Embed url="https://www.reddit.com/r/bf2142/comments/1o52bfv/guide_bf2142_on_steam_deck/">
+
+Source: [InterestingRun6612](https://www.reddit.com/user/InterestingRun6612/) @ [r/bf2142](https://www.reddit.com/r/bf2142/)
+
+</Embed>
+
+Prefer watching? This video works as a reference too:
+
+<Embed url="https://www.youtube.com/watch?v=sZjC76ft-14" />
+
+</details>
+
+<details id="can-i-play-this-game-on-mac">
+
+<summary>Can I play this game on Mac?</summary>
+
+On older Macs, yes. EA released a Mac version in 2007, but it's a "lazy" port: instead of a true native build, it runs the Windows game through _Cider_, a Windows compatibility layer. It's a 32-bit app for Intel Macs, so it won't run on macOS 10.15 Catalina or newer, or on Apple Silicon Macs.
+
+<Embed url="https://www.myabandonware.com/game/battlefield-2142-vdw#Mac" title="Battlefield 2142 for Mac v1.25 (1.9 GB)">
+
+Source: [My Abandonware](https://www.myabandonware.com/)
+
+</Embed>
+
+On a modern Mac, your best options are:
+
+* Run Windows in a virtual machine (e.g. [VirtualBox](https://www.virtualbox.org/) or [VMware](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion))
+* Install Windows with [Boot Camp](https://support.apple.com/en-au/guide/bootcamp-assistant/welcome/mac) (Intel Macs only)
+* Try [Wine](https://www.winehq.org/) or [PlayOnMac](https://www.playonmac.com/en/)
+
+<Embed url="https://www.reddit.com/r/macgaming/comments/1n591du/it_seems_battlefield_2142_is_impossible_to_run/">
+
+Source: [apachey](https://www.reddit.com/user/apachey/) @ [r/macgaming](https://www.reddit.com/r/macgaming/)
+
+</Embed>
+
+</details>
+
+## Steps
+
+<Steps>
+
+1. Download the game from [Downloads](#downloads) → [Standard Edition](#standard-edition).
+
+1. Extract everything from the `.rar` or `.zip` file into a new folder, e.g. on your desktop.[^2]
+
+1. Open that folder and double-click `setup.exe` to start the installer.[^3] If <mark class="ui">User Account Control</mark> asks, click <mark class="ui">Yes</mark>.
+
+1. Follow the setup wizard, keeping these in mind:
+
+   * If a popup says <mark class="ui">This game has only been tested on WinXP(32bit)</mark>, click <mark class="ui">Confirm</mark>, it's safe to ignore.
+   * When asked for a serial code, use a key that matches your edition:[^4]
+
+     <Tabs syncKey="edition">
+     <TabItem label="Standard Edition Serial Key">
+
+     ```text
+     SDV5-JZDE-L6B8-P2Q4-1911
+     SVMV-LBNV-W7W5-J3X4-1911
+     E6HH-DWUG-U8X1-R8F0-1911
+     UTFP-4DMN-D2U0-X3T3-1911
+     TRCL-YBIJ-D4H4-Y3O5-1911
+     ```
+
+     </TabItem>
+     <TabItem label="Deluxe Edition Serial Key">
+
+     ```text
+     7GT3-VNQL-GRXP-NUE4-FR74
+     ```
+
+     </TabItem>
+     </Tabs>
+
+   * Keep the default install path if you can (`C:\Program Files (x86)\Electronic Arts\Battlefield 2142`), as our guides assume it.
+   * Pick the <mark class="ui">English version</mark> to get the HD English fonts in [Project Remaster](/advanced/project-remaster/).
+   * Skip BattleCammo (in-game voice chat) with <mark class="ui">Cancel</mark>.
+   * Choose <mark class="ui">No, install GameSpy Comrade later</mark>, as GameSpy Comrade no longer works since the [GameSpy shutdown](https://en.wikipedia.org/wiki/GameSpy#Shutdown) in 2014.
+   * When asked to register an EA account, click <mark class="ui">REGISTER LATER</mark>, as EA's servers for this game are offline.
+   * Skip PunkBuster, no server uses it anymore.
+
+1. When the installation finishes, close the wizard, but _don't launch the game yet_. It would just ask for the disc.
+
+1. Next up: <GuideLink href="/getting-started/download-and-install-v1_51-patch/" label="Install v1.51 patch" />
+
+   _Don't skip this_. The patch removes the disc check, and without it the game won't start. Installed the Deluxe Edition? It's already on v1.51, so go straight to <GuideLink href="/getting-started/download-and-install-bf2142-hub/" label="Install BF2142 Hub" />
+
+</Steps>
+
+## Downloads
+
+<details id="important-notes">
+
+<summary>Which edition should I pick?</summary>
+
+* New to the game? Pick the _Standard Edition_, as our guides are written for it.
+* Once patched to v1.51, every edition ends up the same, so don't worry too much.
+* This isn't an official way to get the game. Apart from a second-hand DVD (which can't log in online anyway), it's one of the few options left. If you have any doubts about a source, scan the download with your antivirus or use a source you trust.
+
+</details>
+
+<Aside type="caution">
+
+The game has been abandoned by its developer and publisher. These setups are shared purely to preserve video game history. The links are a collection of public search results, and downloading from them is your own decision.
+
+</Aside>
+
+<Tabs syncKey="edition">
+<TabItem label="Standard Edition">
+
+The original DVD image, in English and many other languages. It's an early version (v1.01), so you'll [update it to v1.51](/getting-started/download-and-install-v1_51-patch/) right after installing.
+
+<Embed url="https://mediafire.com/file/g6xhktutdtnpgs3/BF2142_Setup.rar/file" title="Battlefield 2142 Standard Edition v1.01 (3.24 GB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1gDA9OtbxGK2aYDBltoDZ-id0Ta6LtjHQ/view" title="Battlefield 2142 Standard Edition v1.01 (3.24 GB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+<Embed url="https://www.mediafire.com/file/1eugw0jb8tr93e3/Battlefield_2142_Setup.rar/file" title="Battlefield 2142 Standard Edition v1.01 (3.24 GB)">
+
+Source: [BF2142 Reworked](https://mozziefiles.wixsite.com/bf2142)
+
+</Embed>
+
+<Embed url="https://www.myabandonware.com/game/battlefield-2142-vdw#download" title="Battlefield 2142 Standard Edition (3.2 GB)">
+
+Source: [My Abandonware](https://www.myabandonware.com/)
+
+</Embed>
+
+<Embed url="https://archive.org/search?query=battlefield+2142" title="Battlefield 2142 Standard Edition (3.2 GB)">
+
+Source: [Internet Archive](https://archive.org)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="Deluxe Edition">
+
+The original DVD image, in English and many other languages. It's already on v1.51 once installed, so you can skip the [patch guide](/getting-started/download-and-install-v1_51-patch/).
+
+<Embed url="https://www.myabandonware.com/game/battlefield-2142-deluxe-edition-11i0#download" title="Battlefield 2142 Deluxe Edition v1.51 (3.9 GB)">
+
+Source: [My Abandonware](https://www.myabandonware.com/)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="Retail DVD">
+
+A _second-hand_ retail DVD is the only "legitimate" way to get the game today. Used keys are often already activated, so it's more about nostalgia than necessity. But if you love the game, owning the box is a great way to support a classic.
+
+Amazon, eBay and local second-hand game shops are the best places to look. Before you buy:
+
+* Make sure the manual is included, as the serial code is printed on its back cover.
+* Check that the disc and manual are the same edition, or the key won't work.
+* You'll need a DVD drive.
+
+<Embed url="https://www.amazon.com/Battlefield-2142-Deluxe-PC/dp/B000YJ3TR8" />
+
+<Embed url="https://www.ebay.com/sch/i.html?_nkw=battlefield+2142" />
+
+</TabItem>
+</Tabs>
+
+[^1]: No dedicated graphics card needed, integrated Intel graphics run the game just fine.
+
+[^2]: Use any file archiver, e.g. 7-Zip, WinRAR, WinZip or File Explorer on Windows 11.
+
+[^3]: Use `setup.exe`, not `Autorun.exe`, which just keeps asking you to insert the disc.
+
+[^4]: Each key only works with its own edition. It's fine if other players use the same key, as servers don't check for duplicates.
+
+[^5]: You can't choose the language during install, but you can switch it later with the Remaster Launcher (after [installing the Remaster mod](/advanced/project-remaster/install-project-remaster/)) or [by hand](/help-centre/faq/#how-to-change-the-game-language).

@@ -1,0 +1,96 @@
+---
+title: Apply OpenSpy patches
+description: "Get online: patch BF2142 to use OpenSpy and play online again."
+slug: getting-started/apply-openspy-patches
+icon: square-rounded-number-4
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+This is the step that brings BF2142 back online. The OpenSpy patches point your game at a working login server, so you can create an account, see servers and join games.
+
+<GuideSummary step={4} time="3 minutes">
+
+Run the Hub as administrator, pick <mark class="ui">OpenSpy</mark> under <mark class="ui">Redirects\*</mark> and click <mark class="ui">Install</mark>. You're done when all four ticks are green.
+
+</GuideSummary>
+
+<details id="openspy">
+
+<summary>What is OpenSpy, and why do I need it?</summary>
+
+Online games like BF2142 rely on a _master server_: it handles your login and soldier data, lists the game servers in your browser, and records your progress. BF2142's master server ran on GameSpy, and it went dark when [GameSpy shut down](https://en.wikipedia.org/wiki/GameSpy#Shutdown) in 2014.
+
+[OpenSpy](https://openspy.net/) is an open-source replacement for GameSpy. The OpenSpy patches redirect your game to it, so you can log in and play online again.
+
+</details>
+
+<details id="project-reclamation">
+
+<summary>Who runs the servers?</summary>
+
+Mostly **Project Reclamation**, a community effort that brought BF2142's online features back using OpenSpy. The Reclamation team also makes BF2142 Hub.
+
+<figure><img src="/assets/reclamation_orig.png" alt="Reclamation servers in the BF2142 server browser" width="563" loading="lazy" /></figure>
+
+There are EU and US servers. EU usually gets busy from around 6 PM GMT, US from around midnight GMT, and weekends are busiest. You'll find Conquest, Conquest Co-op and Titan[^1].
+
+To join, you'll need the OpenSpy patches (this guide) and the [Reclamation map pack](/getting-started/install-map-pack/). The English-speaking community hangs out on their [Discord](https://discord.com/invite/MEwBW9U).
+
+</details>
+
+<details id="gadgets-x26-unlocks">
+
+<summary>Do I get all the unlocks?</summary>
+
+Yes! On OpenSpy, every new soldier starts with all unlocks in singleplayer and multiplayer, as long as you're online. Perfect for grinding against bots in Conquest Co-op.
+
+</details>
+
+<details id="openspy-alternatives">
+
+<summary>Are there alternatives to OpenSpy?</summary>
+
+A few, like [NovGames](https://novgames.ru/) and [PlayBF2142](http://play2142.ru/). But OpenSpy, with the Reclamation community, is by far the most active and reliable. If you want to try NovGames, BF2142 Hub can switch between the two.
+
+</details>
+
+## Steps
+
+<Aside type="caution">
+
+BF2142 Hub won't run on 32-bit Windows XP. On XP, follow [these steps](/getting-started/before-proceeding/#im-using-windows-xp-32-bit) instead.
+
+</Aside>
+
+<Steps>
+
+1. Right-click the <mark class="ui">BF2142 Hub</mark> shortcut on your desktop → <mark class="ui">Properties</mark>.
+
+1. On the <mark class="ui">Compatibility</mark> tab, tick <mark class="ui">Run this program as an administrator</mark>, then click <mark class="ui">OK</mark>. This avoids permission problems while patching.
+
+1. Launch BF2142 Hub. If <mark class="ui">User Account Control</mark> asks, click <mark class="ui">Yes</mark>.
+
+1. Open the <mark class="ui">Help</mark> tab (the question-mark icon) and check that <mark class="ui">GamePath</mark> points to your game folder. If not, click the gear icon to fix it.
+
+1. In the <mark class="ui">Redirects\*</mark> drop-down, select <mark class="ui">OpenSpy</mark> and click <mark class="ui">Install</mark>. If an `mdIBF.DNS` error pops up, you can ignore it.
+
+1. Confirm with <mark class="ui">Yes</mark>, then click <mark class="ui">Confirm</mark> when you see <mark class="ui">Patch completed, Enjoy!</mark>.
+
+1. Check that `Patch 1.51`, `BF2142.exe`, `RendDX9.d` and `RendDX9ori.dll` all have <mark class="ui ui-green">green</mark> ticks. If not, repeat from step 5, or [install the patches manually](/help-centre/troubleshoot/#a05-install-openspy-patches-manually).
+
+1. Next up: <GuideLink href="/getting-started/install-map-pack/" label="Install the map pack" />
+
+   Only needed for the Reclamation servers. Otherwise, go straight to <GuideLink href="/getting-started/create-account/" label="Create an account" />
+
+</Steps>
+
+<Aside type="tip">
+
+The Hub's <mark class="ui">Help</mark> tab has troubleshooting and diagnostic tools for crashes, startup problems and graphics glitches. If the game looks off in windowed mode with Windows display scaling, [enable High DPI Aware](/help-centre/troubleshoot/#a01-enable-high-dpi-aware).
+
+</Aside>
+
+[^1]: Reclamation's servers adjust maps and modes to the number of players online. Titan matches start once at least 20 players are on the server.

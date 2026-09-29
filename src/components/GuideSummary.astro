@@ -1,0 +1,96 @@
+---
+// "In short" box at the top of a guide: where you are in a series, how long it takes,
+// whether it's optional, and the gist in a sentence or two.
+import { useT } from '~/lib/i18n';
+import PageIcon from './PageIcon.astro';
+
+interface Props {
+	/** Position in a series of guides, e.g. Getting Started ① - ⑥. */
+	step?: number;
+	total?: number;
+	/** Rough time, e.g. "10 minutes". */
+	time?: string;
+	optional?: boolean;
+}
+
+const { step, total = 6, time, optional } = Astro.props;
+const t = useT(Astro.locals.starlightRoute.locale);
+---
+
+<aside class="summary not-content" aria-label={t('summary.label')}>
+	<div class="meta">
+		<span class="label">{t('summary.label')}</span>
+		{step && <span class="chip"><PageIcon name="list-numbers" />{t('summary.step', { step, total })}</span>}
+		{time && <span class="chip"><PageIcon name="clock" />{t('summary.time', { time })}</span>}
+		{optional && <span class="chip optional">{t('summary.optional')}</span>}
+	</div>
+	<div class="body">
+		<slot />
+	</div>
+</aside>
+
+<style>
+	.summary {
+		margin-block: 1.5rem;
+		padding: 0.875rem 1rem;
+		border: 1px solid var(--hairline);
+		border-inline-start: 2px solid var(--sl-color-accent);
+		border-radius: 0 0.5rem 0.5rem 0;
+		background: color-mix(in srgb, var(--sl-color-accent) 5%, transparent);
+	}
+	.meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+	.label {
+		margin-inline-end: 0.25rem;
+		font-family: var(--font-display);
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--sl-color-text-accent);
+	}
+	/* Hanzi need more size and less tracking than Latin capitals. */
+	:global(:lang(zh-TW)) .label {
+		font-size: 0.875rem;
+		letter-spacing: 0.02em;
+	}
+	.chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.1rem 0.5rem;
+		border: 1px solid var(--hairline);
+		border-radius: 999px;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-2);
+	}
+	.chip.optional {
+		border-color: color-mix(in srgb, var(--sl-color-orange) 50%, transparent);
+		color: var(--sl-color-orange-high);
+	}
+	.body {
+		color: var(--sl-color-gray-1);
+	}
+	.body :global(p) {
+		margin: 0;
+	}
+	.body :global(p + p) {
+		margin-top: 0.5rem;
+	}
+	.body :global(a) {
+		color: var(--sl-color-text-accent);
+		text-underline-offset: 0.2em;
+	}
+	.body :global(code) {
+		padding: 0.1em 0.35em;
+		border: 1px solid var(--hairline);
+		border-radius: 0.25rem;
+		background: var(--sl-color-gray-6);
+		font-size: 0.875em;
+	}
+</style>

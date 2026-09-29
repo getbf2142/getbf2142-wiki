@@ -1,0 +1,617 @@
+---
+title: 疑難排解
+description: 遊戲出狀況了？這裡幫你找出原因和解法。
+icon: settings
+prev: false
+next: false
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+遊戲出狀況了？在下面找找跟你一樣的症狀，或直接按 <mark class="ui">Ctrl + F</mark> 搜尋錯誤訊息。每個問題的解法大致由簡單到進階排好，從第一個開始試就對了。
+
+沒看到你的問題？可以看看 [Reclamation FAQ](https://battlefield2142.co/faq/)，或[找人幫忙](#d01-get-help-with-your-diagnostics-results)。
+
+## (G) 畫面
+
+<details id="g01-running-the-game-in-windowed-mode-causes-scaling-issues-or-distortion">
+
+<summary>G01：視窗模式下畫面變形或比例不對</summary>
+
+舊遊戲不支援高 DPI 螢幕，開了 Windows 顯示縮放就容易出問題。
+
+**症狀**
+
+* 在高解析度螢幕上，介面糊糊的、被拉長，或字很難看清楚。
+* 介面大得誇張。
+
+**可以試試**
+
+* 開啟 High DPI Aware（[A01](#a01-enable-high-dpi-aware)）。
+* 先用全螢幕開一次，再切回視窗模式。
+
+</details>
+
+<details id="g02-having-weird-graphics-glitches-like-blackouts-see-through-inverted-colors-or-ghost-objects">
+
+<summary>G02：畫面怪怪的，例如物件透明、顏色反轉、黑掉或出現殘影</summary>
+
+通常是老舊的 DirectX 9 引擎在新顯卡上處理反鋸齒時出錯。
+
+**症狀**
+
+* 畫面透明，像開了透視
+* 地形或士兵不見
+* 顏色反轉
+* 物件整個變黑
+
+**可以試試**
+
+* 關掉反鋸齒（[A02](#a02-turn-off-anti-aliasing)）。
+* 刪除個人檔案和快取（[A03](#a03-delete-profile-and-cache)）。
+* 把解析度和更新率調低一點。[^1]
+* 關掉 High DPI Aware（[A01](#a01-enable-high-dpi-aware)）。
+* 重裝遊戲。
+
+</details>
+
+<details id="g03-experiencing-mouse-skipping-stuttering-or-a-jumping-aimpoint">
+
+<summary>G03：滑鼠跳動、卡卡的，或準心亂跳</summary>
+
+這是遊戲在新硬體上計算滑鼠移動的老 bug，不是你的滑鼠壞了。想了解更多可以看[這個討論串](https://www.lost-soldiers.org/v2.php?site=forum_topic\&topic=81\&type=ASC\&page=2#bigNO)。
+
+**症狀**
+
+* 滑鼠甩快一點或大幅往旁邊移時會卡
+* 轉身時畫面跳格
+
+**可以試試**
+
+* 裝[滑鼠跳動修正](/zh-tw/advanced/addons-tweaks/mouse-skip-fix/)。它會修改 `BF2142.exe`，把滑鼠計算校正回來，大概一分鐘就搞定。
+
+</details>
+
+<details id="g04-low-fps-or-stuttering-on-a-laptop">
+
+<summary>G04：筆電 FPS 很低或一直卡</summary>
+
+有兩顆顯示晶片的筆電，跑老遊戲時常常會用到比較弱的內顯。
+
+**症狀**
+
+* FPS 低得不正常
+* 就算開低畫質還是卡
+
+**可以試試**
+
+* 打開 Windows <mark class="ui">Settings</mark> → <mark class="ui">System</mark> → <mark class="ui">Display</mark> → <mark class="ui">Graphics</mark>，加入 `BF2142.exe`，設成 <mark class="ui">High performance</mark>。
+* 或在 NVIDIA 控制面板或 AMD Software 裡，指定 `BF2142.exe` 用獨立顯卡。
+* 插上電源。很多筆電用電池時會降低顯卡效能。
+
+</details>
+
+## (C) 當機
+
+<details id="c01-game-crashes-to-desktop-after-a-flashing-black-screen">
+
+<summary>C01：黑畫面閃一下就跳回桌面</summary>
+
+最常見的原因，是遊戲用了你電腦不支援的顯示模式或設定。
+
+**症狀**
+
+* 黑畫面一下後當掉
+* 還沒到片頭動畫或主選單就當掉
+
+**可以試試**
+
+* 刪除個人檔案和快取（[A03](#a03-delete-profile-and-cache)）。
+* 開啟 High DPI Aware（[A01](#a01-enable-high-dpi-aware)）。
+* 改用視窗模式開遊戲。
+* 解析度和更新率只選螢幕支援的。
+* 只限 Windows 7：用 BF2142 Hub 的 <mark class="ui">GameUX Fix</mark> 工具。
+* 執行 [Vidcon Fix](https://battlefield2142.co/bf2142_vidcon_fix.exe)（[詳情](https://battlefield2142.co/faq/#blackscreen)）。
+* 照著[這支影片](https://www.youtube.com/watch?v=M4Bur6pjBXA)做。
+* 重裝遊戲。
+
+</details>
+
+<details id="c02-game-crashes-when-adjusting-audio-settings">
+
+<summary>C02：調音效設定時當機</summary>
+
+只要電腦上的錄音裝置超過 9 個，BF2142 就會當掉。VirtualCable、Voicemeeter 這類會多開虛擬輸入的工具，常常就是兇手。
+
+**症狀**
+
+* 調音效設定時當機
+* 進入對戰時當機，有時會先聽到一聲短短的嗶
+
+**可以試試**
+
+* 到 <mark class="ui">Control Panel</mark> → <mark class="ui">Sound</mark> → <mark class="ui">Recording</mark>，把用不到的輸入停用，讓總數少於 10 個。
+* 在 <mark class="ui">Device Manager</mark> 解除安裝用不到的音訊輸入。
+* 移除會多開一堆輸入的程式（例如 VirtualCable、Voicemeeter）。
+* 在遊戲裡把 <mark class="ui">Audio Renderer</mark> 設成 <mark class="ui">Software</mark>，<mark class="ui">Enable EAX</mark> 設成 <mark class="ui">No</mark>。
+
+感謝 [Reclamation Discord](https://discord.com/invite/MEwBW9U) 的 Edouard 找到這個解法。
+
+</details>
+
+<details id="c03-game-freezes-or-crashes-when-the-alt-key-is-pressed">
+
+<summary>C03：按 Alt 時遊戲卡住或當機</summary>
+
+據說是官方最後一版更新帶進來的 bug。想了解更多可以看[這個討論串](https://forum.realitymod.com/viewtopic.php?t=66463)。
+
+**症狀**
+
+* 3D 地圖圖示一下出現一下消失
+* 遊戲卡住或當掉
+
+**可以試試**
+
+* 如果是按 `Alt + Tab` 才當，關掉反鋸齒（[A02](#a02-turn-off-anti-aliasing)）。
+* 按 `Esc` 叫出選單，再按一次 `Esc` 回到遊戲。
+* 如果 `Alt` 會叫出其他程式的覆蓋介面，把那個快捷鍵取消或換掉。
+* 重開遊戲。
+
+</details>
+
+<details id="c04-runtime-error-or-missing-dll-error-when-starting-the-game">
+
+<summary>C04：開遊戲時出現 Runtime Error 或缺少 DLL</summary>
+
+通常是少裝了 Microsoft Visual C++ 或 DirectX 9 執行環境。
+
+**症狀**
+
+* "The code execution cannot proceed because MSVCP71.dll was not found."
+* "The code execution cannot proceed because d3dx9_xx.dll was not found."
+* "The code execution cannot proceed because dice\_py.dll was not found."
+* "Runtime Error! This application has requested the Runtime to terminate it in an unusual way."
+
+**可以試試**
+
+* 缺 `d3dx9_xx.dll`：裝 [DirectX End-User Runtimes (June 2010)](https://www.microsoft.com/en-us/download/details.aspx?id=8109)。Windows 10 和 11 沒有內建這些舊的 DirectX 9 檔案。
+* 裝 [Microsoft Visual C++ 2015 - 2022 Redistributable (x86)](https://aka.ms/vs/17/release/vc_redist.x86.exe)。
+* 缺 `MSVCP71.dll`：裝 Visual C++ 2003 執行環境（[A06](#a06-install-microsoft-visual-c-2003-redistributable)）。
+* 真的沒辦法的話，也可以上網下載缺少的 DLL（風險自負）。
+
+</details>
+
+<details id="c05-memorydll-sanity-check-error-when-joining-a-game-or-loading-a-map">
+
+<summary>C05：進遊戲或載入地圖時出現「memory.dll sanity check」錯誤</summary>
+
+想了解更多可以看[這個討論串](https://forum.realitymod.com/viewtopic.php?t=80268)。
+
+**症狀**
+
+* "memory.dll: sanity check: block size xxxxxxx (xxxxxx mb) doesn't seem sane"
+* "memory.dll: all alloc attempts failed for size xxxxxxxxx"
+
+**可以試試**
+
+* 關掉反鋸齒（[A02](#a02-turn-off-anti-aliasing)）。
+* 把畫質降到中或低。
+* 讓 Windows 自動管理分頁檔（執行 `SystemPropertiesPerformance.exe` → <mark class="ui">Advanced</mark> → <mark class="ui">Virtual memory</mark>）。
+* 在 <mark class="ui">Task Manager</mark> 把遊戲的 CPU 親和性設成只用一個核心。
+* 更新主機板 BIOS。
+* 重裝遊戲。
+
+</details>
+
+<details id="c06-nothing-happens-when-i-launch-the-game">
+
+<summary>C06：按了開始，結果什麼都沒發生</summary>
+
+**症狀**
+
+* 按了 <mark class="ui">Play</mark>，但沒有視窗也沒有錯誤訊息
+* 遊戲在 Task Manager 閃一下就不見了
+
+**可以試試**
+
+* 看看防毒軟體的隔離區。改過的遊戲檔案（例如 `BF2142.exe`）有時會被誤判，把它們還原，再把遊戲資料夾加進例外清單。
+* 打開 <mark class="ui">Task Manager</mark>，把之前沒關乾淨的 `BF2142.exe` 結束掉。
+* 在 BF2142 Hub 重裝 OpenSpy 修正檔，確認四個勾勾都是綠色。
+* 刪除個人檔案和快取（[A03](#a03-delete-profile-and-cache)）。
+* 還是沒反應？看 [C01](#c01-game-crashes-to-desktop-after-a-flashing-black-screen) 和 [C04](#c04-runtime-error-or-missing-dll-error-when-starting-the-game)。
+
+</details>
+
+<details id="c07-project-remaster-crashes-when-spawning">
+
+<summary>C07：Project Remaster 重生時當機</summary>
+
+如果你用的是在原版 BF2142 建的士兵，Remaster 的擴充裝備自訂可能會出錯。
+
+**可以試試**
+
+* 替 Project Remaster 另外建一個新士兵，原版士兵留著玩原版伺服器。
+* 還是會當？到 [Remaster Discord](https://discord.gg/nVdDkgA) 問問看。
+
+</details>
+
+## (S) 伺服器
+
+<details id="s01-account-creation-error-when-creating-an-account">
+
+<summary>S01：建立帳號時出現錯誤</summary>
+
+**症狀**
+
+* "A system error occurred. Try again later. If problem persists, contact customer support."
+
+**可以試試**
+
+* 換一個帳號名稱或 Email，原本的可能已經被用走了。
+* 檢查國家代碼、郵遞區號和生日有沒有填對，也別用特殊字元。
+* 到 [Reclamation Discord](https://discord.com/invite/MEwBW9U) 問一下，註冊功能可能正在維修。
+
+</details>
+
+<details id="s02-could-not-connect-to-ea-online-or-ea-master-server-when-logging-in-or-creating-an-account">
+
+<summary>S02：「Could not connect to EA Online」或卡在連線主伺服器</summary>
+
+可能出在網路、Hub、OpenSpy 修正檔、防火牆、防毒軟體、網路業者或主伺服器本身。
+
+<Aside type="note">
+
+如果 OpenSpy 掛了，可以在 BF2142 Hub 切到 NovGames，或用 [BF2142Unlocker](/zh-tw/advanced/addons-tweaks/bf2142unlocker/) 玩全解鎖的單人模式。
+
+</Aside>
+
+**症狀**
+
+* 卡在 "Contacting EA Master Server"
+* "Could not connect to EA Online. Retry, or click OK to go into Offline mode."
+* "EA Master Server is down. Please use BF2142Unlocker"
+* "You are not connected to the Internet. Click OK to select a soldier to play offline, or try to reconnect."
+
+**可以試試**
+
+* 確認網路連線穩不穩定。
+* 重裝 OpenSpy 修正檔，確認四個勾勾都是綠色。
+* 手動安裝 OpenSpy 修正檔（[A05](#a05-install-openspy-patches-manually)）。
+* 把 BF2142 Hub 完全關掉再重開。
+* 用 BF2142 Hub 的 <mark class="ui">Reset Hub</mark>，或乾脆重裝 Hub。
+* 在 Windows 防火牆允許 `BF2142.exe` 使用私人和公用網路。
+* 確認防毒軟體沒有擋到遊戲或 Hub。
+* 到 [Reclamation Discord](https://discord.com/invite/MEwBW9U) 問一下，OpenSpy 可能正在維修。
+* 用 VPN 繞過網路業者的限制。
+
+</details>
+
+<details id="s03-no-servers-showing-in-the-server-browser-even-with-the-patches-installed">
+
+<summary>S03：伺服器列表一台都沒有</summary>
+
+**可以試試**
+
+* 把篩選全部取消勾選（[怎麼做](/zh-tw/getting-started/play-multiplayer/#加入公開伺服器)）。
+* 用 BF2142 Hub 的 <mark class="ui">Missing Servers</mark> 工具。
+
+</details>
+
+<details id="s04-this-map-contains-customised-content-error-when-joining-a-reclamation-server">
+
+<summary>S04：進 Reclamation 伺服器時出現「This map contains customized content」</summary>
+
+你少了某張地圖，或那張地圖版本太舊。
+
+**症狀**
+
+* "This map contains customized content. The map creator might have more information about the map on the community site."
+
+**可以試試**
+
+* 裝好[地圖包](/zh-tw/getting-started/install-map-pack/)，或至少裝伺服器現在在跑的那張地圖。
+* 確認每張地圖的資料夾都直接放在 `Levels` 裡，中間沒有多一層資料夾。
+* 已經裝了？把那張地圖移除，再用 Hub 的個別地圖下載重裝一次。
+* 換圖時被踢出來並看到這個訊息？這很正常，重新進去就好。
+
+</details>
+
+<details id="s05-this-server-only-allows-players-with-unmodified-content-to-join-error-when-joining-a-server">
+
+<summary>S05：「This server only allows players with unmodified content to join」</summary>
+
+你改過目前模組裡的檔案，或用錯模組進伺服器。
+
+**症狀**
+
+* "This server only allows players with unmodified content to join. Revert your version of Battlefield 2142 to the current version to join."
+
+**可以試試**
+
+* 要進 Reclamation 或其他原版伺服器，就要用乾淨、沒裝模組的遊戲，`\mods\bf2142` 裡不能有任何擴充或改過的檔案。
+* 要進模組伺服器，就要裝跟伺服器一模一樣的模組和檔案。
+
+</details>
+
+<details id="s06-invalid-cd-key-error-when-joining-a-server">
+
+<summary>S06：進伺服器時出現「Invalid CD-Key」</summary>
+
+登錄檔裡找不到你的 CD Key，通常是安裝時漏了某個步驟。
+
+**可以試試**
+
+* 用 BF2142 Hub 或 Remaster Launcher 的 <mark class="ui">CD-Key Fix</mark> 工具。
+* 用 NovGames 伺服器的話，執行 ACTIVATOR 並按 <mark class="ui">Activate</mark>。
+* 執行 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142\Support` 裡的 `Battlefield 2142_code.exe`，輸入 CD Key。[^2]
+* 安裝登錄檔（[A04](#a04-install-the-registry-files)）。
+* 重裝遊戲。
+
+</details>
+
+## (P) 遊戲中
+
+<details id="g01-cannot-find-demo-files-or-recordings-in-battlerecorder">
+
+<summary>P01：BattleRecorder 裡找不到我的錄影</summary>
+
+裝了 OpenSpy 修正檔後，錄影就不會出現在 <mark class="ui">Community</mark> → <mark class="ui">Battle Recorder</mark> → <mark class="ui">Library</mark> 了。
+
+**可以試試**
+
+* 改用 [BattleDirector](/zh-tw/advanced/addons-tweaks/battlerecorder-and-battledirector/) 播放。
+
+</details>
+
+<details id="g02-mouse-or-keyboard-not-working-after-loading-into-a-map">
+
+<summary>P02：進地圖後滑鼠或鍵盤沒反應</summary>
+
+可能是 `controls.con` 檔案壞了，或遊戲偵測裝置時出錯。想了解更多：[1](https://forum.realitymod.com/viewtopic.php?t=146450)、[2](https://forum.realitymod.com/viewtopic.php?t=110622)、[3](https://www.reddit.com/r/Battlefield2/comments/o9kr76/spawn_selection_cursor_stuck)。
+
+**症狀**
+
+* 在選單裡滑鼠和鍵盤都正常，一進地圖就沒反應
+* `Alt + Tab` 可以用，但按 `Esc` 叫不出選單
+* 控制設定全部是空白
+
+**可以試試**
+
+* 重設控制：<mark class="ui">Options</mark> → <mark class="ui">Controls</mark> → <mark class="ui">Reset to Default</mark>。
+* 刪除個人檔案和快取（[A03](#a03-delete-profile-and-cache)）。
+* 換個 USB 孔插插看，用不到的裝置先拔掉。
+* 關掉滑鼠加速：<mark class="ui">Control Panel</mark> → <mark class="ui">Mouse</mark> → <mark class="ui">Pointer Options</mark> → 取消勾選 <mark class="ui">Enhance pointer precision</mark>。
+* 把有覆蓋介面的程式完全關掉（例如 Discord、GeForce Experience、EA App）。
+* 重開機。
+
+</details>
+
+<details id="p03-weapons-or-unlocks-are-missing">
+
+<summary>P03：武器或解鎖不見了</summary>
+
+**症狀**
+
+* 只能用預設的武器和裝備
+* 自訂畫面是空的或被鎖住
+
+**可以試試**
+
+* 確認你是在線上登入的。解鎖來自 OpenSpy 主伺服器，離線模式就沒有。
+* 在 BF2142 Hub 重裝 OpenSpy 修正檔，再重新登入。
+* 透過 Hub 玩 Project Remaster？Remaster 團隊建議先用那個士兵在原版 BF2142 打一場多人，解鎖就會永久保留。
+* 想不連線也有全部解鎖？用 [BF2142Unlocker](/zh-tw/advanced/addons-tweaks/bf2142unlocker/)。
+
+</details>
+
+## (H) BF2142 Hub
+
+<details id="h01-application-exception-or-mdibf-error-when-starting-bf2142-hub">
+
+<summary>H01：BF2142 Hub 跳出 Application exception 或 mdIBF 錯誤</summary>
+
+通常是網路業者擋住了 Hub 的線上服務，或遊戲的登錄資料不見了。
+
+**症狀**
+
+* `mdIBF.ReadConfig`、`mdIBF.Banner`、`mdIBF.ReadServer` 或 `MDIBFclient` 開頭的錯誤：多半是連線問題
+* `mdIBF.CDKeyLaunch` 開頭的錯誤：多半是少了登錄資料
+* 下載地圖時出現 `mdIBF.DNS` "no such host is known"：這是 Hub 的已知問題，改用[手動安裝地圖包](/zh-tw/getting-started/install-map-pack/#安裝完整地圖包)就好
+
+**可以試試**
+
+* 連線錯誤：用 VPN 繞過網路業者的限制。
+* 登錄錯誤：安裝登錄檔（[A04](#a04-install-the-registry-files)）。
+* 重裝遊戲。
+
+</details>
+
+<details id="h02-bf2142-hub-scaling-looks-messed-up-or-distorted">
+
+<summary>H02：BF2142 Hub 畫面變形或比例不對</summary>
+
+程式不支援高 DPI 螢幕的話，Windows 顯示縮放就容易讓它跑版。
+
+**可以試試**
+
+* 替 Hub 開啟 High DPI Aware（[A01](#a01-enable-high-dpi-aware)）。
+
+</details>
+
+<details id="h03-unable-to-install-openspy-patches--no-green-ticks-after-clicking-install">
+
+<summary>H03：OpenSpy 修正檔裝不起來，勾勾沒變綠</summary>
+
+**症狀**
+
+* 按了 <mark class="ui">Install</mark> 沒反應
+* 不是每一項都有綠色勾勾
+
+**可以試試**
+
+* 用系統管理員身分執行 BF2142 Hub。
+* 把 Hub 完全關掉再重開。
+* 用 BF2142 Hub 的 <mark class="ui">Reset Hub</mark>，或乾脆重裝 Hub。
+* 手動安裝 OpenSpy 修正檔（[A05](#a05-install-openspy-patches-manually)）。
+
+</details>
+
+## (A) 常用解法
+
+<details id="a01-enable-high-dpi-aware">
+
+<summary>A01：開啟 High DPI Aware</summary>
+
+對 `BF2142.exe` 設定可以修正遊戲畫面，對 `BF2142 Hub.exe` 設定則修正 Hub 畫面：
+
+* 遊戲：`C:\Program Files (x86)\Electronic Arts\Battlefield 2142`
+* Hub：`C:\Program Files (x86)\BF2142 Hub 2`
+
+1. 在 `.exe` 上按右鍵 → <mark class="ui">Properties</mark> → <mark class="ui">Compatibility</mark> → <mark class="ui">Change high DPI settings</mark>。
+2. 勾選 <mark class="ui">Override high DPI scaling behavior</mark>，並設成 <mark class="ui">Application</mark>。
+3. 按 <mark class="ui">OK</mark>。
+
+小提醒：
+
+* 每次在 Hub 按 <mark class="ui">Install</mark> 後都要重設一次，因為安裝時會換掉 `BF2142.exe`，這個設定也會跟著不見。
+* 想關掉的話，把第 2 步的勾勾取消就好。
+
+</details>
+
+<details id="a02-turn-off-anti-aliasing">
+
+<summary>A02：關掉反鋸齒</summary>
+
+兩種方法都可以：
+
+* 在遊戲的畫面選項把 <mark class="ui">Anti-Aliasing</mark> 關掉，或
+* 用 BF2142 Hub 的 <mark class="ui">Anti-Aliasing Off</mark> 工具。
+
+開著也沒問題的話，用 <mark class="ui">4x</mark> 也可以。一定要關、但又想要畫面平滑？改從 NVIDIA 或 AMD 控制面板強制開反鋸齒就好。
+
+</details>
+
+<details id="a03-delete-profile-and-cache">
+
+<summary>A03：刪除個人檔案和快取</summary>
+
+這會重設你的個人檔案（包括設壞的畫面或音效設定），也會清掉著色器快取。選一種方法就好：
+
+* 刪掉「文件」裡的 `Battlefield 2142` 資料夾。
+* 用 BF2142 Hub 的 <mark class="ui">Clear Cache</mark> 和 <mark class="ui">Delete Profile</mark>。
+* 用 Remaster Launcher 的 <mark class="ui">Clear Cache</mark> 和 <mark class="ui">Reset Game-Settings</mark>。
+
+</details>
+
+<details id="a04-install-the-registry-files">
+
+<summary>A04：安裝登錄檔</summary>
+
+<Aside type="danger">
+
+遊戲是用 EA App 或 Origin 裝的？請不要用這個方法，直接重裝遊戲。
+
+</Aside>
+
+1. 打開[登錄檔產生器](https://www.regfiles.net/registry/battlefield-2142-registry)，填好遊戲的 <mark class="ui">PATH</mark> 和 <mark class="ui">CDKEY</mark>，下載檔案。
+2. 用文字編輯器打開檔案，把 <mark class="ui">Version</mark> 改成 `1.51`，<mark class="ui">BuildNr</mark> 改成 `1.10.77.0`。
+3. 存檔後，點兩下檔案匯入。
+
+</details>
+
+<details id="a05-install-openspy-patches-manually">
+
+<summary>A05：手動安裝 OpenSpy 修正檔</summary>
+
+1. 從 [MediaFire](https://www.mediafire.com/file/98a6muljivaoidl/BF2142_OpenSpy_Patches.zip/file)、[Google Drive](https://drive.google.com/file/d/1SX1yyOhEGlUXKR3FBgbKRRCpvVsQ9iDJ/view) 或 [Reclamation Discord](https://discord.com/invite/MEwBW9U) 下載修正檔。
+2. 把 `bf2142.exe`、`RendDX9_ori.dll` 和 `RendDX9.dll` 複製到遊戲資料夾（`C:\Program Files (x86)\Electronic Arts\Battlefield 2142`），覆蓋原本的檔案。
+3. 重開 BF2142 Hub，應該就會看到四個綠色勾勾了。
+
+</details>
+
+<details id="a06-install-microsoft-visual-c-2003-redistributable">
+
+<summary>A06：安裝 Visual C++ 2003 執行環境</summary>
+
+Visual C++ 2003 執行環境從來沒有單獨推出過，而是跟著 .NET Framework 1.1 一起裝。把下面兩個都裝好，系統就會有 `msvcr71.dll` 和 `msvcp71.dll`：
+
+1. [.NET Framework 1.1](https://web.archive.org/web/20210517233454/http://www.microsoft.com/en-us/download/details.aspx?id=26)
+2. [.NET Framework SDK 1.1](https://web.archive.org/web/20210625111546/https://www.microsoft.com/en-us/download/details.aspx?id=16217)
+
+想了解更多：[去哪裡下載](https://stackoverflow.com/a/6132093)、[怎麼安裝](https://stackoverflow.com/a/24722020)。
+
+</details>
+
+## (D) 診斷
+
+<details id="d01-get-help-with-your-diagnostics-results">
+
+<summary>D01：分享診斷結果，找人幫忙</summary>
+
+想最快得到幫助，就把診斷結果貼到 Discord：
+
+1. 打開 BF2142 Hub，切到 <mark class="ui">Help</mark> 分頁，按 <mark class="ui">Advanced Diagnostics</mark>。
+2. 按 <mark class="ui">Copy</mark>。
+3. 貼到求助頻道，簡單說一下發生什麼事、你已經試過哪些方法。
+
+可以到這幾個地方問：[GetBF2142](https://discord.gg/7SBMKRy6q9)、[BF2142 Reclamation](https://discord.com/invite/MEwBW9U) 或 [BF2142 Remastered](https://discord.gg/nVdDkgA)。
+
+</details>
+
+<details id="d02-file-check">
+
+<summary>D02：看懂 [File Check]</summary>
+
+正常的 <mark class="ui">\[File Check]</mark> 結果大概長這樣：
+
+```
+[File Check]
+BF2142.exe [rm_bf2142_lma]: Offical RM BF2142.exe 1.51 file with LAA
+RendDX9.dll [os_rendDX9]: Offical OpenSpy RendDX9.dll file
+RendDX9_ori.dll [ea_rendDX9_v1.51]: Offical EA RendDX9.dll file
+BF Version from Mod.desc [1.51] : Passed
+```
+
+跟你的結果不一樣？
+
+| 項目 | 問題 | 解法 |
+| --- | --- | --- |
+| BF Version from Mod.desc | 不是 `1.51` | [安裝 v1.51 更新檔](/zh-tw/getting-started/download-and-install-v1_51-patch/) |
+| BF2142.exe、RendDX9.dll、RendDX9\_ori.dll | 跟上面不一樣 | 在 Hub 重裝修正檔，或[手動安裝](#a05-install-openspy-patches-manually) |
+| 任何一行 | "The file does not exist or not found" | 在 Hub 修正 <mark class="ui">GamePath</mark>，或重裝遊戲 |
+
+</details>
+
+<details id="d03-registry-info">
+
+<summary>D03：看懂 [Registry Info]</summary>
+
+正常的 <mark class="ui">\[Registry Info]</mark> 結果大概長這樣：
+
+```
+[Registry Info]
+Application Name : Does not exist
+Build Number : 1.10.77.0
+Install directory : C:\Program Files (x86)\Electronic Arts\Battlefield 2142
+Install Type : Does not exist
+Language : English
+Locale : en_US
+Version : 1.51
+Compatibility : HIGHDPIAWARE
+RemasterVersion : Does not exist
+RemasterInstallPath : Does not exist
+```
+
+| 項目 | 問題 | 解法 |
+| --- | --- | --- |
+| Application Name、Install Type、Compatibility、RemasterVersion、RemasterInstallPath | "Does not exist" | 不用管，這是正常的 |
+| Install directory、Language、Locale、Version | "Does not exist" | [安裝登錄檔](#a04-install-the-registry-files) |
+| Build Number、Version | 不是 `1.10.77.0` / `1.51` | [安裝 v1.51 更新檔](/zh-tw/getting-started/download-and-install-v1_51-patch/) |
+| `REG: ... Battlefield 2142\ does not exist`（或 `\Addons\`） | 少了登錄資料 | [安裝登錄檔](#a04-install-the-registry-files) |
+
+</details>
+
+[^1]: 先在 Hub 用 1024×768、60 Hz（4:3）試試。沒問題的話，再試 1600×900、60 Hz（16:9）並開啟寬螢幕。
+
+[^2]: 標準版可以用 `E6HH-DWUG-U8X1-R8F0-1911` 這組。

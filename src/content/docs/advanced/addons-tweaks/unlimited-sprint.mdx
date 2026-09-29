@@ -1,0 +1,56 @@
+---
+title: Unlimited Sprint
+description: Sprint as long as you like, just like in modern Battlefield.
+slug: advanced/addons-tweaks/unlimited-sprint
+icon: run
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Coming from modern Battlefield, BF2142's short sprint can feel frustrating. A small file edit gives you (nearly) unlimited sprint.
+
+## Before you start
+
+* Your game folder is where `BF2142.exe` lives, usually `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`.
+* You'll edit `Objects\Soldiers_server.zip` inside `mods\bf2142` for vanilla, or inside your mod's folder.
+* Back it up first by copying it as `Soldiers_server_o.zip`, so you can always restore it.
+
+## Steps
+
+<Steps>
+
+1. Open `Soldiers_server.zip` and find the `.tweak` file for the soldier you want to change. EU soldiers are in the `us` folder. For example, the EU heavy armor soldier is `us\US_HEAVY_SOLDIER.tweak`.
+
+1. Open it with a text editor and change these lines:
+
+   ```batch
+   ObjectTemplate.SprintRecoverTime 1
+   ObjectTemplate.SprintDissipationTime 100
+   ObjectTemplate.SprintLimit 0.1
+   ObjectTemplate.SprintLossAtJump 0.10
+   ```
+
+   * `SprintDissipationTime`: how long you can sprint. Higher is longer.
+   * `SprintRecoverTime`: how long sprint takes to refill. Lower is faster.
+   * `SprintLimit`: how full the bar must be before you can sprint again.
+   * `SprintLossAtJump`: how much sprint a jump costs.
+
+   The first two usually do the trick.
+
+1. Repeat for any other soldiers you want to change, then save.
+
+   Can't save? Copy the `.zip` to your desktop, edit it there, then copy it back.
+
+1. Playing Northern Strike maps? Make the same changes in `Soldiers_bp1_server.zip`.
+
+</Steps>
+
+## Good to know
+
+* Undo the changes before joining Reclamation or other online servers, unless the server uses this tweak too.
+* Hosting with this tweak? Players who join need it too.
+* To uninstall, restore your backup.
+
+## Credits
+
+* [FFOLKES](https://forums.bf2s.com/profile.php?id=5041) for explaining how to modify sprint @ [Unlimited Sprint SP Modification](https://forums.bf2s.com/viewtopic.php?id=23762)

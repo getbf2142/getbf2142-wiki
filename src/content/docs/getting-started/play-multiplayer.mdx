@@ -1,0 +1,84 @@
+---
+title: Play Multiplayer
+description: "Jump in: how to join a BF2142 server."
+slug: getting-started/play-multiplayer
+icon: users
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+Time to join other players! Whether it's a LAN party at home or a public server online, here's how to get into a game.
+
+<GuideSummary>
+
+Go to <mark class="ui">MULTIPLAY</mark> → <mark class="ui">ONLINE</mark>, untick every filter in the <mark class="ui">ADVANCED</mark> tab and click <mark class="ui">UPDATE LIST</mark>. For Reclamation, use an unmodded game with their map pack. LAN games are under <mark class="ui">LOCAL</mark>.
+
+</GuideSummary>
+
+<Aside type="note">
+
+* **Reclamation and other vanilla servers** need a clean, unmodded game with no addons or file tweaks in `\mods\bf2142`. Reclamation also needs its [map pack](/getting-started/install-map-pack/).
+* **Modded servers** need the exact same mod and files the server runs.
+
+</Aside>
+
+## Joining a LAN server
+
+LAN servers show up in your local server browser and are open to anyone on the same network.
+
+<Steps>
+
+1. Select <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark>.
+
+1. In the <mark class="ui">JOIN</mark> tab, click <mark class="ui">UPDATE LIST</mark> until the server appears.
+
+1. Double-click the server to join.
+
+</Steps>
+
+<details id="server-is-not-showing-up-in-the-local-server-browser">
+
+<summary>The server isn't showing up?</summary>
+
+First, make sure you're on the same network as the host. Then connect by IP instead:
+
+1. Select <mark class="ui">MULTIPLAY</mark> → <mark class="ui">ONLINE</mark>.
+2. In the <mark class="ui">ADVANCED</mark> tab, click <mark class="ui">CONNECT TO IP</mark>.
+3. Enter the server's local IP (usually `192.168.x.x`) and click <mark class="ui">OK</mark>. The host can see it on their loading screen.[^1]
+
+Still nothing? If a PC has several network adapters (e.g. from Hamachi, VirtualBox, VMware or a VPN), the game may use the wrong one. [Disable the unused adapters](/getting-started/host-server/#disabling-network-adapters), first on the host, then on each player's PC.
+
+</details>
+
+## Joining a public server
+
+Public servers are listed in the online server browser and open to anyone on the internet.
+
+<Steps>
+
+1. Select <mark class="ui">MULTIPLAY</mark> → <mark class="ui">ONLINE</mark>.
+
+1. In the <mark class="ui">ADVANCED</mark> tab, untick all filter options and click <mark class="ui">UPDATE LIST</mark>. With filters on, the list usually stays empty.
+
+   <figure><img src="/assets/pic7_orig.png" alt="The ADVANCED tab with all filters unticked" width="375" loading="lazy" /></figure>
+
+1. Double-click a server to join.
+
+</Steps>
+
+## Joining a private server
+
+Private servers aren't listed in the browser, but you can still join over the internet if you know the host's public IP.
+
+<Steps>
+
+1. Select <mark class="ui">MULTIPLAY</mark> → <mark class="ui">ONLINE</mark>.
+
+1. In the <mark class="ui">ADVANCED</mark> tab, click <mark class="ui">CONNECT TO IP</mark>.
+
+1. Enter the server's public IP and port (the default is `17567`), then click <mark class="ui">OK</mark>.
+
+</Steps>
+
+[^1]: Playing over a VLAN or VPN? Use the IP address from that app, not your regular local IP.

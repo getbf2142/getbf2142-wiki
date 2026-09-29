@@ -1,0 +1,152 @@
+---
+title: 架設伺服器
+description: "直接在遊戲裡開 BF2142 伺服器，揪朋友一起玩。"
+icon: server
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+在遊戲裡就能直接開伺服器，找朋友一起玩很方便。開始前先注意幾件事：
+
+* 遊戲選單裡能調的設定不多，不過只要[改伺服器設定檔](/zh-tw/advanced/addons-tweaks/server-settings/)，幾乎什麼都能調。
+* 開伺服器的人自己也要在遊戲裡，沒辦法只讓伺服器在背景跑。
+
+想讓伺服器 24 小時開著？那就改架[專用伺服器](/zh-tw/advanced/dedicated-server/install-server/)。
+
+<GuideSummary>
+
+從 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark> → <mark class="ui">CREATE</mark> 開伺服器，區網馬上就能玩。想讓不在同一個網路的朋友加入，就要轉發連接埠 `29900` 和 `17567`。懶得設定的話，用 Radmin VPN 這類虛擬區網也行。
+
+</GuideSummary>
+
+## 該開哪種伺服器？
+
+| 伺服器 | 誰可以加入 | 轉發連接埠 |
+| --- | --- | --- |
+| [區網](#架設區網伺服器) | 同一個家用網路裡的人，或透過[虛擬區網](#lan-over-internet)連進來的朋友 | 不用 |
+| [私人](#架設私人伺服器) | 知道你公開 IP 的朋友 | 要 |
+| [公開](#架設公開伺服器) | 任何人，從線上伺服器列表加入 | 要 |
+
+## 開始之前
+
+<details id="important-notes">
+
+<summary>先看一下這幾點</summary>
+
+* Windows 防火牆跳出來時，私人網路和公用網路都要允許遊戲（或 BF2142Unlocker）連線。
+* 只有主機要轉發連接埠，而且只有私人或公開伺服器才需要。
+* 私人或公開伺服器的話，跟你同一個網路的人用你的<em>區網</em> IP 加入，其他人用你的<em>公開</em> IP。
+* 如果你是用模組開遊戲，伺服器也會跑那個模組。
+
+</details>
+
+<details id="disabling-network-adapters">
+
+<summary>停用用不到的網路卡</summary>
+
+電腦如果有好幾張網路卡（例如 Hamachi、VirtualBox、VMware 或 VPN 建的），遊戲可能會抓錯。把用不到的先停用：[^1]
+
+1. 到 <mark class="ui">Control Panel</mark> → <mark class="ui">Network and Sharing Center</mark> → <mark class="ui">Change adapter settings</mark>。
+2. 在網路卡上按右鍵 → <mark class="ui">Disable</mark>。
+
+控制台停用不了的話，改用 <mark class="ui">PowerShell</mark>（用系統管理員身分執行）：
+
+* 停用：`Disable-NetAdapter -Name "Adapter Name"`
+* 啟用：`Enable-NetAdapter -Name "Adapter Name"`
+
+想知道原因？可以看[這篇說明](https://superuser.com/questions/610733/networking-games-cant-see-join-anyone-elses-lan-servers-unless-i-host)。
+
+</details>
+
+<details id="port-forwarding">
+
+<summary>設定連接埠轉發</summary>
+
+到路由器設定裡，把這些連接埠轉發到你電腦的區網 IPv4 位址：
+
+* `29900`（UDP，或兩者都選）：登入服務
+* `17567`（兩者都選）：遊戲服務
+
+有用 BF2142Unlocker？還要多轉這兩個：
+
+* `8085`（TCP，或兩者都選）：解鎖服務
+* `18300`（TCP，或兩者都選）：登入服務
+
+第一次設定連接埠轉發？可以看[這份教學](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide)。
+
+**朋友還是連不進來？**
+
+* 伺服器開了之後才改連接埠轉發？重開伺服器就好。
+* 你的網路業者可能用了 CGNAT，會擋掉連接埠轉發。可以打給業者請他們幫你關掉，或改用[虛擬區網](#lan-over-internet)。
+
+</details>
+
+<details id="lan-over-internet">
+
+<summary>透過網路玩「區網」</summary>
+
+沒辦法設連接埠轉發？用虛擬區網吧。[Hamachi](https://vpn.net/)、[GameRanger](https://www.gameranger.com/) 和 [Radmin VPN](https://www.radmin-vpn.com/) 這類程式，可以讓你和朋友像在同一個網路裡一樣連線：
+
+1. 大家都裝好程式，加入同一個網路或房間。
+2. 開一個[區網伺服器](#架設區網伺服器)，把程式給你的 IP 分享出去。
+
+完全不用轉發連接埠。
+
+</details>
+
+## 架設區網伺服器
+
+<Steps>
+
+1. [停用用不到的網路卡](#disabling-network-adapters)。
+
+1. 選 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark>。
+
+1. 在 <mark class="ui">CREATE</mark> 分頁選好設定，按 <mark class="ui">START SERVER</mark>。
+
+1. 載入畫面會顯示伺服器的區網 IP。朋友找不到伺服器的話，把這個 IP 傳給他們就好。
+
+</Steps>
+
+## 架設私人伺服器
+
+不會出現在伺服器列表上，只有知道你公開 IP 的朋友進得來。
+
+<Steps>
+
+1. 先關掉遊戲，[停用用不到的網路卡](#disabling-network-adapters)，再[設定連接埠轉發](#port-forwarding)。
+
+1. 到 [whatismyip.com](https://www.whatismyip.com/) 查你的公開 IPv4 位址，傳給朋友。
+
+1. 登入遊戲，選 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark>。
+
+1. 在 <mark class="ui">CREATE</mark> 分頁選好設定，按 <mark class="ui">START SERVER</mark>。
+
+</Steps>
+
+## 架設公開伺服器
+
+會出現在線上伺服器列表，誰都能加入。
+
+<Steps>
+
+1. 先關掉遊戲，[停用用不到的網路卡](#disabling-network-adapters)，再[設定連接埠轉發](#port-forwarding)。
+
+1. 幫你的個人檔案開啟網路模式：
+
+   1. 用文字編輯器打開 `Documents\Battlefield 2142\Profiles\Global.con`，找到 `GlobalSettings.setDefaultUser` 後面的編號，例如 `0001`。
+   2. 打開同名資料夾裡的 `ServerSettings.con`（例如 `Profiles\0001`）。
+   3. 把 `GameServerSettings.setInternet 0` 改成 `1`，存檔。
+
+1. 登入遊戲，選 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark>。
+
+1. 在 <mark class="ui">CREATE</mark> 分頁選好設定，按 <mark class="ui">START SERVER</mark>。
+
+1. 檢查一下有沒有成功：按 `Esc` 打開線上伺服器列表，應該就能看到你的伺服器。
+
+   列表上有，但沒人進得來？大概是連接埠轉發還沒設好，看看[這些提示](#port-forwarding)。
+
+</Steps>
+
+[^1]: 用 VLAN 或 VPN 開伺服器？主要連線（Wi-Fi 或有線網路）和 VLAN/VPN 網卡都要保持啟用。虛擬網卡通常優先權比較高，伺服器預設會用它們。想看順序，可以在 <mark class="ui">Command Prompt</mark> 執行 `ipconfig`。

@@ -1,0 +1,33 @@
+{
+  "name": "getbf2142-wiki",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check-links": "node scripts/check-links.mjs"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.4",
+    "@astrojs/starlight-tailwind": "^5.0.0",
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
+    "@fontsource/chakra-petch": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@iconify-json/tabler": "^1.2.41",
+    "@iconify/utils": "^3.1.7",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.10",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "allowScripts": {
+    "esbuild": true
+  },
+  "devDependencies": {
+    "github-slugger": "^2.0.0",
+    "yaml": "^2.9.1"
+  }
+}

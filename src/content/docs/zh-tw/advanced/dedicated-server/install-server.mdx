@@ -1,0 +1,48 @@
+---
+title: 安裝伺服器
+description: 下載並安裝 BF2142 專用伺服器。
+icon: square-rounded-number-1
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+專用伺服器可以自己獨立跑，不用有人登入當主機，很適合長時間開著。先照這篇把它裝起來。
+
+<GuideSummary step={1} total={3} time="5 分鐘">
+
+下載伺服器安裝程式（140 MB），跟著精靈裝好。接著還要照下一篇裝修正檔，伺服器才連得上線。
+
+</GuideSummary>
+
+## 步驟
+
+<Steps>
+
+1. 從[下載](#下載)抓伺服器安裝程式。
+
+1. 點兩下 `.exe` 開始安裝。如果跳出 <mark class="ui">User Account Control</mark>，按 <mark class="ui">Yes</mark>。
+
+1. 跟著精靈裝完。
+
+1. 下一步：<GuideLink href="/advanced/dedicated-server/install-server-patch/" label="安裝伺服器修正檔" />
+
+   _千萬別跳過_，不然伺服器會連不上線。
+
+</Steps>
+
+## 下載
+
+<Embed url="https://www.bf-games.net/downloads/mirror/4659" title="BF2142 Dedicated Server Setup (140 MB)">
+
+來源：[BF-Games.net](https://www.bf-games.net/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1RtsJs7_mO6BLtMhSmEdBsUutc_QAQY97/view?usp=sharing" title="BF2142 Dedicated Server Setup (140 MB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>

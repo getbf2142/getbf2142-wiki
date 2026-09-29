@@ -1,0 +1,93 @@
+---
+// Starlight's LinkCard with a Tabler icon, for the homepage's "Where do you want to go?" grid.
+// Use the same icon as the target page so the card matches its sidebar entry.
+import PageIcon from './PageIcon.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	href: string;
+	icon: string;
+}
+
+const { title, description, href, icon } = Astro.props;
+---
+
+<a class="home-card not-content" href={href}>
+	<span class="icon"><PageIcon name={icon} /></span>
+	<span class="text">
+		<span class="title">{title}</span>
+		<span class="description">{description}</span>
+	</span>
+	<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true">
+		<path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+	</svg>
+</a>
+
+<style>
+	.home-card {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.875rem;
+		height: 100%;
+		padding: 1rem;
+		border: 1px solid var(--hairline);
+		border-radius: 0.5rem;
+		text-decoration: none;
+		transition:
+			border-color 0.15s,
+			background-color 0.15s;
+	}
+	.home-card:hover {
+		border-color: var(--sl-color-accent);
+		background: color-mix(in srgb, var(--sl-color-accent) 5%, transparent);
+	}
+	.icon {
+		display: grid;
+		flex: none;
+		place-items: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 0.375rem;
+		background: color-mix(in srgb, var(--sl-color-accent) 12%, transparent);
+		color: var(--sl-color-text-accent);
+		font-size: 1.25rem;
+	}
+	.icon :global(svg) {
+		display: block;
+	}
+	.text {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+	.title {
+		color: var(--sl-color-white);
+		font-weight: 600;
+		line-height: var(--sl-line-height-headings);
+	}
+	.description {
+		color: var(--sl-color-gray-3);
+		font-size: var(--sl-text-sm);
+	}
+	.arrow {
+		flex: none;
+		width: 1.125rem;
+		height: 1.125rem;
+		margin-top: 0.125rem;
+		color: var(--sl-color-gray-3);
+		transition:
+			color 0.15s,
+			transform 0.15s;
+	}
+	.home-card:hover .arrow {
+		color: var(--sl-color-text-accent);
+		transform: translateX(2px);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.home-card:hover .arrow {
+			transform: none;
+		}
+	}
+</style>

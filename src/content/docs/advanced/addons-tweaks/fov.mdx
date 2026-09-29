@@ -1,0 +1,51 @@
+---
+title: Field of View
+description: Widen BF2142's narrow default field of view.
+slug: advanced/addons-tweaks/fov
+icon: eye
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+BF2142 has no FOV slider, and many players find the default view a bit narrow. Here's how to widen it with a quick file edit.
+
+<div class="figure-row"><figure><img src="/assets/kursk_fov_1_1.png" alt="Kursk with the default FOV of 1.1" width="563" loading="lazy" /><figcaption><p>1.1 (default)</p></figcaption></figure> <figure><img src="/assets/kursk_fov_1_5.png" alt="Kursk with an FOV of 1.5" width="563" loading="lazy" /><figcaption><p>1.5</p></figcaption></figure></div>
+
+## Before you start
+
+* Your game folder is where `BF2142.exe` lives, usually `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`.
+* You'll edit `Objects\Soldiers_server.zip` inside `mods\bf2142` for vanilla, or inside your mod's folder.
+* Back it up first by copying it as `Soldiers_server_o.zip`, so you can always restore it.
+
+## Steps
+
+<Steps>
+
+1. Open `Soldiers_server.zip`, go to the `Common` folder and open `SoldierCamera.tweak` with a text editor.
+
+1. Find these two lines (the default value is `1.1`):
+
+   ```batch
+   ObjectTemplate.worldFOV 1.1
+   ObjectTemplate.insideFOV 1.1
+   ```
+
+1. Change both values. `1.5` is a good place to start.
+
+   For reference, `1.1` is roughly 60 - 65° and `1.6` roughly 90 - 95°. You can go from `0.65` (like Battlefield Play4Free) up to `1.85`, but extreme values don't look great.
+
+1. Save the file.
+
+   Can't save? Copy the `.zip` to your desktop, edit it there, then copy it back.
+
+</Steps>
+
+## Good to know
+
+* Undo the changes before joining Reclamation or other online servers, unless the server uses this tweak too.
+* Hosting with this tweak? Players who join need it too.
+* To uninstall, restore your backup.
+
+## Credits
+
+* [illicitSoul](https://www.moddb.com/members/ainas) for explaining how to modify the FOV @ [BF2/BF2142 FOV Modding Tutorial](https://www.moddb.com/tutorials/bf2bf2142-field-of-view-modding-tutorial)

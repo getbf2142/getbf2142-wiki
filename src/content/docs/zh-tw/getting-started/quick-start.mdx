@@ -1,0 +1,60 @@
+---
+title: 快速上手
+description: 六個步驟，從安裝遊戲到打第一場線上對戰。
+icon: bolt
+prev: false
+next: false
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideLink from '~/components/GuideLink.astro';
+
+想趕快開打？照這六步走就對了。每一步都附上詳細指南，卡住的話點進去看就好。
+
+<Aside type="note">
+
+第一次玩老 PC 遊戲，或已經裝了一部分？先看[開始之前](/zh-tw/getting-started/before-proceeding/)，確認哪些步驟可以跳過。
+
+</Aside>
+
+<Steps>
+
+1. **安裝遊戲** <GuideLink href="/getting-started/download-and-install-bf2142/" />
+
+   下載[標準版 v1.01](https://mediafire.com/file/g6xhktutdtnpgs3/BF2142_Setup.rar/file)（3.24 GB），解壓縮後執行 `setup.exe`，序號用這組：
+
+   ```text
+   E6HH-DWUG-U8X1-R8F0-1911
+   ```
+
+   BattleCammo、GameSpy Comrade、EA 註冊和 PunkBuster 全部跳過。裝好後先別開遊戲。
+
+1. **更新到 v1.51** <GuideLink href="/getting-started/download-and-install-v1_51-patch/" />
+
+   執行 [v1.51 完整安裝程式](https://www.moddb.com/downloads/start/193467/all)（2.3 GB）。如果 Windows 跳出警告，按 <mark class="ui">More info</mark> → <mark class="ui">Run anyway</mark>。
+
+1. **安裝 BF2142 Hub** <GuideLink href="/getting-started/download-and-install-bf2142-hub/" />
+
+   下載並安裝 [BF2142 Hub 2](https://www.moddb.com/downloads/start/210984/all)（1.2 MB）。
+
+1. **用 OpenSpy 連線** <GuideLink href="/getting-started/apply-openspy-patches/" />
+
+   用系統管理員身分打開 Hub。先到 <mark class="ui">Help</mark> 分頁確認 <mark class="ui">GamePath</mark> 沒錯，再從 <mark class="ui">Redirects\*</mark> 選 <mark class="ui">OpenSpy</mark>，按 <mark class="ui">Install</mark>。四個勾勾都變成<mark class="ui ui-green">綠色</mark>就搞定了。
+
+1. **安裝地圖包** <em>（選用）</em> <GuideLink href="/getting-started/install-map-pack/" />
+
+   只有要玩 Reclamation 伺服器才需要。下載 [Reclamation 地圖包](https://www.moddb.com/downloads/start/287584/all)（5.88 GB），再用 Hub 的 <mark class="ui">MapPack Installer \*</mark> 安裝。
+
+1. **建立帳號** <GuideLink href="/getting-started/create-account/" />
+
+   從 Hub 啟動遊戲，按 <mark class="ui">CREATE NEW ACCOUNT</mark> 建好帳號和士兵。再到 <mark class="ui">OPTIONS</mark> → <mark class="ui">VIDEO</mark> 調好解析度，順手關掉 <mark class="ui">ANTI-ALIASING</mark>。
+
+1. _**完成！戰場上見！**_
+
+</Steps>
+
+## 接下來玩什麼？
+
+* [玩單人模式](/zh-tw/getting-started/play-singleplayer/)、[玩多人模式](/zh-tw/getting-started/play-multiplayer/)或[架設伺服器](/zh-tw/getting-started/host-server/)
+* 想換個新面貌？[安裝 Project Remaster](/zh-tw/advanced/project-remaster/install-project-remaster/)
+* 出問題了？翻翻[疑難排解](/zh-tw/help-centre/troubleshoot/)，或直接到 [Discord](https://discord.gg/7SBMKRy6q9) 問我們

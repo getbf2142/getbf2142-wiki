@@ -1,0 +1,87 @@
+---
+// Lists a section's pages as cards (GitBook-style section page). Entries come from src/routeData.ts.
+import PageIcon from './PageIcon.astro';
+
+const entries = Astro.locals.sectionEntries ?? [];
+const links = entries.flatMap((e) => (e.type === 'link' ? [e] : []));
+---
+
+<ul class="section-cards not-content">
+	{
+		links.map((link) => {
+			const external = !link.href.startsWith('/');
+			return (
+				<>
+					{'data-divider' in link.attrs && <li class="sep" role="separator" />}
+					<li>
+						<a href={link.href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>
+							<PageIcon name={link.attrs['data-icon'] as string | undefined} />
+							<span class="label">{link.label}</span>
+							<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true">
+								{external ? (
+									<path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+								) : (
+									<path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								)}
+							</svg>
+						</a>
+					</li>
+				</>
+			);
+		})
+	}
+</ul>
+
+<style>
+	/* External resources get their own row below the section's pages. */
+	.sep {
+		grid-column: 1 / -1;
+		height: 1px;
+		margin-block: 0.5rem;
+		background: var(--hairline);
+	}
+	.section-cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+		gap: 0.75rem;
+		padding: 0;
+		list-style: none;
+	}
+	a {
+		display: flex;
+		align-items: center;
+		gap: 0.875rem;
+		height: 100%;
+		padding: 0.875rem 1rem;
+		border: 1px solid var(--hairline);
+		border-radius: 0.5rem;
+		color: var(--sl-color-white);
+		font-weight: 450;
+		text-decoration: none;
+		transition:
+			border-color 0.15s,
+			background-color 0.15s;
+	}
+	a:hover {
+		border-color: var(--sl-color-accent);
+		background: color-mix(in srgb, var(--sl-color-accent) 5%, transparent);
+	}
+	a :global(.page-icon) {
+		flex: none;
+		font-size: 1.25rem;
+		color: var(--sl-color-gray-3);
+		transition: color 0.15s;
+	}
+	a:hover :global(.page-icon) {
+		color: var(--sl-color-text-accent);
+	}
+	.label {
+		flex: 1;
+	}
+	.arrow {
+		flex: none;
+		width: 1.125rem;
+		height: 1.125rem;
+		color: var(--sl-color-gray-3);
+	}
+</style>

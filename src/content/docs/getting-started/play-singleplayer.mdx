@@ -1,0 +1,48 @@
+---
+title: Play Singleplayer
+description: "Go solo: two ways to enjoy BF2142 singleplayer."
+slug: getting-started/play-singleplayer
+icon: user
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+There are two ways to play against bots: a quick game in <mark class="ui">SINGLEPLAY</mark>, or your own LAN server in <mark class="ui">MULTIPLAY</mark> for more control. Either way, once your game is [OpenSpy-ready](/getting-started/apply-openspy-patches/), the customization screen works and every unlock is available.
+
+## Quick game in SINGLEPLAY
+
+The fastest way in, though you can't change settings like tickets, team ratio, round time, friendly fire or respawn time.
+
+<Steps>
+
+1. Select <mark class="ui">SINGLEPLAY</mark>.
+
+1. Pick your settings and click <mark class="ui">START PLAYLIST</mark>.
+
+</Steps>
+
+## Custom game in MULTIPLAY
+
+Takes a few more clicks, but lets you tune tickets, team ratio, round time, friendly fire, respawn time and more.
+
+<Steps>
+
+1. Select <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark> → <mark class="ui">CREATE</mark>.
+
+1. Pick your settings and click <mark class="ui">START SERVER</mark>.
+
+</Steps>
+
+<details id="the-game-will-start-when-1-more-players-join">
+
+<summary>Stuck on "The game will start when 1 more player(s) join"?</summary>
+
+Add this server setting. The [Server Settings](/advanced/addons-tweaks/server-settings/) guide shows you how:
+
+```batch
+sv.numPlayersNeededToStart 1
+```
+
+</details>
+
+Want even more control, like tickets or respawn time in SINGLEPLAY? See [Server Settings](/advanced/addons-tweaks/server-settings/).

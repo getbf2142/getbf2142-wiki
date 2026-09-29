@@ -1,0 +1,154 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+// Fonts, self-hosted from @fontsource. We declare the faces here instead of importing
+// @fontsource's CSS, which uses `font-display: swap`: that paints every page in a system font
+// first, then reflows when the web font arrives. With `block` plus a preload, the browser holds
+// the text back for the few milliseconds the cached font needs, so pages open in the right font.
+// Only the Latin files are used, as the site is in English.
+import chakraPetch from '@fontsource/chakra-petch/files/chakra-petch-latin-600-normal.woff2?url';
+import plexMono from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
+import plexSansItalic from '@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-italic.woff2?url';
+import plexSans from '@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2?url';
+
+const faces = [
+	{ family: 'IBM Plex Sans Variable', style: 'normal', weight: '100 700', url: plexSans, preload: true },
+	{ family: 'IBM Plex Sans Variable', style: 'italic', weight: '100 700', url: plexSansItalic },
+	{ family: 'Chakra Petch', style: 'normal', weight: '600', url: chakraPetch, preload: true },
+	{ family: 'IBM Plex Mono', style: 'normal', weight: '400', url: plexMono, preload: true },
+];
+const fontCss = faces
+	.map(
+		(f) =>
+			`@font-face{font-family:'${f.family}';font-style:${f.style};font-weight:${f.weight};` +
+			`font-display:block;src:url(${f.url}) format('woff2')}`,
+	)
+	.join('');
+
+// Starlight builds a single (English) 404.html, which most hosts serve for every missing URL.
+// Readers who were browsing in Chinese are sent on to the translated 404 page instead.
+const isRoot404 = Astro.locals.starlightRoute.entry.id === '404';
+---
+
+<Default><slot /></Default>
+{faces.filter((f) => f.preload).map((f) => <link rel="preload" href={f.url} as="font" type="font/woff2" crossorigin />)}
+<style is:inline set:html={fontCss} />
+{
+	isRoot404 && (
+		<script is:inline>
+			if (location.pathname.startsWith('/zh-tw/')) location.replace('/zh-tw/404/');
+		</script>
+	)
+}
+
+<script>
+	// Footnotes behave like GitBook's inline annotations: hover (or focus / tap on touch screens)
+	// shows the note in a tooltip. The list at the page bottom is hidden via CSS.
+	function initFootnotes() {
+		const pop = document.createElement('div');
+		pop.className = 'footnote-pop';
+		pop.setAttribute('role', 'tooltip');
+		pop.id = 'footnote-pop';
+		pop.hidden = true;
+		document.body.append(pop);
+		let current: HTMLAnchorElement | null = null;
+		let hideTimer: number | undefined;
+
+		const refFrom = (t: EventTarget | null) =>
+			t instanceof Element ? t.closest<HTMLAnchorElement>('a[data-footnote-ref]') : null;
+
+		const hide = () => {
+			pop.hidden = true;
+			current?.removeAttribute('aria-describedby');
+			current = null;
+		};
+		// Small grace period so the pointer can travel from the marker into the tooltip (links inside).
+		const scheduleHide = () => {
+			clearTimeout(hideTimer);
+			hideTimer = window.setTimeout(hide, 150);
+		};
+
+		const show = (ref: HTMLAnchorElement) => {
+			clearTimeout(hideTimer);
+			if (current === ref) return;
+			const note = document.getElementById(decodeURIComponent(ref.hash.slice(1)));
+			if (!note) return;
+			const clone = note.cloneNode(true) as HTMLElement;
+			clone.querySelectorAll('[data-footnote-backref]').forEach((b) => b.remove());
+			pop.innerHTML = clone.innerHTML;
+			pop.hidden = false;
+			current?.removeAttribute('aria-describedby');
+			current = ref;
+			ref.setAttribute('aria-describedby', pop.id);
+
+			const r = ref.getBoundingClientRect();
+			const width = Math.min(360, window.innerWidth - 32);
+			pop.style.width = `${width}px`;
+			const left = Math.max(16, Math.min(r.left + window.scrollX - width / 2, window.scrollX + window.innerWidth - width - 16));
+			pop.style.left = `${left}px`;
+			pop.style.top = `${r.bottom + window.scrollY + 8}px`;
+		};
+
+		document.addEventListener('pointerover', (e) => {
+			if (e.pointerType === 'touch') return;
+			const ref = refFrom(e.target);
+			if (ref) show(ref);
+			else if (pop.contains(e.target as Node)) clearTimeout(hideTimer);
+		});
+		document.addEventListener('pointerout', (e) => {
+			if (e.pointerType === 'touch') return;
+			if (refFrom(e.target) || pop.contains(e.target as Node)) scheduleHide();
+		});
+		document.addEventListener('focusin', (e) => {
+			const ref = refFrom(e.target);
+			if (ref) show(ref);
+		});
+		document.addEventListener('focusout', (e) => {
+			if (refFrom(e.target)) scheduleHide();
+		});
+		// The bottom list is hidden, so the marker must never navigate. Tapping toggles the tooltip.
+		document.addEventListener('click', (e) => {
+			const ref = refFrom(e.target);
+			if (ref) {
+				e.preventDefault();
+				if (current === ref && (e as PointerEvent).pointerType === 'touch') hide();
+				else show(ref);
+			} else if (!pop.contains(e.target as Node)) hide();
+		});
+		document.addEventListener('keydown', (e) => e.key === 'Escape' && hide());
+	}
+	initFootnotes();
+
+	// GitBook allowed linking to an expandable or a tab by its title. Open / select the target.
+	const slugify = (s: string) =>
+		s.trim().toLowerCase().replace(/[^\p{L}\p{N}\s_-]/gu, '').replace(/\s/g, '-');
+
+	function revealHash() {
+		const id = decodeURIComponent(location.hash.slice(1));
+		if (!id) return;
+		let target = document.getElementById(id);
+		if (!target) {
+			const tab = [...document.querySelectorAll<HTMLElement>('[role="tab"]')].find((t) => slugify(t.textContent ?? '') === id);
+			if (tab) {
+				tab.click();
+				// Selecting a tab rewrites the hash to "#tab-panel-N"; keep the shareable one.
+				history.replaceState(null, '', `#${id}`);
+				target = tab;
+			}
+		}
+		if (!target) return;
+		for (let el: HTMLElement | null = target; el; el = el.parentElement) {
+			if (el instanceof HTMLDetailsElement) el.open = true;
+		}
+		target.scrollIntoView({ block: 'start' });
+	}
+	window.addEventListener('hashchange', revealHash);
+	revealHash();
+
+	// External links in page content open in a new tab, so readers keep their place in the guide.
+	for (const link of document.querySelectorAll<HTMLAnchorElement>('.sl-markdown-content a[href^="http"]')) {
+		if (link.host !== location.host) {
+			link.target = '_blank';
+			link.rel = 'noopener';
+		}
+	}
+</script>

@@ -1,0 +1,118 @@
+---
+title: 安裝 v1.51 更新檔
+description: "把 BF2142 更新到官方最後一版 v1.51。"
+icon: square-rounded-number-2
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+v1.51 是 BF2142 官方最後一版，後面要用的工具也都需要它。照著這篇更新就好。
+
+<GuideSummary step={2} time="10 分鐘">
+
+執行 v1.51 完整安裝程式。它會拿掉光碟檢查，遊戲才開得起來。
+
+用豪華版、EA App 或 Origin 裝的，而且已經是 v1.51？這步可以跳過。
+
+</GuideSummary>
+
+<details id="why-is-this-patch-needed">
+
+<summary>為什麼一定要裝這個更新檔？</summary>
+
+* <strong>不用再放光碟。</strong>官方直接拿掉了 DRM[^1]，不放 DVD 也能開遊戲。詳情可以看 [Tweak Guide](https://tweakguides.dmegaming.com/BF2142_4.html)。
+* **支援寬螢幕**，在現在的螢幕上視野更廣。
+* **免費送 Northern Strike**，算是 DICE 轉戰新作前，EA 送給玩家的告別禮物。
+* **最後一批功能更新和錯誤修正。**
+* <strong>現在幾乎所有工具都要它。</strong>OpenSpy、Reclamation 伺服器和 Project Remaster 都要 v1.51。
+
+</details>
+
+<details id="how-do-i-check-the-game-version">
+
+<summary>怎麼看遊戲版本？</summary>
+
+用文字編輯器打開這個檔案，找到版本號就知道了：\
+`C:\Program Files (x86)\Electronic Arts\Battlefield 2142\mods\bf2142\Mod.desc`
+
+更簡單的判斷方式：遊戲還在叫你放光碟，就代表還不是 v1.51。
+
+</details>
+
+<details id="can-i-skip-this-patch">
+
+<summary>可以跳過這個更新檔嗎？</summary>
+
+只有已經是 v1.51 才能跳過，例如裝的是豪華版，或是從 EA App / Origin 取得的。不然沒有光碟，遊戲就開不了。
+
+</details>
+
+## 步驟
+
+<Steps>
+
+1. 從[下載](#下載) → [獨立安裝程式](#獨立安裝程式)下載 <mark class="ui">Patch v1.51 Full Installer</mark>。
+
+1. 點兩下執行。它會先在背景解壓縮，等一下畫面才會出來。
+
+1. 如果跳出 <mark class="ui">User Account Control</mark>，按 <mark class="ui">Yes</mark>。
+
+1. 如果看到 <mark class="ui">Windows protected your PC</mark>，按 <mark class="ui">More info</mark> → <mark class="ui">Run anyway</mark>。[^2]
+
+1. 跟著精靈裝完。
+
+1. 下一步：<GuideLink href="/getting-started/download-and-install-bf2142-hub/" label="安裝 BF2142 Hub" />
+
+   接著要用它裝 OpenSpy 修正檔。_千萬別跳過_，EA 的線上服務早就停了，沒裝就登不進去。
+
+</Steps>
+
+## 下載
+
+<Tabs>
+<TabItem label="獨立安裝程式">
+
+不管是 v1.00、v1.01 還是 v1.50，都能一次更新到 v1.51，不用像 EA 官方更新檔那樣一個一個裝。
+
+<Aside type="caution">
+
+有些防毒軟體和瀏覽器會把這個安裝程式擋下來。不想冒險的話，可以改用下一個分頁的 EA 官方更新檔。想解除瀏覽器封鎖，可以看[這支影片](https://www.youtube.com/watch?v=0nyKWOAbqD4)。
+
+</Aside>
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/downloads/battlefield-2142-update-v151-full" title="BF2142 Patch v1.51 Full Installer (2.29 GB)">
+
+來源：[LordSte](https://www.moddb.com/members/lordste) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="分段安裝程式">
+
+EA 原版更新檔的備份。記得<em>照這個順序</em>裝：
+
+1. **v1.50**：把 v1.00 或 v1.01 更新到 v1.50
+2. **v1.51**：把 v1.50 更新到 v1.51
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/downloads/battlefield-2142-update-150" title="BF2142 Patch v1.50 Installer (523 MB)">
+
+來源：[RhodN](https://www.moddb.com/members/grafix1) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/downloads/battlefield-2142-v151-patch-final" title="BF2142 Patch v1.51 Installer (1.95 GB)">
+
+來源：[ytres](https://www.moddb.com/members/sdgsdgsdgsdg) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+[^1]: DRM 就是防拷機制。以這款遊戲來說，就是每次開遊戲都要檢查光碟。
+
+[^2]: 找不到 <mark class="ui">More info</mark>？在安裝程式上按右鍵 → <mark class="ui">Properties</mark>，勾選 <mark class="ui">Unblock</mark>，按 <mark class="ui">OK</mark>，再執行一次就好。

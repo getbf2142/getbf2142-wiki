@@ -1,0 +1,78 @@
+---
+title: Custom Shortcuts
+description: Start BF2142 or any mod straight from a desktop shortcut, with your own launch options.
+slug: advanced/addons-tweaks/custom-shortcuts
+icon: click
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+A desktop shortcut with a few _launch options_ lets you start a mod in one click, play in a window, or pick a resolution the in-game menu doesn't offer.
+
+## Create the shortcut
+
+<Steps>
+
+1. Open your game folder, usually `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`.
+
+1. Right-click `BF2142.exe` → <mark class="ui">Send to</mark> → <mark class="ui">Desktop (create shortcut)</mark>. On Windows 11, click <mark class="ui">Show more options</mark> first.
+
+1. Right-click the new shortcut on your desktop → <mark class="ui">Properties</mark>.
+
+1. In <mark class="ui">Target</mark>, add your launch options _after_ the closing quote, separated by spaces. For example:
+
+   ```text
+   "C:\Program Files (x86)\Electronic Arts\Battlefield 2142\BF2142.exe" +menu 1 +fullscreen 1 +widescreen 1
+   ```
+
+1. Leave <mark class="ui">Start in</mark> as the game folder, and click <mark class="ui">OK</mark>.
+
+1. Rename the shortcut to something you'll recognise, e.g. "BF2142 Remaster".
+
+</Steps>
+
+## Launch options
+
+Options are case-sensitive, so type them exactly as shown, capital letters included.
+
+| Option | What it does |
+| --- | --- |
+| `+menu 1` | Starts the game at the main menu. Add it to every shortcut |
+| `+modPath mods/<MOD>` | Starts a mod, where `<MOD>` is the mod's folder name in `Battlefield 2142\mods`. The default is `mods/bf2142` |
+| `+fullscreen 1` / `0` | Fullscreen, or `0` for windowed mode |
+| `+szx 1920 +szy 1080` | Sets the resolution width and height, handy for resolutions the menu doesn't list |
+| `+wx 0 +wy 0` | Places the window at this position on screen, in windowed mode |
+| `+widescreen 1` | Turns on widescreen. Add the [Widescreen HUD fix](/advanced/addons-tweaks/hudfix/) too, so the HUD isn't stretched |
+| `+joinServer <IP> +port <PORT>` | Joins a server straight away. Add `+password <PASSWORD>` if the server has one |
+
+<Aside type="caution">
+
+Only use resolutions your monitor supports, or the game may start with a black screen. If it does, remove `+szx` and `+szy` and try again.
+
+</Aside>
+
+## Examples
+
+**Project Remaster, fullscreen at 1920×1080**
+
+```text
+"C:\Program Files (x86)\Electronic Arts\Battlefield 2142\BF2142.exe" +menu 1 +fullscreen 1 +widescreen 1 +szx 1920 +szy 1080 +modPath mods/Project_Remaster_v17
+```
+
+**Vanilla in a 1600×900 window**
+
+```text
+"C:\Program Files (x86)\Electronic Arts\Battlefield 2142\BF2142.exe" +menu 1 +fullscreen 0 +szx 1600 +szy 900
+```
+
+## Good to know
+
+* Using BF2142 Hub? Its <mark class="ui">TURN ON WIDESCREEN</mark> option does the same as `+widescreen 1`, so you only need a shortcut for the other options.
+* Project Remaster has its own [Remaster Launcher](/advanced/project-remaster/configure-remaster-launcher/) that sets all of this for you.
+* A mod won't start? Check the folder name in `+modPath` matches the one in `Battlefield 2142\mods` exactly, and use forward slashes (`mods/...`).
+* Running a dedicated server with a mod works the same way, see [Host a dedicated server](/advanced/dedicated-server/host-dedicated-server/).
+* The old auto-login options (`+eaAccountName`, `+eaAccountPassword`, `+soldierName`) were made for EA's servers. Skip them, as they'd save your password in plain text.
+
+## Credits
+
+* Koroush Ghazi for the full list of launch options @ [TweakGuides](https://tweakguides.dmegaming.com/BF2142_7.html)

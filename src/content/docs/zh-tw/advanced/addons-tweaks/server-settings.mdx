@@ -1,0 +1,101 @@
+---
+title: 伺服器設定
+description: 在單人和區網模式自己調兵力、重生時間、友軍傷害等設定。
+icon: adjustments-horizontal
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+遊戲選單能調的東西不多。單人模式只能調回合數和 BOT 難度，區網模式多了兵力、友軍傷害和隊伍比例。但只要改設定檔，重生時間、開打需要幾個人這些也都能調。
+
+有兩種方法，挑適合你的就好。
+
+| | 方法一：`ServerSettings.con` | 方法二：`GameLogicInit.con` |
+| --- | --- | --- |
+| 影響範圍 | 所有模組 | 單一模組 |
+| 遊戲選單的設定 | 一律被檔案蓋掉 | 照樣有效，除非你自己蓋掉 |
+| 適合誰 | 想設一次就不用再管 | 大部分人，**推薦這個** |
+
+## 方法一：改 ServerSettings.con
+
+這個檔案裡的設定會蓋掉遊戲選單。例如檔案寫兵力 100，就算你在選單設 300，遊戲還是會用 100。
+
+<Steps>
+
+1. 用文字編輯器打開 `Documents\Battlefield 2142\Profiles\Default\ServerSettings.con`。
+
+1. 改你想改的數值。只能改原本就有的行，不要新增。注意 `GameServerSettings...` 這些行跟 `sv...` 設定是不一樣的。
+
+1. 存檔。
+
+1. 在檔案上按右鍵 → <mark class="ui">Properties</mark>，勾選 <mark class="ui">Read-only</mark>，按 <mark class="ui">OK</mark>。
+
+   這步很重要，不然 BF2142 啟動時常常會把你改的東西蓋回去。（[想了解更多](https://classic-battlefield-modding.fandom.com/wiki/Changing_Ticket_Counts)。）
+
+</Steps>
+
+## 方法二：改 GameLogicInit.con
+
+只加你想蓋掉的設定，通常是選單裡沒有的那些，其他的就交給選單。
+
+<Steps>
+
+1. 用文字編輯器打開遊戲資料夾裡的 `mods\<MOD>\GameLogicInit.con`。[^1]
+
+1. 把想要的設定加在檔案最後面，一行一個。可以參考[下面的列表](#伺服器設定列表)。
+
+1. 存檔。
+
+   存不了？先把檔案複製到桌面改好，再複製回去。
+
+</Steps>
+
+<Aside type="tip">
+
+加了什麼很容易忘記。想暫時關掉某個設定，在那行最前面加 `rem` 就好。想關掉一整段，就用 `beginrem` 和 `endrem` 包起來。
+
+</Aside>
+
+## 伺服器設定列表
+
+<details id="commonly-used-settings">
+
+<summary>常用設定</summary>
+
+不知道從哪開始？可以先用這組：
+
+```batch
+rem ↓ 讓伺服器出現在線上伺服器列表
+sv.internet 1
+rem ↓ 載入畫面的歡迎訊息
+sv.welcomeMessage "Welcome!"
+rem ↓ 區網遊戲不再卡在「The game will start when 1 more player join」
+sv.numPlayersNeededToStart 1
+rem ↓ 重生要等幾秒
+sv.spawnTime 10
+rem ↓ 倒地後可以被醫護兵救起的秒數
+sv.manDownTime 10
+rem ↓ 100% 兵力（蓋掉單人模式的 200%）
+sv.ticketRatio 100
+sv.teamRatioPercent 100
+sv.autoBalanceTeam 0
+sv.roundsPerMap 1
+sv.useGlobalRank 1
+sv.useGlobalUnlocks 1
+sv.minUnlockLevel 5
+sv.botSkill 0.2
+rem ↓ 地雷不會造成友軍傷害
+sv.friendlyFireWithMines 0
+```
+
+</details>
+
+<table><thead><tr><th width="312">設定</th><th>說明</th></tr></thead><tbody><tr><td><code>sv.serverName "BF2142"</code></td><td>伺服器在公開或區網列表上顯示的名字。</td></tr><tr><td><code>sv.password "1234"</code></td><td>設了密碼，玩家要先輸入密碼才能連進你的伺服器。</td></tr><tr><td><code>sv.internet 0</code></td><td>決定伺服器顯示在哪個列表。<strong>1 是線上，0 是區網。</strong></td></tr><tr><td><code>sv.bandwidthChoke 0</code></td><td>限制伺服器能用的頻寬（Kbps），伺服器也就不用一直偵測頻寬。區網裡有人同時在上網的話，可以用它幫他們留點頻寬。設 0 就是不限制。</td></tr><tr><td><code>sv.maxPlayers 16</code></td><td>伺服器最多能同時容納幾個玩家。也會決定地圖用 16、32 還是 64 人的配置。</td></tr><tr><td><code>sv.allowFreeCam 0</code></td><td>讓玩家等重生時可以用自由鏡頭到處看，按跳躍鍵就能開啟。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.allowExternalViews 1</code></td><td>載具第三人稱鏡頭開關。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.allowNoseCam 1</code></td><td>部分載具的車頭鏡頭開關。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.startDelay 2</code></td><td>人數到齊後，要再等幾秒才開打。</td></tr><tr><td><code>sv.endDelay 10</code></td><td>回合結束後，隔幾秒開始下一回合。</td></tr><tr><td><code>sv.spawnTime 15</code></td><td>陣亡後要等幾秒才能重生。</td></tr><tr><td><code>sv.manDownTime 15</code></td><td>倒地後等醫護兵來救的秒數，時間到才能重生。</td></tr><tr><td><code>sv.ticketRatio 100</code></td><td>每回合的兵力，以預設值的百分比計算。</td></tr><tr><td><code>sv.roundsPerMap 1</code></td><td>每張地圖打幾回合，才換到列表的下一張。</td></tr><tr><td><code>sv.timeLimit 0</code></td><td>時間到就結束這一回合。</td></tr><tr><td><code>sv.soldierFriendlyFire 100</code></td><td>士兵被隊友直接打中時，承受的傷害百分比。</td></tr><tr><td><code>sv.vehicleFriendlyFire 100</code></td><td>載具被隊友直接打中時，承受的傷害百分比。</td></tr><tr><td><code>sv.soldierSplashFriendlyFire 100</code></td><td>士兵被隊友的爆炸波及時，承受的傷害百分比。</td></tr><tr><td><code>sv.vehicleSplashFriendlyFire 100</code></td><td>載具被隊友的爆炸波及時，承受的傷害百分比。</td></tr><tr><td><code>sv.voteTime 60</code></td><td>踢人或換圖投票開放幾秒。</td></tr><tr><td><code>sv.minPlayersForVoting 2</code></td><td>投票至少要幾票才會通過。</td></tr><tr><td><code>sv.autoRecord 0</code></td><td>自動錄影開關。開了會很吃伺服器效能。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.demoDownloadURL ""</code></td><td>有開錄影的話，填上大家可以下載錄影檔的網址。</td></tr><tr><td><code>sv.autoDemoHook ""</code></td><td>回合結束時，用來處理錄影的程式或腳本。</td></tr><tr><td><code>sv.adminScript ""</code></td><td>自訂管理腳本的路徑。</td></tr><tr><td><code>sv.hitIndicator 1</code></td><td>打中目標時，準心要不要顯示命中提示。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.numPlayersNeededToStart 1</code></td><td>至少要幾個玩家才開打。人數不夠前，伺服器會停在賽前狀態，雙方都不會扣兵力。</td></tr><tr><td><code>sv.tkPunishEnabled 1</code></td><td>讓玩家可以懲罰誤殺自己的隊友。被懲罰到一定次數，就會被踢出伺服器。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.tkNumPunishToKick 3</code></td><td>開了懲罰功能後，誤殺隊友被懲罰幾次就會被踢。</td></tr><tr><td><code>sv.tkPunishByDefault 1</code></td><td>誤殺隊友時要不要自動懲罰。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.voipEnabled 1</code></td><td>小隊語音開關。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.voipServerRemote 0</code></td><td>改用外部的 BF2142 VOIP 伺服器，不用內建的。</td></tr><tr><td><code>sv.voipServerRemoteIP "127.0.0.1"</code></td><td>用外部 VOIP 伺服器時，填它的 IP 位址。</td></tr><tr><td><code>sv.voipServerPort 55125</code></td><td>VOIP 伺服器用這個連接埠接收 BF2142 伺服器的資料。用外部 VOIP 伺服器時，填 VOIP 伺服器設定裡跟共用密碼對應的連接埠。</td></tr><tr><td><code>sv.voipBFClientPort 55123</code></td><td>BF2142 遊戲端跟 VOIP 伺服器溝通用的連接埠。</td></tr><tr><td><code>sv.voipBFServerPort 55124</code></td><td>BF2142 伺服器跟 VOIP 伺服器溝通用的連接埠。</td></tr><tr><td><code>sv.voipSharedPassword ""</code></td><td>用外部 VOIP 伺服器時，填 VOIP 伺服器設定裡跟連接埠對應的密碼。</td></tr><tr><td><code>sv.voipQuality 5</code></td><td>VOIP 音質。音質越好越吃頻寬，建議區網用 5，網路用 3。</td></tr><tr><td><code>sv.gameSpyPort 29900</code></td><td>伺服器用這個連接埠傳送設定和狀態資料。只有跟其他程式的連接埠撞到時才需要改，而且最好維持在 29900 - 29950 之間。</td></tr><tr><td><code>sv.allowNATNegotiation 0</code></td><td>允許 NAT 協商。如果你透過路由器或閘道器開伺服器時遇到問題，可以試試看。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.autoBalanceTeam 1</code></td><td>開啟後，玩家陣亡時會被自動分到人少的那隊，也不能手動換到會讓人數失衡的那隊。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.teamRatioPercent 100</code></td><td>自動平衡時兩隊的目標人數比例，數值是第 2 隊相對第 1 隊的百分比。第 1 隊通常是 PAC，第 2 隊是 EU。</td></tr><tr><td><code>sv.sponsorLogoURL ""</code></td><td>填圖片網址，在伺服器列表選到這台伺服器時就會顯示。要用 PNG 或 JPG，比例 4:1 最好看。</td></tr><tr><td><code>sv.punkBuster 0</code></td><td>PunkBuster 防作弊開關。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.useGlobalRank 1</code></td><td>玩家能不能使用並顯示在排名伺服器拿到的官方階級。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.useGlobalUnlocks 1</code></td><td>玩家能不能使用在排名伺服器拿到的解鎖。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.welcomeMessage ""</code></td><td>連進伺服器時，顯示在地圖載入畫面的文字。</td></tr><tr><td><code>sv.serverIP ""</code></td><td>伺服器的網路 IP 位址，要跟介面 IP 設定一樣。</td></tr><tr><td><code>sv.serverPort 17567</code></td><td>遊戲連線用的連接埠。</td></tr><tr><td><code>sv.votingEnabled 1</code></td><td>投票功能開關。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.communityLogoURL ""</code></td><td>填圖片網址，連進伺服器時會顯示在載入畫面。要用 PNG 或 JPG，比例 4:1 最好看。</td></tr><tr><td><code>sv.customMapURL ""</code></td><td>只有用自訂地圖時才需要。玩家要進自己沒有的地圖時，會被帶到這個網址。留空的話會被帶到 bfeditor.org，遊戲會試著在那裡找這張地圖。</td></tr><tr><td><code>sv.demoQuality 1</code></td><td>伺服器錄影的畫質（有開錄影的話）。</td></tr><tr><td><code>sv.endOfRoundDelay 15</code></td><td>回合結束後，勝利訊息顯示幾秒。</td></tr><tr><td><code>sv.notEnoughPlayersRestartDelay 5</code></td><td>人數掉到開打門檻以下時，伺服器會等這麼多秒看有沒有人加入。都沒人來的話，這回合就結束。</td></tr><tr><td><code>sv.interfaceIP ""</code></td><td>伺服器的網路介面 IP 位址，要跟 "serverIP" 一樣。</td></tr><tr><td><code>sv.numReservedSlots 0</code></td><td>保留給 ReservedSlots.con 裡指定玩家的名額。</td></tr><tr><td><code>sv.friendlyFireWithMines 0</code></td><td>關掉的話，隊友經過自己人的地雷和闊刀地雷時不會引爆。只在非排名伺服器有效，排名伺服器一律是關的。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.TeamVoteOnly</code></td><td>投票只有同隊的人看得到、能參與。</td></tr><tr><td><code>sv.botSkill 0.5</code></td><td>合作模式的 BOT 強度。</td></tr><tr><td><code>sv.maxRank 0</code></td><td>排名伺服器要不要限制玩家階級。</td></tr><tr><td><code>sv.minUnlockLevel 0</code></td><td>所有玩家都直接拿到這個等級以下的解鎖。</td></tr><tr><td><code>sv.maxUnlockLevel -1</code></td><td>高於這個等級的解鎖都不能用。</td></tr><tr><td><code>sv.allowSpectators 0</code></td><td>非排名伺服器能不能觀戰。<strong>1 開，0 關。</strong></td></tr><tr><td><code>sv.allowTitanMovement 1</code></td><td>指揮官能不能移動 Titan。<strong>1 開，0 關。</strong></td></tr></tbody></table>
+
+已經淘汰的、只在排名伺服器有用的，或平常玩用不到的設定，這裡都沒列。
+
+## 感謝
+
+* [ANTniquiler](https://www.moddb.com/members/antniquiler) 整理了伺服器設定的細節，出自 [Installing a BF2142 dedicated server on Linux](https://www.moddb.com/members/antniquiler/blogs/installing-a-battlefield-2142-dedicated-server-on-linux-part-2)
+
+[^1]: 原版的 `<MOD>` 是 `bf2142`，模組版就是你的模組資料夾名稱。遊戲資料夾通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`。

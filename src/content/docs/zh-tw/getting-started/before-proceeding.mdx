@@ -1,0 +1,102 @@
+---
+title: 開始之前
+description: 回答兩個問題，找出適合你的安裝步驟。
+icon: square-rounded-number-0
+prev: false
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+指南 ① 到 ⑥ 會帶你從安裝遊戲一路打到線上。有些步驟你可能已經做過了，先回答下面兩個問題，就知道該從哪裡開始。
+
+<Aside type="tip">
+
+不想看太多，只想照做？直接看[快速上手](/zh-tw/getting-started/quick-start/)就好。
+
+</Aside>
+
+## 1. 已經安裝遊戲了嗎？
+
+<details id="no-i-dont-have-the-game-installed">
+
+<summary>還沒裝</summary>
+
+那就從頭開始：[① 安裝 BF2142](/zh-tw/getting-started/download-and-install-bf2142/) → [② 安裝 v1.51 更新檔](/zh-tw/getting-started/download-and-install-v1_51-patch/)
+
+</details>
+
+<details id="yes-i-have-standard-edition-installed">
+
+<summary>已安裝標準版</summary>
+
+跳過 ①，直接看 [② 安裝 v1.51 更新檔](/zh-tw/getting-started/download-and-install-v1_51-patch/)。
+
+</details>
+
+<details id="yes-i-have-deluxe-edition-installed">
+
+<summary>已安裝豪華版，或是從 EA App / Origin 裝的</summary>
+
+你已經是最新版了，① 和 ② 都可以跳過。
+
+</details>
+
+## 2. 想玩原版還是重製版？
+
+* 想加入 Reclamation 的公開伺服器？選<em>原版</em>。[^1]
+* 多半自己玩單機，或跟朋友連區網？選<em>重製版</em>。[^2]
+* 還拿不定主意？先選<em>重製版</em>吧，之後隨時可以切回原版。[^3]
+
+<details id="i-prefer-vanilla">
+
+<summary>我玩原版</summary>
+
+[③ 安裝 BF2142 Hub](/zh-tw/getting-started/download-and-install-bf2142-hub/) → [④ 安裝 OpenSpy 修正檔](/zh-tw/getting-started/apply-openspy-patches/) → [⑤ 安裝地圖包](/zh-tw/getting-started/install-map-pack/) → [⑥ 建立帳號](/zh-tw/getting-started/create-account/)
+
+</details>
+
+<details id="i-prefer-remaster">
+
+<summary>我玩重製版</summary>
+
+[③ 安裝 BF2142 Hub](/zh-tw/getting-started/download-and-install-bf2142-hub/) → [④ 安裝 OpenSpy 修正檔](/zh-tw/getting-started/apply-openspy-patches/) → [⑥ 建立帳號](/zh-tw/getting-started/create-account/) → [安裝 Project Remaster](/zh-tw/advanced/project-remaster/install-project-remaster/) → [啟動 Project Remaster](/zh-tw/advanced/project-remaster/configure-remaster-launcher/)
+
+之後也想上 Reclamation 伺服器的話，再補裝 [⑤ 地圖包](/zh-tw/getting-started/install-map-pack/)。
+
+</details>
+
+<details id="im-using-windows-xp-32-bit">
+
+<summary>我用 Windows XP（32 位元）</summary>
+
+BF2142 Hub 是 64 位元程式，32 位元系統跑不動。所以你只能玩原版，③ 和 ④ 請跳過。
+
+改走這條路：[安裝 XP 版 OpenSpy 修正檔](https://www.moddb.com/mods/bf2142-reclamation-xp-install-package/downloads/bf2142-reclamation-xp-install-package)（[為什麼？](https://battlefield2142.co/faq#notwin32)）→ [⑤ 安裝地圖包](/zh-tw/getting-started/install-map-pack/) → [⑥ 建立帳號](/zh-tw/getting-started/create-account/)
+
+</details>
+
+## 你可能會問
+
+<details id="why-are-there-so-many-steps">
+
+<summary>怎麼這麼多步驟？</summary>
+
+畢竟是二十年前的遊戲，裝在現在的電腦上難免有幾個地方會卡。指南會陪你一步步走完，也會告訴你每一步在做什麼。
+
+</details>
+
+<details id="why-didnt-our-guides-cover-bf2142unlocker">
+
+<summary>為什麼不用 BF2142Unlocker？</summary>
+
+我們比較喜歡原汁原味：保留原本的介面，開房、進房都跟當年一樣。步驟是多了一點，但玩起來更有當年 BF2142 的感覺。
+
+還是想用 Unlocker？請看 [BF2142Unlocker 指南](/zh-tw/advanced/addons-tweaks/bf2142unlocker/)。
+
+</details>
+
+[^1]: 大部分玩家都在 Reclamation 伺服器上。這些伺服器沒裝模組，所以要用原版才進得去。
+
+[^2]: 重製版加入了高解析度材質、新動作、新武器，BOT 也更聰明。
+
+[^3]: 用 Remaster Launcher 就能隨時在重製版和原版之間切換。

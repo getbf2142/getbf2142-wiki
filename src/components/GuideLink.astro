@@ -1,0 +1,49 @@
+---
+// Small pill linking a Quick start step to its full guide.
+import { localize, useT } from '~/lib/i18n';
+import PageIcon from './PageIcon.astro';
+
+interface Props {
+	href: string;
+	label?: string;
+}
+
+const locale = Astro.locals.starlightRoute.locale;
+const { href, label = useT(locale)('guide.fullGuide') } = Astro.props;
+---
+
+<a class="guide-link not-content" href={localize(href, locale)}>{label}<PageIcon name="arrow-right" /></a>
+
+<style>
+	.guide-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		margin-inline-start: 0.5rem;
+		padding: 0.125rem 0.5rem 0.125rem 0.625rem;
+		border: 1px solid var(--hairline);
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--sl-color-accent) 8%, transparent);
+		color: var(--sl-color-text-accent);
+		font-size: var(--sl-text-xs);
+		font-weight: 500;
+		line-height: 1.4;
+		text-decoration: none;
+		vertical-align: 0.1em;
+		white-space: nowrap;
+		transition:
+			border-color 0.15s,
+			background-color 0.15s;
+	}
+	.guide-link:hover {
+		border-color: var(--sl-color-accent);
+		background: color-mix(in srgb, var(--sl-color-accent) 16%, transparent);
+	}
+	.guide-link :global(.page-icon) {
+		font-size: 0.875em;
+		transition: transform 0.15s;
+	}
+	.guide-link:hover :global(.page-icon) {
+		transform: translateX(2px);
+	}
+</style>

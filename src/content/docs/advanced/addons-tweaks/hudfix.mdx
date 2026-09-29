@@ -1,0 +1,108 @@
+---
+title: Widescreen HUD
+description: Fix BF2142's stretched HUD on 16:9 screens.
+slug: advanced/addons-tweaks/hudfix
+icon: panorama-horizontal
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+BF2142 was built for 4:3 screens. The v1.51 patch added widescreen support, but it mostly stretches the picture, so the HUD still looks off at 16:9. The Project Remaster team's HUD fix resizes it properly.
+
+<div class="figure-row"><figure><img src="/assets/hudfix_before.png" alt="The HUD before the fix" loading="lazy" /><figcaption><p>Before</p></figcaption></figure> <figure><img src="/assets/hudfix_after.png" alt="The HUD after the fix" loading="lazy" /><figcaption><p>After</p></figcaption></figure></div>
+
+## Before you start
+
+* Your game folder is where `BF2142.exe` lives, usually `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`.
+* In the steps, `<MOD>` means `mods\bf2142` for vanilla, or your mod's folder.
+
+## Steps
+
+<Aside type="tip">
+
+**Using Project Remaster?** It's built in: tick <mark class="ui">Widescreen Fix</mark> and <mark class="ui">HUD-fix</mark> in the Remaster Launcher's <mark class="ui">Settings</mark> tab.[^1] To turn it off, untick both and click <mark class="ui">Clear Cache</mark> on the <mark class="ui">Help</mark> tab.
+
+</Aside>
+
+<Steps>
+
+1. Download the patch from [Downloads](#downloads) and extract it. You'll get two files: `Menu_server_hudfix.zip` and `Shaders_client_hudfix.zip`.
+
+1. Copy both files into `<MOD>`.
+
+1. Back up `ClientArchives.con` (copy it as `ClientArchives_o.con`), then open the original with a text editor and add this line at the very top:[^2]
+
+   ```batch
+   fileManager.mountArchive Shaders_client_hudfix.zip Shaders
+   ```
+
+1. Back up `ServerArchives.con` the same way, then add this line at the very top:
+
+   ```batch
+   fileManager.mountArchive Menu_server_hudfix.zip Menu
+   ```
+
+   Can't save your changes? Copy the file to your desktop, edit it there, then copy it back.
+
+1. Turn on widescreen when you launch the game:
+
+   * **BF2142 Hub:** tick <mark class="ui">TURN ON WIDESCREEN</mark>.
+   * **Remaster Launcher:** enable <mark class="ui">Widescreen Fix</mark> in <mark class="ui">Settings</mark>.
+   * **Desktop shortcut:** add `+widescreen 1` to the <mark class="ui">Target</mark> field ([how](/advanced/addons-tweaks/custom-shortcuts/)).
+
+</Steps>
+
+## Downloads
+
+<Tabs>
+<TabItem label="v2">
+
+<Embed url="https://www.mediafire.com/file/ia2cflxe1nowqdq/BF2142_Widescreen_Hudfix_v2.zip/file" title="BF2142 Widescreen Hudfix v2 (15 KB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1ODc9Gk6GMD7PcI9kmT_jWszhNwseAfPR" title="BF2142 Widescreen Hudfix v2 (15 KB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+<details>
+
+<summary>What's new</summary>
+
+* Widescreen support for the Commander screen
+* Fixed elements that were cut off by the shrunken border
+
+</details>
+
+</TabItem>
+
+<TabItem label="v1">
+
+<Embed url="https://drive.google.com/file/d/1mr9ijag238J-j275uS1Ff_T0ew29jYhT" title="BF2142 Widescreen Hudfix v1 (9 KB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## Good to know
+
+* Undo the changes before joining Reclamation or other online servers, unless the server uses this fix too.
+* Hosting with this fix? Players who join need it too.
+* To uninstall, restore your backups and [clear the cache](/help-centre/troubleshoot/#a03-delete-profile-and-cache).
+
+## Credits
+
+* The Project Remaster team for making this fix available @ [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+* ompadu for figuring out how to install it on vanilla BF2142 @ [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+
+[^1]: <mark class="ui">Widescreen Fix</mark> adds the widescreen flag when launching, while <mark class="ui">HUD-fix</mark> makes the HUD display correctly at 16:9.
+
+[^2]: It must come before the original `mountArchive` line, so the fixed files load first and take priority.

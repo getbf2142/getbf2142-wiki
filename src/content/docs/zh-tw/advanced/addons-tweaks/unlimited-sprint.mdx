@@ -1,0 +1,55 @@
+---
+title: 無限衝刺
+description: 像現代戰地風雲一樣，想衝刺多久就衝刺多久。
+icon: run
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+覺得 BF2142 跑沒幾步就喘？改一個檔案，就能一路衝到底。
+
+## 開始之前
+
+* 遊戲資料夾就是 `BF2142.exe` 所在的地方，通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`。
+* 要改的檔案是 `Objects\Soldiers_server.zip`，原版在 `mods\bf2142` 裡，模組版則在那個模組的資料夾裡。
+* 改之前先備份，複製一份叫 `Soldiers_server_o.zip`，之後隨時都能改回來。
+
+## 步驟
+
+<Steps>
+
+1. 打開 `Soldiers_server.zip`，找到你想改的士兵的 `.tweak` 檔。歐盟士兵在 `us` 資料夾裡，例如歐盟重裝兵是 `us\US_HEAVY_SOLDIER.tweak`。
+
+1. 用文字編輯器打開它，改這幾行：
+
+   ```batch
+   ObjectTemplate.SprintRecoverTime 1
+   ObjectTemplate.SprintDissipationTime 100
+   ObjectTemplate.SprintLimit 0.1
+   ObjectTemplate.SprintLossAtJump 0.10
+   ```
+
+   * `SprintDissipationTime`：能衝多久，數字越高越久。
+   * `SprintRecoverTime`：體力回復要多久，數字越低越快。
+   * `SprintLimit`：體力條要回到多少才能再衝。
+   * `SprintLossAtJump`：跳一下會扣多少體力。
+
+   通常改前兩個就夠了。
+
+1. 其他想改的士兵也照做一遍，然後存檔。
+
+   存不了？先把 `.zip` 複製到桌面改好，再複製回去。
+
+1. 會玩 Northern Strike 地圖的話，`Soldiers_bp1_server.zip` 也要照樣改一次。
+
+</Steps>
+
+## 你可能想知道
+
+* 要進 Reclamation 或其他線上伺服器前，記得先改回來，除非伺服器也有用這個改動。
+* 用這個改動開伺服器？加入的玩家也要裝。
+* 想移除的話，把備份還原回去就好。
+
+## 感謝
+
+* [FFOLKES](https://forums.bf2s.com/profile.php?id=5041) 教大家怎麼改衝刺，出自 [Unlimited Sprint SP Modification](https://forums.bf2s.com/viewtopic.php?id=23762)

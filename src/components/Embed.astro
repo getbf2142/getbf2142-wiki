@@ -1,0 +1,192 @@
+---
+// Replacement for GitBook's {% embed %}: YouTube becomes a player, everything else a link card.
+// Downloads pass `title` (e.g. "BF2142 Hub 2 (1.2 MB)"); the site's action then becomes the subtitle.
+interface Props {
+	url: string;
+	title?: string;
+}
+
+import { useT } from '~/lib/i18n';
+
+const { url, title } = Astro.props;
+const locale = Astro.locals.starlightRoute.locale;
+const t = useT(locale);
+const parsed = new URL(url);
+const host = parsed.hostname.replace(/^www\./, '');
+
+// No third-party favicon service: a coloured monogram keeps visitors' IPs private.
+const SITES: Record<string, { mark: string; color: string; action: string }> = {
+	'discord.gg': { mark: 'D', color: '#5865f2', action: 'Join the Discord server' },
+	'discord.com': { mark: 'D', color: '#5865f2', action: 'Join the Discord server' },
+	'drive.google.com': { mark: 'G', color: '#1fa463', action: 'Download from Google Drive' },
+	'docs.google.com': { mark: 'G', color: '#4285f4', action: 'Open in Google Docs' },
+	'moddb.com': { mark: 'M', color: '#c0392b', action: 'Download from ModDB' },
+	'mediafire.com': { mark: 'MF', color: '#1375e8', action: 'Download from MediaFire' },
+	'patreon.com': { mark: 'P', color: '#f96854', action: 'View on Patreon' },
+	'reddit.com': { mark: 'R', color: '#ff4500', action: 'Read on Reddit' },
+	'community.pcgamingwiki.com': { mark: 'PC', color: '#4a6fa5', action: 'Download from PCGamingWiki' },
+	'gamersonlinux.com': { mark: 'GL', color: '#3d8b37', action: 'Read on GamersOnLinux' },
+	'archive.org': { mark: 'IA', color: '#555', action: 'Download from Internet Archive' },
+	'myabandonware.com': { mark: 'MA', color: '#b5651d', action: 'Download from My Abandonware' },
+	'amazon.com': { mark: 'A', color: '#ff9900', action: 'View on Amazon' },
+	'ebay.com': { mark: 'e', color: '#e53238', action: 'View on eBay' },
+};
+// Traditional Chinese versions of the actions above, by their English text.
+const ZH: Record<string, string> = {
+	'Join the Discord server': '加入 Discord 伺服器',
+	'Download from Google Drive': '從 Google Drive 下載',
+	'Open in Google Docs': '在 Google Docs 開啟',
+	'Download from ModDB': '從 ModDB 下載',
+	'Download from MediaFire': '從 MediaFire 下載',
+	'View on Patreon': '在 Patreon 查看',
+	'Read on Reddit': '在 Reddit 閱讀',
+	'Download from PCGamingWiki': '從 PCGamingWiki 下載',
+	'Read on GamersOnLinux': '在 GamersOnLinux 閱讀',
+	'Download from Internet Archive': '從 Internet Archive 下載',
+	'Download from My Abandonware': '從 My Abandonware 下載',
+	'View on Amazon': '在 Amazon 查看',
+	'View on eBay': '在 eBay 查看',
+	'View on ModDB': '在 ModDB 查看',
+};
+const site = { ...(SITES[host] ?? { mark: host[0].toUpperCase(), color: 'var(--sl-color-accent)', action: `Open ${host}` }) };
+// ModDB links under /downloads/start/ or /addons/start/ start the download; others just open a page.
+if (host === 'moddb.com' && !/^\/(downloads|addons)\/start\//.test(parsed.pathname)) {
+	site.action = 'View on ModDB';
+}
+
+if (locale) site.action = ZH[site.action] ?? (site.action.startsWith('Open ') ? `開啟 ${host}` : site.action);
+
+const youtubeId =
+	host === 'youtube.com' ? parsed.searchParams.get('v') : host === 'youtu.be' ? parsed.pathname.slice(1) : null;
+const hasCaption = Astro.slots.has('default');
+---
+
+<figure class="embed not-content">
+	{
+		youtubeId ? (
+			<div class="embed-video">
+				<iframe
+					src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
+					title={t('embed.video')}
+					loading="lazy"
+					allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen
+				/>
+			</div>
+		) : (
+			<a class="embed-card" href={url} target="_blank" rel="noopener">
+				<span class="embed-icon" style={{ background: site.color }} aria-hidden="true">
+					{site.mark}
+				</span>
+				<span class="embed-text">
+					<span class="embed-title">{title ?? site.action}</span>
+					<span class="embed-url">
+						{title ? site.action : `${host}${parsed.pathname.length > 1 ? parsed.pathname : ''}`}
+					</span>
+				</span>
+				<svg class="embed-arrow" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+				</svg>
+			</a>
+		)
+	}
+	{
+		hasCaption && (
+			<figcaption>
+				<slot />
+			</figcaption>
+		)
+	}
+</figure>
+
+<style>
+	/* Same rhythm as Starlight's content flow (--sl-content-gap-y); stacked cards group tighter. */
+	.embed {
+		margin: var(--sl-content-gap-y) 0 0;
+	}
+	.embed:first-child {
+		margin-top: 0;
+	}
+	:global(.sl-markdown-content) .embed + .embed {
+		margin-top: 0.5rem;
+	}
+	/* The figure is the box, so a caption (which may hold its own links) sits inside it. */
+	.embed {
+		border: 1px solid var(--hairline);
+		border-radius: 0.5rem;
+		overflow: hidden;
+		transition:
+			border-color 0.15s,
+			background-color 0.15s;
+	}
+	.embed:has(.embed-card:hover) {
+		border-color: var(--sl-color-accent);
+		background: color-mix(in srgb, var(--sl-color-accent) 5%, transparent);
+	}
+	.embed-card {
+		display: flex;
+		align-items: center;
+		gap: 0.875rem;
+		padding: 0.75rem 1rem;
+		color: var(--sl-color-white);
+		text-decoration: none;
+	}
+	.embed-icon {
+		flex: none;
+		display: grid;
+		place-items: center;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 0.375rem;
+		color: #fff;
+		font-family: var(--font-display);
+		font-size: 0.8rem;
+		font-weight: 700;
+	}
+	.embed-text {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+	.embed-title {
+		font-weight: 500;
+	}
+	.embed-url {
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-3);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.embed-arrow {
+		flex: none;
+		width: 1.25rem;
+		height: 1.25rem;
+		margin-inline-start: auto;
+		color: var(--sl-color-gray-3);
+	}
+	.embed-card:hover .embed-arrow {
+		color: var(--sl-color-accent-high);
+	}
+	.embed-video {
+		aspect-ratio: 16 / 9;
+	}
+	.embed-video iframe {
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+	figcaption {
+		padding: 0.5rem 1rem;
+		border-top: 1px solid var(--hairline);
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+	}
+	figcaption :global(p) {
+		margin: 0;
+	}
+	figcaption :global(a) {
+		color: var(--sl-color-text-accent);
+		text-underline-offset: 0.2em;
+	}
+</style>

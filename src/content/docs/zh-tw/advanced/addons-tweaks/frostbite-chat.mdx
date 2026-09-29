@@ -1,0 +1,90 @@
+---
+title: Frostbite Chat
+description: 讓 BF2142 用上 BF3/BF4 風格的聊天介面。
+icon: message-2
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+喜歡 BF3、BF4 那種聊天介面？這個擴充能讓 BF2142 也換上類似的樣式，士兵和指揮官視角都有。
+
+<div class="figure-row"><figure><img src="/assets/frostbite_chat_1.png" alt="玩家視角的 Frostbite 風格聊天" loading="lazy" /><figcaption><p>玩家視角</p></figcaption></figure> <figure><img src="/assets/frostbite_chat_2.png" alt="指揮官視角的 Frostbite 風格聊天" loading="lazy" /><figcaption><p>指揮官視角</p></figcaption></figure></div>
+
+## 開始之前
+
+* 要先裝好[寬螢幕 HUD 修正](/zh-tw/advanced/addons-tweaks/hudfix/)。有裝 Project Remaster 的話，在 Remaster Launcher 開啟 <mark class="ui">HUD-fix</mark> 就好。
+* 遊戲資料夾就是 `BF2142.exe` 所在的地方，通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`。
+* 擴充要放進 `mods\bf2142`（原版），或你的模組資料夾。
+
+## 步驟
+
+<Steps>
+
+1. 從[下載](#下載)抓擴充，聊天有背景和沒背景的版本都有，挑你喜歡的。
+
+1. 照著裡面的 `README.txt` 做就好。
+
+</Steps>
+
+## 下載
+
+<Tabs>
+<TabItem label="v2">
+
+<Embed url="https://www.mediafire.com/file/c1gedm33j83lqs3/BF2142_Frostbite_Chat_v2.zip/file" title="BF2142 Frostbite Chat Addon v2 (6.5 MB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1UhRvXx8D4NokgA8RGfbSo61RdArZHILa" title="BF2142 Frostbite Chat Addon v2 (6.5 MB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<details>
+
+<summary>更新內容</summary>
+
+* 改從 BF2 的 Heat of Battle 模組移植（不再用 Frostbite MenuShader），所以支援高解析度字型
+* 聊天列表加上背景
+* 新增個人訊息（顯示在畫面下方正中間）
+* 指揮官畫面也能聊天了
+* 微調輸入框裡的 J、K、L 標籤
+
+</details>
+
+</TabItem>
+
+<TabItem label="v2（無聊天背景）">
+
+跟 v2 一樣，只是聊天列表後面沒有背景。
+
+<Embed url="https://www.mediafire.com/file/xfe49pwfqe2g6vh/BF2142_Frostbite_Chat_v2_noBg.zip/file" title="BF2142 Frostbite Chat Addon v2, no chat background (6.5 MB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/11EZxAiPjxZFICzqdKOZTF9uJzpHcpzbF" title="BF2142 Frostbite Chat Addon v2, no chat background (6.5 MB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## 你可能想知道
+
+* 要進 Reclamation 或其他線上伺服器前，記得先改回來，除非伺服器也有用這個擴充。
+* 用這個擴充開伺服器？加入的玩家也要裝。
+* 想移除的話，照 README 把安裝時改的地方改回來就好。
+
+## 感謝
+
+* [Leeberty](https://www.moddb.com/members/leeberty) 把 BF3 風格的聊天和名牌帶進 BF2，出自 [Frostbite MenuShader](https://www.moddb.com/mods/frostbite-menushader)、[Frostbite Nametags](https://www.moddb.com/mods/frostbite-nametags-for-battlefield2)
+* Heat of Battle 團隊改良了 Leeberty 的 HUD，出自 [Heat of Battle](https://www.moddb.com/mods/heat-of-battle2)
+* Dennie 把它移植到 BF2142，出自 [BF2142 Remastered](https://discord.com/invite/nVdDkgA)

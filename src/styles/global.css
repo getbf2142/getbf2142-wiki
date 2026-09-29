@@ -1,0 +1,673 @@
+@layer base, starlight, theme, components, utilities;
+
+@import '@astrojs/starlight-tailwind';
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/*
+ * Design tokens. starlight-tailwind maps these onto Starlight's --sl-* variables
+ * (gray-300 → body text in dark mode, gray-900 → page background, accent-600 → accent, …).
+ *
+ * Type: IBM Plex Sans for reading (engineered, calm), Chakra Petch for titles only
+ * (angular, military-sci-fi) and IBM Plex Mono for code/config.
+ */
+@theme {
+	--font-sans: 'IBM Plex Sans Variable', system-ui, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+	--font-display: 'Chakra Petch', 'IBM Plex Sans Variable', sans-serif;
+
+	--color-white: #f2f6f8;
+
+	/* Cool steel with a slight blue-green cast */
+	--color-gray-50: #f4f7f8;
+	--color-gray-100: #e7ecef;
+	--color-gray-200: #d3dce1;
+	--color-gray-300: #b4c2c9;
+	--color-gray-400: #8697a0;
+	--color-gray-500: #647680;
+	--color-gray-600: #4a5a63;
+	--color-gray-700: #33414a;
+	--color-gray-800: #1f2a31;
+	--color-gray-900: #131b20;
+	--color-gray-950: #0b1115;
+
+	/* EU cyan */
+	--color-accent-50: #ecfbfe;
+	--color-accent-100: #cff4fb;
+	--color-accent-200: #a5e9f6;
+	--color-accent-300: #67d7ee;
+	--color-accent-400: #2bbcdc;
+	--color-accent-500: #13a0c1;
+	--color-accent-600: #0f7f9c;
+	--color-accent-700: #13667e;
+	--color-accent-800: #175468;
+	--color-accent-900: #184658;
+	--color-accent-950: #0a2d3b;
+}
+
+/* ---------- Type scale & rhythm ---------- */
+
+:root {
+	--sl-text-body: 1.0625rem; /* 17px — Plex has a modest x-height */
+	--sl-line-height: 1.7;
+	--sl-line-height-headings: 1.25;
+	--sl-content-width: 46rem; /* ≈ 70 characters per line */
+
+	/* One restrained scale at every breakpoint */
+	--sl-text-h1: 2.25rem;
+	--sl-text-h2: 1.625rem;
+	--sl-text-h3: 1.25rem;
+	--sl-text-h4: 1.0625rem;
+	--sl-text-h5: 1rem;
+
+	--hairline: color-mix(in srgb, var(--sl-color-gray-5) 70%, transparent);
+}
+
+/* Starlight defines --sl-text-body but leaves reading text at the browser default. */
+.sl-markdown-content {
+	font-size: var(--sl-text-body);
+}
+
+::selection {
+	background: color-mix(in srgb, var(--sl-color-accent) 35%, transparent);
+}
+
+/* Display face for titles only; everything else stays in Plex Sans. */
+h1#_top,
+.sl-markdown-content h2,
+.hero h1,
+.site-title {
+	font-family: var(--font-display);
+	font-weight: 600;
+	letter-spacing: 0.01em;
+}
+h1#_top {
+	line-height: 1.15;
+}
+
+.sl-markdown-content :is(h3, h4, h5) {
+	font-weight: 600;
+	color: var(--sl-color-white);
+}
+
+/* A short accent tick above section headings — the one genre cue in body copy. */
+.sl-markdown-content h2::before {
+	content: '';
+	display: block;
+	width: 1.5rem;
+	height: 2px;
+	margin-bottom: 0.75rem;
+	background: var(--sl-color-accent);
+}
+.sl-markdown-content .sl-heading-wrapper.level-h2 {
+	margin-top: 2.75rem;
+}
+.sl-markdown-content .sl-heading-wrapper.level-h3 {
+	margin-top: 2rem;
+}
+
+/* Starlight gives every item 1.25rem once any item holds a block (e.g. a code sample),
+   which makes ordinary bullet lists feel loose. Keep Steps' own spacing untouched. */
+.sl-markdown-content
+	:is(ol, ul):not(.sl-steps):has(> li > :not(a, strong, em, del, span, input, code, br, script, ol, ul))
+	> li
+	> :last-child:not(a, strong, em, del, span, input, code, br, script) {
+	margin-bottom: 0.625rem;
+}
+
+.sl-markdown-content strong {
+	font-weight: 600;
+	color: var(--sl-color-white);
+}
+
+.sl-markdown-content a:not(.sl-link-card, .sl-link-button, .home-card, .embed-card, .sl-anchor-link, [data-footnote-ref]) {
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+	transition: text-decoration-color 0.15s;
+}
+.sl-markdown-content a:not(.sl-link-card, .sl-link-button, .home-card, .embed-card, .sl-anchor-link, [data-footnote-ref]):hover {
+	text-decoration-color: currentColor;
+}
+
+/* Inline code */
+.sl-markdown-content :not(pre) > code {
+	padding: 0.1em 0.35em;
+	border: 1px solid var(--hairline);
+	border-radius: 0.25rem;
+	background: var(--sl-color-gray-6);
+	font-size: 0.875em;
+}
+
+/* ---------- Header, sidebar, TOC ---------- */
+
+.site-title {
+	font-size: 1.125rem;
+	gap: 0.625rem;
+}
+
+/* Starlight lines the search box up with the content column, so it jumps around depending on
+   the sidebar and TOC. Keep it right after the site title on every page, as on the homepage. */
+@media (min-width: 50rem) {
+	.header {
+		grid-template-columns: auto 1fr auto;
+	}
+}
+
+/* The sidebar tree is styled in src/components/SidebarSublist.astro */
+starlight-toc h2,
+mobile-starlight-toc .toggle {
+	font-family: var(--font-display);
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--sl-color-gray-3);
+}
+
+starlight-toc a {
+	font-size: var(--sl-text-xs);
+}
+
+/* ---------- Content components ---------- */
+
+/* Asides: tinted rule instead of a solid block; Tip follows the site accent. */
+.starlight-aside {
+	padding: 0.875rem 1rem;
+	border-inline-start-width: 2px;
+	border-radius: 0 0.5rem 0.5rem 0;
+	color: var(--sl-color-gray-2);
+	background: color-mix(in srgb, var(--sl-color-asides-border) 8%, transparent);
+}
+.starlight-aside--tip {
+	--sl-color-asides-text-accent: var(--sl-color-text-accent);
+	--sl-color-asides-border: var(--sl-color-accent);
+}
+.starlight-aside__title {
+	font-family: var(--font-display);
+	font-size: 0.8125rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+.starlight-aside__icon {
+	font-size: 1.1em;
+}
+.starlight-aside__title + .starlight-aside__content {
+	margin-top: 0.375rem;
+}
+
+/* GitBook used blue <mark> for UI labels ("click Yes"). */
+mark.ui {
+	padding: 0.05em 0.3em;
+	border-radius: 0.25em;
+	background: color-mix(in srgb, var(--sl-color-accent) 16%, transparent);
+	color: var(--sl-color-text-accent);
+	font-weight: 500;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+mark.ui-red {
+	background: color-mix(in srgb, var(--sl-color-red) 18%, transparent);
+	color: var(--sl-color-red-high);
+}
+mark.ui-green {
+	background: color-mix(in srgb, var(--sl-color-green) 18%, transparent);
+	color: var(--sl-color-green-high);
+}
+
+/* <details> as FAQ accordions */
+.sl-markdown-content details {
+	border: 1px solid var(--hairline);
+	border-radius: 0.5rem;
+	padding: 0 1rem;
+	transition: border-color 0.15s;
+}
+.sl-markdown-content details:hover,
+.sl-markdown-content details[open] {
+	border-color: var(--sl-color-gray-5);
+}
+.sl-markdown-content details + details {
+	margin-top: 0.5rem;
+}
+.sl-markdown-content details > summary {
+	display: flex;
+	align-items: center;
+	gap: 0.625rem;
+	padding: 0.75rem 0;
+	list-style: none;
+	cursor: pointer;
+	font-weight: 500;
+	color: var(--sl-color-gray-1);
+}
+.sl-markdown-content details > summary::-webkit-details-marker {
+	display: none;
+}
+.sl-markdown-content details > summary::before {
+	content: '';
+	flex: none;
+	width: 1rem;
+	height: 1rem;
+	background: var(--sl-color-gray-3);
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 3.5 10.5 8 6 12.5' fill='none' stroke='%23000' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+		center / contain no-repeat;
+	transition: transform 0.15s;
+}
+.sl-markdown-content details[open] > summary::before {
+	transform: rotate(90deg);
+}
+.sl-markdown-content details > summary:hover {
+	color: var(--sl-color-white);
+}
+.sl-markdown-content details[open] > summary {
+	margin-bottom: 0.5rem;
+}
+.sl-markdown-content details[open] {
+	padding-bottom: 1rem;
+}
+
+/* Steps: numbered markers in the display face */
+.sl-markdown-content .sl-steps > li::before {
+	font-family: var(--font-display);
+	font-weight: 600;
+	color: var(--sl-color-text-accent);
+	background: var(--sl-color-bg);
+	box-shadow: inset 0 0 0 1px var(--sl-color-gray-5);
+}
+.sl-markdown-content .sl-steps > li::after {
+	background: var(--hairline);
+}
+
+/* Tabs: one bordered box, with the tab strip as its header. */
+starlight-tabs {
+	border: 1px solid var(--hairline);
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
+starlight-tabs .tablist-wrapper {
+	background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+	border-bottom: 1px solid var(--hairline);
+}
+starlight-tabs [role='tablist'] {
+	border-bottom: 0;
+	padding-inline: 0.25rem;
+}
+starlight-tabs .tab > [role='tab'] {
+	padding: 0.625rem 1rem;
+	font-size: var(--sl-text-sm);
+	box-shadow: inset 0 -2px 0 transparent;
+	transition:
+		color 0.15s,
+		box-shadow 0.15s;
+}
+starlight-tabs .tab > [role='tab']:hover {
+	color: var(--sl-color-white);
+}
+starlight-tabs .tab [role='tab'][aria-selected='true'] {
+	box-shadow: inset 0 -2px 0 var(--sl-color-text-accent);
+}
+starlight-tabs > [role='tabpanel'] {
+	margin: 0;
+	padding: 1.25rem;
+}
+starlight-tabs > .tablist-wrapper ~ [role='tabpanel'] {
+	margin-top: 0;
+}
+starlight-tabs > [role='tabpanel'] > :first-child {
+	margin-top: 0;
+}
+
+/* Tables: horizontal rules only */
+.sl-markdown-content table {
+	font-size: var(--sl-text-sm);
+}
+.sl-markdown-content :is(th, td) {
+	border: 0;
+	border-bottom: 1px solid var(--hairline);
+	background: transparent;
+	padding: 0.625rem 0.75rem;
+}
+.sl-markdown-content th {
+	color: var(--sl-color-white);
+	font-weight: 600;
+	border-bottom-color: var(--sl-color-gray-5);
+}
+
+/* Side-by-side screenshots (GitBook image groups) */
+.sl-markdown-content .figure-row {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: 1rem;
+}
+.sl-markdown-content .figure-row figure {
+	margin: 0;
+}
+.sl-markdown-content figure img {
+	border-radius: 0.5rem;
+	border: 1px solid var(--hairline);
+}
+.sl-markdown-content .figure-row figcaption {
+	margin-top: 0.375rem;
+	font-size: var(--sl-text-xs);
+	color: var(--sl-color-gray-3);
+	text-align: center;
+}
+.sl-markdown-content .figure-row figcaption p {
+	margin: 0;
+}
+
+/* Link cards */
+.sl-link-card {
+	border-color: var(--hairline);
+	border-radius: 0.5rem;
+	transition: border-color 0.15s;
+}
+.sl-link-card:hover {
+	border-color: var(--sl-color-accent);
+	background: transparent;
+}
+
+/* Link buttons: squared off to match the cards (Starlight's pill shape reads too soft for the
+   tactical look), with a hover state per variant. */
+.sl-link-button {
+	border-radius: 0.5rem;
+	font-weight: 500;
+	transition:
+		background-color 0.15s,
+		border-color 0.15s,
+		color 0.15s,
+		box-shadow 0.15s,
+		transform 0.15s;
+}
+.sl-link-button.primary:hover {
+	background: color-mix(in srgb, var(--sl-color-text-accent) 85%, var(--sl-color-white));
+	box-shadow: 0 6px 20px color-mix(in srgb, var(--sl-color-accent) 35%, transparent);
+	transform: translateY(-1px);
+}
+.sl-link-button.secondary {
+	border-color: var(--sl-color-gray-4);
+}
+.sl-link-button.secondary:hover {
+	border-color: var(--sl-color-text-accent);
+	background: color-mix(in srgb, var(--sl-color-accent) 10%, transparent);
+	color: var(--sl-color-text-accent);
+	transform: translateY(-1px);
+}
+.sl-link-button.minimal:hover {
+	color: var(--sl-color-text-accent);
+}
+.sl-link-button svg {
+	transition: transform 0.15s;
+}
+.sl-link-button:hover svg {
+	transform: translateX(2px);
+}
+@media (prefers-reduced-motion: reduce) {
+	.sl-link-button,
+	.sl-link-button svg {
+		transform: none !important;
+	}
+}
+
+/* Footnote markers + tooltip. Raised with `top` so the badge never stretches its line. */
+.sl-markdown-content sup:has(> a[data-footnote-ref]) {
+	position: relative;
+	top: -0.55em;
+	vertical-align: baseline;
+	line-height: 0;
+}
+.sl-markdown-content sup a[data-footnote-ref] {
+	display: inline-grid;
+	place-items: center;
+	min-width: 1.15em;
+	height: 1.15em;
+	padding: 0 0.25em;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--sl-color-accent) 18%, transparent);
+	color: var(--sl-color-text-accent);
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-decoration: none;
+	cursor: help;
+}
+/* Notes are read through the tooltip (Head.astro); the list stays in the DOM as its source. */
+.sl-markdown-content section[data-footnotes],
+:is(starlight-toc, mobile-starlight-toc) li:has(> a[href='#footnote-label']) {
+	display: none;
+}
+.footnote-pop {
+	position: absolute;
+	z-index: 100;
+	padding: 0.625rem 0.875rem;
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 0.5rem;
+	background: var(--sl-color-bg-nav);
+	color: var(--sl-color-gray-2);
+	font-size: var(--sl-text-sm);
+	line-height: 1.55;
+	box-shadow: 0 12px 32px rgb(0 0 0 / 0.35);
+}
+.footnote-pop p {
+	margin: 0;
+}
+
+/* ---------- Article backdrop ---------- */
+
+html:not([data-has-hero]) .page::before {
+	/* Anchor the outpost to the reader's viewport as a quiet corner illustration. */
+	content: '';
+	position: fixed;
+	inset: auto 0 0 auto;
+	width: min(72vw, 76rem);
+	height: 39rem;
+	pointer-events: none;
+	background: url('/art/wiki-outpost.webp') right bottom / auto 39rem no-repeat;
+	/* The radial fade alone still reaches the image's top edge, so intersect it with a vertical
+	   fade that clears the top third. Its width stays under the box's (72vw) so the left side
+	   always fades out rather than being cut off. */
+	mask-image:
+		radial-gradient(ellipse min(52rem, 70vw) 28rem at 100% 62%, #000 30%, transparent 100%),
+		linear-gradient(transparent, #000 45%);
+	mask-composite: intersect;
+	filter: brightness(1.45);
+	opacity: 0.8;
+}
+html[data-theme='light']:not([data-has-hero]) .page::before {
+	background-image: url('/art/wiki-outpost-light.webp');
+	filter: none;
+	opacity: 0.48;
+}
+@media (max-width: 50rem) {
+	/* Same size as on desktop, so it doesn't jump when the sidebar goes: the narrower viewport
+	   just crops more of the left, keeping the tower in view. Text now runs full width over it,
+	   hence the lower opacity. */
+	html:not([data-has-hero]) .page::before {
+		width: 100vw;
+		mask-image:
+			radial-gradient(ellipse 95vw 28rem at 100% 62%, #000 30%, transparent 100%),
+			linear-gradient(transparent, #000 45%);
+		opacity: 0.4;
+	}
+	html[data-theme='light']:not([data-has-hero]) .page::before { opacity: 0.45; }
+}
+
+/* ---------- Splash / landing ---------- */
+
+[data-has-hero] .page {
+	background:
+		radial-gradient(50rem 24rem at 50% -8rem, color-mix(in srgb, var(--sl-color-accent) 16%, transparent), transparent 70%),
+		var(--sl-color-bg);
+}
+[data-has-hero] .page::before {
+	/* Reactor artwork fades into the page before the guide cards begin. */
+	content: '';
+	position: absolute;
+	inset: 0 0 auto;
+	height: 37.5rem;
+	pointer-events: none;
+	background: url('/art/hero-reactor.webp') center top / cover no-repeat;
+	mask-image: linear-gradient(#000 0 60%, transparent 100%);
+	opacity: 0.9;
+}
+/* The artwork sits behind the content, so keep Starlight's unused image column collapsed. */
+[data-has-hero] .hero {
+	position: relative;
+	padding-block: 3.5rem 2.5rem;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	text-align: center;
+	background: radial-gradient(ellipse 28rem 13rem at 50% 43%, var(--sl-color-bg) 5%, transparent 100%);
+}
+@media (max-width: 50rem) {
+	[data-has-hero] .page::before {
+		background-position: 74% top;
+		opacity: 0.65;
+	}
+}
+html[data-theme='light'][data-has-hero] .page::before {
+	background-image: url('/art/hero-reactor-light.webp');
+	opacity: 0.9;
+}
+@media (max-width: 50rem) {
+	html[data-theme='light'][data-has-hero] .page::before { opacity: 0.72; }
+}
+.home-about-banner {
+	display: flex;
+	align-items: center;
+	min-height: clamp(22rem, 34vw, 28rem);
+	margin-block: 4rem 2rem;
+	padding: clamp(1.5rem, 4vw, 3.5rem);
+	border: 1px solid rgb(151 187 199 / 0.22);
+	border-radius: 1rem;
+	overflow: hidden;
+	background: linear-gradient(90deg, rgb(9 20 29 / 0.96), rgb(9 20 29 / 0.82) 30%, rgb(9 20 29 / 0.08) 72%), var(--home-banner-dark) center / cover no-repeat;
+	box-shadow: 0 22px 44px rgb(0 0 0 / 0.2);
+	color: #e5edf1;
+}
+.home-about-banner .about-copy {
+	position: relative;
+	width: min(44%, 27rem);
+	min-width: 0;
+}
+.home-about-banner.copy-right {
+	justify-content: flex-end;
+	background-image: linear-gradient(270deg, rgb(9 20 29 / 0.96), rgb(9 20 29 / 0.82) 30%, rgb(9 20 29 / 0.08) 72%), var(--home-banner-dark);
+}
+.home-about-banner .sl-heading-wrapper.level-h2 { margin-top: 0; }
+.home-about-banner :is(h2, p) { color: inherit; }
+.home-about-banner h2 { color: #fff; }
+.home-about-banner .about-copy > :last-child { margin-bottom: 0; }
+html[data-theme='light'] .home-about-banner {
+	border-color: rgb(99 132 150 / 0.3);
+	background-image: linear-gradient(90deg, rgb(240 247 251 / 0.97), rgb(240 247 251 / 0.84) 30%, rgb(240 247 251 / 0.04) 72%), var(--home-banner-light);
+	box-shadow: 0 22px 44px rgb(41 75 95 / 0.12);
+	color: #263944;
+}
+html[data-theme='light'] .home-about-banner.copy-right {
+	background-image: linear-gradient(270deg, rgb(240 247 251 / 0.97), rgb(240 247 251 / 0.84) 30%, rgb(240 247 251 / 0.04) 72%), var(--home-banner-light);
+}
+html[data-theme='light'] .home-about-banner h2 { color: #112631; }
+@media (max-width: 50rem) {
+	.home-about-banner {
+		align-items: end;
+		min-height: 27rem;
+		margin-block: 3rem 1.5rem;
+		padding: 1.5rem;
+		background-image: linear-gradient(0deg, rgb(9 20 29 / 0.97), rgb(9 20 29 / 0.78) 34%, rgb(9 20 29 / 0.08) 88%), var(--home-banner-dark);
+		background-position: 70% center;
+	}
+	.home-about-banner .about-copy { width: 100%; }
+	.home-about-banner.copy-right {
+		background-image: linear-gradient(0deg, rgb(9 20 29 / 0.97), rgb(9 20 29 / 0.78) 34%, rgb(9 20 29 / 0.08) 88%), var(--home-banner-dark);
+		background-position: 30% center;
+	}
+	html[data-theme='light'] .home-about-banner {
+		background-image: linear-gradient(0deg, rgb(240 247 251 / 0.98), rgb(240 247 251 / 0.84) 34%, rgb(240 247 251 / 0.04) 88%), var(--home-banner-light);
+	}
+	html[data-theme='light'] .home-about-banner.copy-right {
+		background-image: linear-gradient(0deg, rgb(240 247 251 / 0.98), rgb(240 247 251 / 0.84) 34%, rgb(240 247 251 / 0.04) 88%), var(--home-banner-light);
+	}
+}
+[data-has-hero] .hero .stack {
+	position: relative;
+	z-index: 1;
+	align-items: center;
+}
+[data-has-hero] .hero .copy {
+	align-items: center;
+}
+[data-has-hero] .hero .actions {
+	justify-content: center;
+	/* The line-break pseudo-element below counts as its own flex row, so halve the row gap. */
+	row-gap: 0.5rem;
+}
+/* The minimal action (Discord) drops to its own row so the two main buttons stand alone. */
+[data-has-hero] .hero .actions::after {
+	content: '';
+	flex-basis: 100%;
+	order: 1;
+}
+[data-has-hero] .hero .actions .minimal {
+	order: 2;
+	padding-block: 0.5rem;
+	color: var(--sl-color-gray-2);
+}
+[data-has-hero] .hero .actions .minimal:hover {
+	color: var(--sl-color-text-accent);
+}
+[data-has-hero] .hero h1 {
+	font-size: clamp(2.5rem, 6vw, 3.75rem);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--sl-color-white);
+}
+[data-has-hero] .hero .tagline {
+	max-width: 34rem;
+	text-align: center;
+	font-size: var(--sl-text-lg);
+	color: var(--sl-color-gray-2);
+}
+
+/* ---------- Page transitions ---------- */
+
+/* Each page is a separate HTML file, so switching pages is a full load. Cross-document view
+   transitions (Chrome, Edge, Safari) swap pages without the white-out: the top bar and sidebar
+   are captured on their own and stay put, and only the content fades. Other browsers just load
+   the page as before. */
+@view-transition {
+	navigation: auto;
+}
+header.header {
+	view-transition-name: site-header;
+}
+#starlight__sidebar {
+	view-transition-name: site-sidebar;
+}
+::view-transition-group(site-header),
+::view-transition-group(site-sidebar) {
+	animation: none;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.15s;
+}
+
+/* Traditional Chinese: the Latin webfonts have no CJK glyphs, so use Taiwan Traditional Chinese fallbacks. */
+:lang(zh-TW) {
+	--font-sans: 'IBM Plex Sans Variable', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', system-ui, sans-serif;
+	--font-display: 'Chakra Petch', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+	--sl-font: var(--font-sans);
+}
+:lang(zh-TW) .sl-markdown-content {
+	line-height: 1.8;
+}
+/* CJK faces have no italics, so the browser slants the glyphs instead. Emphasise with weight. */
+:lang(zh-TW) :is(em, i) {
+	font-style: normal;
+	font-weight: 600;
+}
+/* The small tracked-out labels (sidebar chapters, "On this page", asides, guide summaries) are
+   sized for Latin capitals. Hanzi need a touch more size and far less tracking to stay legible. */
+:lang(zh-TW) :is(starlight-toc h2, mobile-starlight-toc .toggle, .starlight-aside__title) {
+	font-size: 0.875rem;
+	letter-spacing: 0.02em;
+}

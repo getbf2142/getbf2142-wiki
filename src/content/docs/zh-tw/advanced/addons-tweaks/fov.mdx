@@ -1,0 +1,50 @@
+---
+title: 視野 FOV
+description: 把 BF2142 的 FOV 調大，視野更開闊。
+icon: eye
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+BF2142 沒有 視野 FOV 滑桿。覺得預設視野太窄、看得很悶？改一個檔案就能拉寬。
+
+<div class="figure-row"><figure><img src="/assets/kursk_fov_1_1.png" alt="使用預設 FOV 1.1 的 Kursk" width="563" loading="lazy" /><figcaption><p>1.1（預設）</p></figcaption></figure> <figure><img src="/assets/kursk_fov_1_5.png" alt="使用 FOV 1.5 的 Kursk" width="563" loading="lazy" /><figcaption><p>1.5</p></figcaption></figure></div>
+
+## 開始之前
+
+* 遊戲資料夾就是 `BF2142.exe` 所在的地方，通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`。
+* 要改的檔案是 `Objects\Soldiers_server.zip`，原版在 `mods\bf2142` 裡，模組版則在那個模組的資料夾裡。
+* 改之前先備份，複製一份叫 `Soldiers_server_o.zip`，之後隨時都能改回來。
+
+## 步驟
+
+<Steps>
+
+1. 打開 `Soldiers_server.zip`，進到 `Common` 資料夾，用文字編輯器打開 `SoldierCamera.tweak`。
+
+1. 找到這兩行（預設是 `1.1`）：
+
+   ```batch
+   ObjectTemplate.worldFOV 1.1
+   ObjectTemplate.insideFOV 1.1
+   ```
+
+1. 兩個數字都改掉，可以先從 `1.5` 開始試。
+
+   給你參考：`1.1` 大約是 60 - 65°，`1.6` 大約是 90 - 95°。最低可以調到 `0.65`（跟 Battlefield Play4Free 差不多），最高到 `1.85`，但調太極端的話，畫面會有點怪。
+
+1. 存檔。
+
+   存不了？先把 `.zip` 複製到桌面改好，再複製回去。
+
+</Steps>
+
+## 你可能想知道
+
+* 要進 Reclamation 或其他線上伺服器前，記得先改回來，除非伺服器也有用這個改動。
+* 用這個改動開伺服器？加入的玩家也要裝。
+* 想移除的話，把備份還原回去就好。
+
+## 感謝
+
+* [illicitSoul](https://www.moddb.com/members/ainas) 教大家怎麼改 FOV，出自 [BF2/BF2142 FOV Modding Tutorial](https://www.moddb.com/tutorials/bf2bf2142-field-of-view-modding-tutorial)

@@ -1,0 +1,47 @@
+---
+title: 玩單人模式
+description: "用單人模式或區網伺服器，跟 BOT 對戰。"
+icon: user
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+想打 BOT？可以在 <mark class="ui">SINGLEPLAY</mark> 直接開一局，也可以到 <mark class="ui">MULTIPLAY</mark> 開區網伺服器，能調的設定更多。只要[裝好 OpenSpy](/zh-tw/getting-started/apply-openspy-patches/)，兩種方式都能用自訂內容和全部解鎖。
+
+## 在 SINGLEPLAY 快速開局
+
+這是最快的開打方式，但兵力、隊伍比例、回合時間、友軍傷害和重生時間都不能調。
+
+<Steps>
+
+1. 選 <mark class="ui">SINGLEPLAY</mark>。
+
+1. 設定選好後，按 <mark class="ui">START PLAYLIST</mark>。
+
+</Steps>
+
+## 在 MULTIPLAY 自訂遊戲
+
+多幾個步驟，但兵力、隊伍比例、回合時間、友軍傷害和重生時間都能自己調。
+
+<Steps>
+
+1. 選 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark> → <mark class="ui">CREATE</mark>。
+
+1. 設定選好後，按 <mark class="ui">START SERVER</mark>。
+
+</Steps>
+
+<details id="the-game-will-start-when-1-more-players-join">
+
+<summary>卡在「The game will start when 1 more player(s) join」？</summary>
+
+加上這行設定就好，詳細做法在[伺服器設定指南](/zh-tw/advanced/addons-tweaks/server-settings/)：
+
+```batch
+sv.numPlayersNeededToStart 1
+```
+
+</details>
+
+想調得更細，例如在 SINGLEPLAY 改兵力或重生時間？看[伺服器設定](/zh-tw/advanced/addons-tweaks/server-settings/)。

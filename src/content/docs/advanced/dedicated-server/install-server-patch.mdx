@@ -1,0 +1,53 @@
+---
+title: Install the server patch
+description: Patch your dedicated server for the OpenSpy network.
+slug: advanced/dedicated-server/install-server-patch
+icon: square-rounded-number-2
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+Just like the game, your server needs the OpenSpy patch to go online. ([Why?](/getting-started/apply-openspy-patches/))
+
+<GuideSummary step={2} total={3} time="5 minutes">
+
+Move `BF2142_w32ded.exe` next to the patcher, run it as administrator, click <mark class="ui">Open & Verify</mark> then <mark class="ui">Patch!</mark> until both ticks are green, and move the file back.
+
+</GuideSummary>
+
+## Steps
+
+<Steps>
+
+1. Download the server patch from [Downloads](#downloads) and unzip it to your desktop.
+
+1. Move `BF2142_w32ded.exe` from `C:\Program Files (x86)\Electronic Arts\Battlefield 2142 Server` into the unzipped folder.
+
+1. In that folder, right-click `BF2142_Server_Patch.exe` → <mark class="ui">Run as administrator</mark>. If <mark class="ui">User Account Control</mark> asks, click <mark class="ui">Yes</mark>.
+
+1. Click <mark class="ui">Open & Verify</mark>, select `BF2142_w32ded.exe`, and wait for the step 1 tick to turn green.
+
+1. Click <mark class="ui">Patch!</mark> and wait for the step 2 tick to turn green.
+
+1. Move `BF2142_w32ded.exe` back to `C:\Program Files (x86)\Electronic Arts\Battlefield 2142 Server`.
+
+1. Next up: <GuideLink href="/advanced/dedicated-server/host-dedicated-server/" label="Host a dedicated server" />
+
+</Steps>
+
+## Downloads
+
+<Embed url="https://www.moddb.com/downloads/start/211249/all" title="BF2142 Server Patch (20 KB)">
+
+Source: [BF2142 Reclamation](https://battlefield2142.co/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1YCNd2G1NcWEctS74aIpaMfHOTP1NxLow" title="BF2142 Server Patch (20 KB)">
+
+Source: [GetBF2142](/)
+
+</Embed>

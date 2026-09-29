@@ -1,0 +1,101 @@
+---
+title: 離線獎勵
+description: 單人和合作模式也能拿徽章、綬帶、勳章和獎章。
+icon: medal
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+打 BOT 也能拿徽章、綬帶、勳章和獎章！裝了這個修正檔，原本只有排名伺服器才有的獎勵，單人和區網合作模式也拿得到。
+
+原版很多獎項要你玩滿 150 小時，或幫歐盟贏 300 場，打一場根本不可能達成。所以我們把合作模式的條件重新調過：
+
+* 拿掉 Titan 模式的獎勵。
+* 拿掉不可能達成的條件。
+* 大部分獎勵大約 15 分鐘就能拿到。
+
+## 獎勵一覽
+
+所有獎勵和拿法都在這：
+
+<Tabs>
+<TabItem label="v2">
+
+<Embed url="https://drive.google.com/file/d/1Z5y7vFvdRZHqzQprv4zCwsvl_vzeiL5d" title="Offline Rewards Catalogue v2" />
+
+</TabItem>
+
+<TabItem label="v1">
+
+<Embed url="https://drive.google.com/file/d/1NWUVSEbD-IXb-gXaO_t6aKgiQiSZhRmo" title="Offline Rewards Catalogue v1" />
+
+</TabItem>
+</Tabs>
+
+## 步驟
+
+<Steps>
+
+1. 從[下載](#下載)抓修正檔。
+
+1. 打開遊戲資料夾，也就是 `BF2142.exe` 所在的地方，通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`。
+
+1. 把原本的 `python` 資料夾改名成 `python_o`，當作備份。
+
+1. 把 `.zip` 裡的 `python` 資料夾複製到遊戲資料夾。
+
+</Steps>
+
+## 下載
+
+<Tabs>
+<TabItem label="v2">
+
+<Embed url="https://www.mediafire.com/file/35dhux0ys3sjxr2/BF2142_Offline_Rewards_v2.zip/file" title="BF2142 Offline Rewards Patch v2 (37 KB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1QelzAksf84NheB0HWL6fyvcCFxRIybjX" title="BF2142 Offline Rewards Patch v2 (37 KB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<details>
+
+<summary>更新內容</summary>
+
+* 支援 Remaster 模組的所有武器（`constants.py`）
+* 修好幾個拿不到的獎勵（`medal_data.py`）
+* 記錄功能更好開關（`__init__.py`）
+* 整理了 `rank.py` 和 `unlocks.py` 的程式碼
+
+</details>
+
+</TabItem>
+
+<TabItem label="v1">
+
+<Embed url="https://drive.google.com/file/d/16WwI7T8NAv3oJaNS4BysAfJ2Uev2ugrd" title="BF2142 Offline Rewards Patch v1 (42 KB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## 你可能想知道
+
+* 所有模組都能用，原版也可以。
+* 只影響單人和合作模式。多人模式完全不受影響，也不會因此被伺服器踢出來。
+* 獎勵只在當回合有效，回合結束就會重設。
+* 想開記錄？改 `python\bf2\__init__.py` 裡的 `g_debug`、`g_debug_log` 和 `g_falog`。
+
+## 感謝
+
+* [maiorBoltach](https://github.com/maiorBoltach) 提供模擬獎勵的 Python 檔案，出自 [bf2142stats\_emu](https://github.com/maiorBoltach/bf2142stats_emu)
+* Dennie 重新調整條件，並加上 Remaster 武器支援，出自 [BF2142 Remastered](https://discord.com/invite/nVdDkgA)

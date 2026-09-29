@@ -1,0 +1,20 @@
+---
+interface Props {
+	src?: string;
+	lightSrc?: string;
+	copySide?: 'left' | 'right';
+}
+
+const {
+	src = '/art/home-about.webp',
+	lightSrc = '/art/home-about-light.webp',
+	copySide = 'left',
+} = Astro.props;
+---
+
+<section
+	class:list={['home-about-banner', { 'copy-right': copySide === 'right' }]}
+	style={`--home-banner-dark: url('${src}'); --home-banner-light: url('${lightSrc}');`}
+>
+	<div class="about-copy"><slot /></div>
+</section>

@@ -1,0 +1,115 @@
+---
+title: More Bots
+description: Go beyond 16 bots for bigger, livelier battles.
+slug: advanced/addons-tweaks/add-more-bots
+icon: robot
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+16 bots just isn't enough! Modern PCs easily handle 64 or more, and the battles feel so much more alive. It's a quick file edit.
+
+## Before you start
+
+* Your game folder is where `BF2142.exe` lives, usually `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`.
+* You'll edit `AI\AIDefault.ai` inside `mods\bf2142` for vanilla, or inside your mod's folder.
+* Back it up first by copying it as `AIDefault_o.ai`, so you can always restore it.
+
+## Steps
+
+<Aside type="tip">
+
+**Using Project Remaster?** Just adjust <mark class="ui">Bot-Settings</mark> in the Remaster Launcher's <mark class="ui">Settings</mark> tab and click <mark class="ui">Apply</mark>.
+
+</Aside>
+
+<Steps>
+
+1. Open `AI\AIDefault.ai` with a text editor.
+
+1. Near the top, replace these three lines:
+
+   ```batch
+   aiSettings.maxBotsIncludeHumans 1
+   aiSettings.setMaxNBots 16
+   aiSettings.setBotSkill 0.4
+   ```
+
+   with:
+
+   ```batch
+   aiSettings.overrideMenuSettings 1
+   aiSettings.maxBotsIncludeHumans 0
+   aiSettings.setMaxNBots 32
+   aiSettings.setBotSkill 1.0
+   ```
+
+   * `overrideMenuSettings 1` lets the file override the game's 16-bot limit. It must come before the other lines.
+   * `maxBotsIncludeHumans 0` means human players don't count towards the bot total.
+   * `setMaxNBots` is the number of bots. Around 48 is a good start, as too many can slow down or crash lower-end PCs.
+   * `setBotSkill` goes from 0 to 1, and higher means tougher bots.
+
+1. Lots of bots means lots of UAVs, sentry guns and drones. If some stop appearing, raise `aiSettings.setMaxNAutoControllers`, the limit for AI-controlled equipment.
+
+1. Save the file.
+
+   Can't save? Copy the file to your desktop, edit it there, then copy it back.
+
+</Steps>
+
+## Good to know
+
+* The map screen may still say 16 bots, but the real count in-game is what you set.
+* Everything is case-sensitive: a typo can crash the game.
+* Hosting with this tweak? Your server gets more bots, and players don't need to change anything.
+* Not working? Paste the default content below into `AIDefault.ai` and start again.
+
+<details id="default-content-of-aidefaultai">
+
+<summary>Default content of <code>AIDefault.ai</code></summary>
+
+```batch
+echo *****************************************************************************************
+echo AIDefault.ai ****************************************************************************
+echo *****************************************************************************************
+
+aiSettings.setNSides 2
+aiSettings.setAutoSpawnBots 1
+aiSettings.setMaxNAutoControllers 256
+
+aiSettings.maxBotsIncludeHumans 1
+aiSettings.setMaxNBots 16
+aiSettings.setBotSkill 0.4
+
+rem To spawn more than 15 bots in SP, use the following lines instead of the three lines above.
+rem Note that this is totaly unsupported, it will affect your system's performance 
+rem and may even crash your game. That being said, you will most likely be able to run a lot
+rem more bots than 15 on your system. 
+
+rem Example for 32 bot game with expert bots
+
+beginrem
+aiSettings.overrideMenuSettings 1
+aiSettings.maxBotsIncludeHumans 0
+aiSettings.setMaxNBots 32
+aiSettings.setBotSkill 1.0
+endrem
+
+run BotNames.ai
+
+aiSettings.setInformationGridDimension 32
+
+aiSettings.setDiscoverCloakedEnemiesDistance 3.0
+
+run AIPathFinding.ai
+run AutoControllers.ai
+
+rem EOF
+
+```
+
+</details>
+
+## Credits
+
+* [asdasdadsdasdasdasda](https://www.moddb.com/members/na2740631) for explaining how to change the bot count @ [How To Change The Singleplayer Bot Count](https://www.moddb.com/mods/battlefield-2-world-at-war/tutorials/how-to-change-singleplayer-bot-count)

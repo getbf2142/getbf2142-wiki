@@ -1,0 +1,54 @@
+---
+title: 滑鼠跳動修正
+description: 解決新電腦上滑鼠跳動、快速轉身時準心亂飄的問題。
+icon: mouse
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+快速轉身時視角突然跳一下？這是 BF2142 在新硬體上算錯滑鼠移動的老問題，用這個修正檔就能解決。
+
+## 開始之前
+
+* 要先裝好 [v1.51 更新檔](/zh-tw/getting-started/download-and-install-v1_51-patch/)。
+* 單人、區網和不檢查遊戲檔案的伺服器都能用。會檢查檔案的伺服器可能就不讓你進了。
+* 遊戲資料夾就是 `BF2142.exe` 所在的地方，通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`。
+
+## 步驟
+
+<Steps>
+
+1. 從[下載](#下載)抓修正檔。
+
+1. 丟進遊戲資料夾，然後執行。
+
+1. 按 <mark class="ui">Patch</mark>。它會先幫你備份原本的 `BF2142.exe`，隨時都能改回來。
+
+1. 開遊戲甩一下滑鼠，轉身應該就很順了。
+
+</Steps>
+
+## 下載
+
+<Tabs>
+<TabItem label="v1">
+
+<Embed url="https://community.pcgamingwiki.com/files/file/4081-battlefield-2142-mouse-skipping-fix/" title="Mouse Skipping Fix v1 (8.38 KB)">
+
+來源：[mitradis](https://community.pcgamingwiki.com/profile/13267-mitradis/) @ [PCGamingWiki](https://community.pcgamingwiki.com/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## 你可能想知道
+
+* 在 BF2142 Hub 裝 OpenSpy 修正檔時會換掉 `BF2142.exe`，所以裝完記得再跑一次這個修正。
+* 想移除的話，把修正檔建立的備份還原回去就好。
+* 想知道這個 bug 的來龍去脈？可以看[這個討論串](https://www.lost-soldiers.org/v2.php?site=forum_topic\&topic=81\&type=ASC\&page=2#bigNO)。
+
+## 感謝
+
+* [mitradis](https://community.pcgamingwiki.com/profile/13267-mitradis/) 製作修正，出自 [PCGamingWiki](https://community.pcgamingwiki.com/files/file/4081-battlefield-2142-mouse-skipping-fix/)

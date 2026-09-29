@@ -1,0 +1,350 @@
+---
+title: 支援 BOT 的地圖
+description: 更多能打 BOT 的地圖，下載連結都幫你整理好了。
+icon: map-pin
+---
+
+import { Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+原版那幾張打膩了？這裡整理了重製的原版地圖、經典 BF2 地圖，還有適合坦克、步行機甲大亂鬥的大地圖，通通能跟 BOT 玩。
+
+<div class="figure-row"><figure><img src="/assets/victory_village_ingame.png" alt="Victory Village" loading="lazy" /><figcaption><p>Victory Village</p></figcaption></figure> <figure><img src="/assets/operation_amos_ingame.png" alt="Operation Amos" loading="lazy" /><figcaption><p>Operation Amos</p></figcaption></figure> <figure><img src="/assets/wall_of_jericho_ingame.png" alt="Wall of Jericho" loading="lazy" /><figcaption><p>Wall of Jericho</p></figcaption></figure> <figure><img src="/assets/sharqi_peninsula_ingame.png" alt="Sharqi Peninsula" loading="lazy" /><figcaption><p>Sharqi Peninsula</p></figcaption></figure></div>
+
+## 一覽
+
+| 來源 | 內容 | 能在 Reclamation 伺服器玩？ |
+| --- | --- | --- |
+| [原版 BF2142](#原版-bf2142) | 5 張地圖，16 人 | 可以 |
+| [Project Remaster](#project-remaster) | 20 多張各種規模的地圖，BOT 更聰明 | 不行，只能在 Remaster 玩 |
+| [Reclamation 地圖包](#reclamation-地圖包) | 少數支援 BOT 的地圖 | 可以 |
+| [ModDB](#moddb) | 4 張額外的社群地圖 | 不行 |
+| [GetBF2142](#getbf2142) | 6 張修正過的自訂地圖 | 不行 |
+
+地圖名稱後面的數字，是有支援 BOT 的人數配置。
+
+## 原版 BF2142
+
+原版就有五張地圖支援 BOT，都是 16 人：
+
+* Belgrade
+* Cerbere Landing
+* Fall of Berlin
+* Suez Canal
+* Verdun
+
+## Project Remaster
+
+想要更多能打 BOT 的地圖，首推 Project Remaster。AI、材質和平衡都有改進，48 人配置還能部分支援 Titan 模式。
+
+<details id="map-list-1">
+
+<summary>地圖列表</summary>
+
+**核心地圖**
+
+* Belgrade: 16/32/64
+* Cerbere Landing: 16/32/64
+* Fall of Berlin: 16/32
+* Suez Canal: 16/32/48/64
+* Verdun: 16/32/48/64
+* Minsk: 16/32/48/64
+* Tunis Harbor: 16/32/64
+* Camp Gibraltar: 16/32/64
+* Shuhia Taiba: 16/32/48/64
+* Sidi Power Plant: 16/32/48/64
+* \[BF2] Highway Tampa: 16/32/48/64[^1]
+
+**v1.50 地圖**
+
+* \[BF2] Wake Island 2142: 64[^2]
+* Operation Shingle: 16/32/64
+
+**v1.51 地圖**
+
+* Molokai: 16/32/64
+* Yellow Knife: 16/32/64
+* \[BF2] Operation Blue Pearl: 16/32/64[^3]
+* \[BF2] Strike at Karkand: 16/32/48/64[^4]
+
+**Northern Strike 地圖**
+
+* Bridge at Remagen: 16/32/64
+* Breakthrough at Remagen: 16/32/64（Bridge at Remagen 的另一種配置）
+* Leipzig: 16/32/64
+* Port Bavaria（日間和夜間）: 16/32/64
+
+**自訂地圖**
+
+* \[BF2MC] Backstab: 16/32/64[^5]
+* Test Range: 16（用來測試武器和載具）
+
+v17 還多了新地圖，像是 Operation Imra、Battle for Frankfurt 和 Tunis Harbour Assault，詳見 [v17 發行說明](https://www.moddb.com/mods/bf2142-project-remaster/news/project-remaster-update-v17)。
+
+</details>
+
+想玩玩看？請看 [Project Remaster 安裝指南](/zh-tw/advanced/project-remaster/install-project-remaster/)。
+
+## Reclamation 地圖包
+
+[Reclamation 地圖包](/zh-tw/getting-started/install-map-pack/)的地圖很多，但支援 BOT 的只有幾張。可以[一張一張裝](/zh-tw/getting-started/install-map-pack/#安裝個別地圖)，不用整包下載。每張地圖的介紹都在 [Reclamation 網站](https://www.battlefield2142.co/maps/v3.html)。
+
+<details id="map-list-2">
+
+<summary>地圖列表</summary>
+
+**核心地圖**（名稱以 `_coop` 結尾）
+
+* Belgrade
+* Camp Gibraltar
+* Cerbere Landing
+* Fall of Berlin
+* Highway Tampa
+* Liberation of Leipzig
+* Operation Shingle
+* Shuhia Taiba
+* Sidi Power Plant
+* Suez Canal
+* Verdun
+* Minsk
+* Hamburg Harbour: 16/32
+
+**自訂地圖**
+
+* Desert Storm: 16
+* German Camp: 64
+* \[BF1942] Kursk: 16
+* Severnaya: 16
+* \[BF2] Street: 16
+* 2142 Shipment: 16
+
+**BOT 支援有問題**（[修好的版本在下面](#getbf2142)）
+
+* \[BF2] tgw Operation Amos: 16
+* \[BF2] tgw Sharqi Peninsula: 16
+* \[BF Heroes] Victory Village: 16
+* \[BF2] Wall of Jericho (Great Wall): 32/64
+
+</details>
+
+## ModDB
+
+ModDB 上能正常玩的地圖，大多已經收進 Reclamation 地圖包了，但這四張沒有，很值得一試。Backstab 完整支援 Titan 模式，Close Encounter 的 48 人配置則部分支援。
+
+<Tabs>
+<TabItem label="Backstab">
+
+重製自 Battlefield 2: Modern Combat 的 Backstab。一條河把沙漠小鎮切成兩半，橋一定要守住，不然很容易被包夾。
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/addons/backstab-full-bot-support-and-titan-mode" title="Backstab">
+
+來源：[illicitSoul](https://www.moddb.com/members/ainas) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="Molokai Redux">
+
+原版 Molokai 的大改版，加上 BOT 支援、新的 CQ、COOP、SP 配置、畫面升級，還有全新的 Deathmatch 模式。
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/addons/molokai-redux-with-bot-support" title="Molokai Redux">
+
+來源：[illicitSoul](https://www.moddb.com/members/ainas) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="Close Encounter">
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/addons/close-encounter-beta-version" title="Close Encounter">
+
+來源：[zynthasius](https://www.moddb.com/members/zynthasius) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="Frosty Peaks">
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/addons/frosty-peaks-beta-version" title="Frosty Peaks">
+
+來源：[zynthasius](https://www.moddb.com/members/zynthasius) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## GetBF2142
+
+我們把 Reclamation 地圖包裡幾張地圖修好、調整過，讓它們能好好跟 BOT 玩。大部分是自訂地圖，和其他戰地風雲作品的經典地圖。
+
+<Aside type="note">
+
+安裝方法很簡單，解壓縮到遊戲資料夾裡的 `mods\<MOD>\Levels` 就好。[^6]注意這些版本不能在 Reclamation 伺服器上用。
+
+</Aside>
+
+<Tabs>
+<TabItem label="Street">
+
+spfreak 做的 BF2 社群地圖，場景是中東小鎮。據點沿著街道一路排開，建築超多，巷戰打起來很過癮，BOT 支援也很完整。
+
+<Embed url="https://drive.google.com/file/d/13KGr74VHJZ0cEUhrWTj0lILPQYoCEedl" title="Street">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<details>
+
+<summary>修改內容</summary>
+
+* 拿掉會卡住玩家的壞掉物件「幽靈車」。
+* 據點和重生點重新命名，一看就懂。
+
+</details>
+
+<strong>感謝：</strong>spfreak 和 TGW 從 BF2 移植。原版收錄在 Reclamation 地圖包。
+
+</TabItem>
+
+<TabItem label="Desert Storm">
+
+一望無際的沙漠，很有 BF1 Sinai Desert 的感覺。每個據點都塞滿載具，超適合坦克和步行機甲大混戰。
+
+<Embed url="https://drive.google.com/file/d/1R4RM4BgTphDS1MHi7UOybneauD9Fd_IN" title="Desert Storm">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<details>
+
+<summary>修改內容</summary>
+
+* 調整天空亮度和飽和度，畫面接近 Belgrade，看起來舒服多了。
+* 多加了步行機甲、坦克和 AG，大部分 BOT 都有載具可以開。
+
+</details>
+
+<strong>感謝：</strong>Jeff 和 Robin，就我們所知是這張地圖的作者。原版收錄在 Reclamation 地圖包。
+
+</TabItem>
+
+<TabItem label="Victory Village">
+
+這張 Battlefield Heroes 地圖移植到原版 BF2142 後，也能跟 BOT 玩了，只是還有些小毛病。
+
+[yone 的 Victory Village 2142](https://www.moddb.com/games/battlefield-2142/addons/na16686) 有 BOT 支援，但在新版遊戲上常常當機。[matthysjordaan 的 Victory Village (Fixed)](https://www.moddb.com/addons/victory-village-fixed) 能正常載入，卻沒有 BOT。所以我們把兩個版本合在一起，再加上自己的改動。
+
+<Embed url="https://drive.google.com/file/d/16tQTpHsVWRzDdANgcCxDBuu5PWxNt3Qi" title="Victory Village">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<details>
+
+<summary>修改內容</summary>
+
+* 把 BOT 支援加回來。
+* 拿掉會讓 BOT 一重生就死掉的問題重生點。
+* 清掉用不到的檔案和相依項目。
+* 雙方基地都不能被佔領，中間三個據點一開始是中立的。
+
+</details>
+
+<strong>感謝：</strong>[yone](https://www.moddb.com/members/yone) 和 [matthysjordaan](https://www.moddb.com/members/matthysjordaan) 從 Battlefield Heroes 移植。原版在 ModDB 和 Reclamation 地圖包都有。
+
+</TabItem>
+
+<TabItem label="Sharqi Peninsula">
+
+這張 BF2 經典地圖，最有名的就是工地據點。我們把它的 BOT 支援修好了。
+
+<Embed url="https://drive.google.com/file/d/11TrHvUL2v9573yHqbN0KtgP07KTkg-5_" title="Sharqi Peninsula">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<details>
+
+<summary>修改內容</summary>
+
+* BF2 的載具換成 BF2142 的了，單人和合作模式不會再當機。
+* 調亮光線，地圖不會暗到看不清楚。
+
+</details>
+
+BOT 偶爾會卡在最後一個據點的樓梯上。
+
+<strong>感謝：</strong>TGW 從 BF2 移植。原版收錄在 Reclamation 地圖包。
+
+</TabItem>
+
+<TabItem label="Operation Amos">
+
+超人氣的 BF2 地圖，現在也能跟 BOT 玩了。
+
+<Embed url="https://drive.google.com/file/d/1Hn28cacrI1D5QX2d6ACmf1PpD1yp70Ue" title="Operation Amos">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<details>
+
+<summary>修改內容</summary>
+
+* BF2 的載具換成 BF2142 的了，單人和合作模式不會再當機。
+* 修好中間據點之間的橋，BOT 不會再掉進水裡卡住。
+
+</details>
+
+BOT 在最後一個據點偶爾不會開載具。
+
+<strong>感謝：</strong>BF:A Ha-Knomboe Boy 和 TGW 從 BF2 移植。原版收錄在 Reclamation 地圖包。
+
+</TabItem>
+
+<TabItem label="Wall of Jericho">
+
+這張在 BF2 叫做 Great Wall，場景是一座有城牆圍繞的中國城市。
+
+<Embed url="https://drive.google.com/file/d/1WvAlmqDOlT1_tBm_sbnMqbJsC7hxF6VK" title="Wall of Jericho">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<details>
+
+<summary>修改內容</summary>
+
+* BF2 的載具換成 BF2142 的了，單人和合作模式不會再當機。
+* 用原版 BF2 地圖的 AI 和尋路檔案，加上 BOT 支援。
+
+</details>
+
+BOT 有時會卡在城牆裡，打起來可能不太順。不過地圖本身還是很好玩，拿來拍遊戲畫面也很適合。
+
+<strong>感謝：</strong>TGW 從 BF2 移植。原版收錄在 Reclamation 地圖包。
+
+</TabItem>
+</Tabs>
+
+[^1]: BF2 地圖的重製版，配置不變，但改用 BF2142 的物件重做。
+
+[^2]: 社群版的經典 Wake Island，這張圖在很多代戰地風雲都出現過。
+
+[^3]: BF2 地圖的重製版，配置不變，但改用 BF2142 的物件重做。
+
+[^4]: BF2 地圖的重製版，大部分用原版 BF2 物件，再加上一些 BF2142 元素。
+
+[^5]: Battlefield 2: Modern Combat 裡 Backstab 的重製版，配置不變，但改用 BF2142 的物件重做。
+
+[^6]: 原版的 `<MOD>` 是 `bf2142`，模組版就是你的模組資料夾名稱。

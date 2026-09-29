@@ -1,0 +1,107 @@
+---
+title: 寬螢幕 HUD
+description: 修正 BF2142 在 16:9 螢幕上被拉寬的 HUD。
+icon: panorama-horizontal
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+BF2142 當年是為 4:3 螢幕設計的。v1.51 雖然支援寬螢幕，但 HUD 在 16:9 畫面上還是會被拉寬。用 Project Remaster 團隊做的這個修正，HUD 就能回到正常比例。
+
+<div class="figure-row"><figure><img src="/assets/hudfix_before.png" alt="修正前的 HUD" loading="lazy" /><figcaption><p>修正前</p></figcaption></figure> <figure><img src="/assets/hudfix_after.png" alt="修正後的 HUD" loading="lazy" /><figcaption><p>修正後</p></figcaption></figure></div>
+
+## 開始之前
+
+* 遊戲資料夾就是 `BF2142.exe` 所在的地方，通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`。
+* 下面步驟裡的 `<MOD>`，指的是原版的 `mods\bf2142`，或你的模組資料夾。
+
+## 步驟
+
+<Aside type="tip">
+
+<strong>有裝 Project Remaster？</strong>已經內建了。在 Remaster Launcher 的 <mark class="ui">Settings</mark> 分頁勾選 <mark class="ui">Widescreen Fix</mark> 和 <mark class="ui">HUD-fix</mark> 就好。[^1]想關掉的話，兩個都取消勾選，再到 <mark class="ui">Help</mark> 分頁按 <mark class="ui">Clear Cache</mark>。
+
+</Aside>
+
+<Steps>
+
+1. 從[下載](#下載)抓修正檔並解壓縮，會得到兩個檔案：`Menu_server_hudfix.zip` 和 `Shaders_client_hudfix.zip`。
+
+1. 兩個都複製到 `<MOD>`。
+
+1. 先備份 `ClientArchives.con`（複製一份叫 `ClientArchives_o.con`），再用文字編輯器打開原檔，在最上面加這一行：[^2]
+
+   ```batch
+   fileManager.mountArchive Shaders_client_hudfix.zip Shaders
+   ```
+
+1. `ServerArchives.con` 也一樣先備份，再在最上面加這一行：
+
+   ```batch
+   fileManager.mountArchive Menu_server_hudfix.zip Menu
+   ```
+
+   存不了？先把檔案複製到桌面改好，再複製回去。
+
+1. 開遊戲時記得打開寬螢幕：
+
+   * <strong>BF2142 Hub：</strong>勾選 <mark class="ui">TURN ON WIDESCREEN</mark>。
+   * <strong>Remaster Launcher：</strong>在 <mark class="ui">Settings</mark> 開啟 <mark class="ui">Widescreen Fix</mark>。
+   * <strong>桌面捷徑：</strong>在 <mark class="ui">Target</mark> 欄位加上 `+widescreen 1`（[怎麼做](/zh-tw/advanced/addons-tweaks/custom-shortcuts/)）。
+
+</Steps>
+
+## 下載
+
+<Tabs>
+<TabItem label="v2">
+
+<Embed url="https://www.mediafire.com/file/ia2cflxe1nowqdq/BF2142_Widescreen_Hudfix_v2.zip/file" title="BF2142 Widescreen Hudfix v2 (15 KB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1ODc9Gk6GMD7PcI9kmT_jWszhNwseAfPR" title="BF2142 Widescreen Hudfix v2 (15 KB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<details>
+
+<summary>更新內容</summary>
+
+* 指揮官畫面也支援寬螢幕了
+* 修好被邊框切掉的介面元素
+
+</details>
+
+</TabItem>
+
+<TabItem label="v1">
+
+<Embed url="https://drive.google.com/file/d/1mr9ijag238J-j275uS1Ff_T0ew29jYhT" title="BF2142 Widescreen Hudfix v1 (9 KB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## 你可能想知道
+
+* 要進 Reclamation 或其他線上伺服器前，記得先改回來，除非伺服器也有用這個修正。
+* 用這個修正開伺服器？加入的玩家也要裝。
+* 想移除的話，把備份還原回去，再[清除快取](/zh-tw/help-centre/troubleshoot/#a03-delete-profile-and-cache)。
+
+## 感謝
+
+* Project Remaster 團隊製作這個修正，出自 [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+* ompadu 研究出怎麼裝到原版 BF2142，出自 [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+
+[^1]: <mark class="ui">Widescreen Fix</mark> 會在啟動時開啟寬螢幕，<mark class="ui">HUD-fix</mark> 則讓 HUD 在 16:9 下正常顯示。
+
+[^2]: 一定要放在原本的 `mountArchive` 那幾行前面，修正檔才會先載入、優先生效。

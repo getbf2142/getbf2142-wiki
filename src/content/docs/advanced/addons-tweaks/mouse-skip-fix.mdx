@@ -1,0 +1,55 @@
+---
+title: Mouse Skip Fix
+description: Fix the mouse skipping and the jumpy aim when turning on modern PCs.
+slug: advanced/addons-tweaks/mouse-skip-fix
+icon: mouse
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+Does your view jerk or skip when you turn quickly? That's a 20-year-old bug in how BF2142 calculates mouse movement on modern hardware, not a problem with your mouse. This small patcher fixes it for good.
+
+## Before you start
+
+* You need the [v1.51 patch](/getting-started/download-and-install-v1_51-patch/).
+* Made for singleplayer, LAN and servers that don't check your game files. Servers that do may not let you join with it.
+* Your game folder is where `BF2142.exe` lives, usually `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`.
+
+## Steps
+
+<Steps>
+
+1. Download the patcher from [Downloads](#downloads).
+
+1. Put it in your game folder and run it.
+
+1. Click <mark class="ui">Patch</mark>. It backs up your original `BF2142.exe` first, so you can always go back.
+
+1. Start the game and turn around quickly. The view should now move smoothly.
+
+</Steps>
+
+## Downloads
+
+<Tabs>
+<TabItem label="v1">
+
+<Embed url="https://community.pcgamingwiki.com/files/file/4081-battlefield-2142-mouse-skipping-fix/" title="Mouse Skipping Fix v1 (8.38 KB)">
+
+Source: [mitradis](https://community.pcgamingwiki.com/profile/13267-mitradis/) @ [PCGamingWiki](https://community.pcgamingwiki.com/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## Good to know
+
+* Installing the OpenSpy patches in BF2142 Hub replaces `BF2142.exe`, so run the fix again afterwards.
+* To uninstall, restore the backup the patcher made.
+* Curious about the bug? See [this thread](https://www.lost-soldiers.org/v2.php?site=forum_topic\&topic=81\&type=ASC\&page=2#bigNO) for the background.
+
+## Credits
+
+* [mitradis](https://community.pcgamingwiki.com/profile/13267-mitradis/) for the fix @ [PCGamingWiki](https://community.pcgamingwiki.com/files/file/4081-battlefield-2142-mouse-skipping-fix/)

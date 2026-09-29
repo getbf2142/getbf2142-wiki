@@ -1,0 +1,120 @@
+import sidebar from './sidebar.json';
+
+// Top bar menus (desktop only). Internal links pick up their page icon automatically;
+// set `icon` (a Tabler name) for external links, or to override a page's icon.
+export interface NavLink {
+	label: string;
+	/** Traditional Chinese label; falls back to `label`. */
+	zh?: string;
+	href: string;
+	icon?: string;
+	/** Draw a separator line above this item. */
+	divider?: boolean;
+}
+
+export interface NavMenu {
+	label: string;
+	zh?: string;
+	items: NavLink[];
+}
+
+/** Google Forms, linked from the header icons and the footer. */
+export const contactForm =
+	'https://docs.google.com/forms/d/e/1FAIpQLSc6iBxekI1mgRURcDypm2HZdFG-mpNDfhib-xH9vvLV-YUX-Q/viewform?usp=sf_link';
+export const feedbackForm =
+	'https://docs.google.com/forms/d/e/1FAIpQLSfaHYWAyOug2eszO0tW3nIUOnNFnU1k3fCL9bI8MS09lUX84g/viewform?usp=sharing&ouid=111707620049591452833';
+
+// Every page in the sidebar's "Addons / Tweaks" section, so the menu never falls out of sync.
+interface SidebarItem {
+	label: string;
+	slug?: string;
+	link?: string;
+	translations?: Record<string, string>;
+	attrs?: Record<string, string>;
+	items?: SidebarItem[];
+}
+
+function addonsTweaks(): NavLink[] {
+	const section = (sidebar as SidebarItem[])
+		.flatMap((group) => group.items ?? [])
+		.find((item) => item.label === 'Addons / Tweaks');
+	return (section?.items ?? [])
+		.filter((item) => !('data-overview' in (item.attrs ?? {})))
+		.map((item) =>
+			item.slug
+				? { label: item.label, zh: item.translations?.['zh-TW'], href: `/${item.slug}/` }
+				: {
+						label: item.label,
+						zh: item.translations?.['zh-TW'],
+						href: item.link!,
+						icon: item.attrs?.['data-icon'],
+						divider: 'data-divider' in (item.attrs ?? {}),
+					},
+		);
+}
+
+const menus: NavMenu[] = [
+	{
+		label: 'Docs',
+		zh: '遊戲資料',
+		items: [
+			{ label: 'Manual', zh: '遊戲手冊', href: '/documents/manual/' },
+			{ label: 'Game Guide', zh: '遊戲指南', href: '/documents/game-guide/' },
+		],
+	},
+	{
+		label: 'Downloads',
+		zh: '下載',
+		items: [
+			{ label: 'Battlefield 2142', href: '/getting-started/download-and-install-bf2142/', icon: 'disc' },
+			{ label: 'v1.51 Patch', zh: 'v1.51 更新檔', href: '/getting-started/download-and-install-v1_51-patch/', icon: 'bandage' },
+			{ label: 'BF2142 Hub', href: '/getting-started/download-and-install-bf2142-hub/', icon: 'apps' },
+			{ label: 'Reclamation Map Pack', zh: 'Reclamation 地圖包', href: '/getting-started/install-map-pack/', icon: 'map-2' },
+			{ label: 'Mouse Skip Fix', zh: '滑鼠跳動修正', href: '/advanced/addons-tweaks/mouse-skip-fix/', icon: 'mouse' },
+			{ label: 'Widescreen HUD Fix', zh: '寬螢幕 HUD 修正', href: '/advanced/addons-tweaks/hudfix/' },
+			{ label: 'Project Remaster', href: '/advanced/project-remaster/install-project-remaster/', icon: 'flip-vertical' },
+			{ label: 'Dedicated Server', zh: '專用伺服器', href: '/advanced/dedicated-server/install-server/', icon: 'server' },
+			{ label: 'Server Patch', zh: '伺服器修正檔', href: '/advanced/dedicated-server/install-server-patch/', icon: 'server-bolt' },
+			{ label: 'BF2142Unlocker', href: '/advanced/addons-tweaks/bf2142unlocker/' },
+			{ label: 'BattleDirector', href: '/advanced/addons-tweaks/battlerecorder-and-battledirector/' },
+		],
+	},
+	{
+		label: 'Tweaks',
+		zh: '擴充',
+		items: addonsTweaks(),
+	},
+	{
+		label: 'Help',
+		zh: '說明',
+		items: [
+			{ label: 'Troubleshoot', zh: '疑難排解', href: '/help-centre/troubleshoot/' },
+			{ label: 'FAQ', zh: '常見問題', href: '/help-centre/faq/' },
+			{ label: 'Discord', href: 'https://discord.gg/7SBMKRy6q9', icon: 'brand-discord' },
+		],
+	},
+	{
+		label: 'Community',
+		zh: '社群',
+		items: [
+			{ label: 'BF2142 Reclamation', href: 'https://battlefield2142.co/', icon: 'world' },
+			{ label: 'BF2142 Remastered', href: 'https://www.moddb.com/mods/bf2142-project-remaster', icon: 'flip-vertical' },
+			{ label: 'BF2142 Reworked', href: 'https://mozziefiles.wixsite.com/bf2142', icon: 'hammer' },
+			{ label: 'First Strike (Star Wars)', zh: 'First Strike（星際大戰）', href: 'https://www.moddb.com/mods/first-strike', icon: 'planet' },
+		],
+	},
+];
+
+/** Menus for a locale ('zh-tw' or undefined for English): labels translated, internal links prefixed. */
+export function getNavMenus(locale?: string): NavMenu[] {
+	if (!locale) return menus;
+	const prefix = `/${locale}`;
+	return menus.map((m) => ({
+		label: m.zh ?? m.label,
+		items: m.items.map((i) => ({
+			...i,
+			label: i.zh ?? i.label,
+			href: i.href.startsWith('/') ? prefix + i.href : i.href,
+		})),
+	}));
+}

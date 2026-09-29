@@ -1,0 +1,165 @@
+---
+title: BattleRecorder
+description: 把對戰錄下來，想從哪個角度重看都行。
+icon: movie
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+想重看剛剛那場精彩對戰？用遊戲內建的 _BattleRecorder_ 錄下來，再用 _BattleDirector_ 的自由鏡頭重播，拿來剪片也很讚。
+
+<div class="figure-row"><figure><img src="/assets/battlerecorder_1.png" alt="BattleDirector 中的重播畫面" loading="lazy" /><figcaption><p>來源：ordinary_chicken @ <a href="https://discord.com/invite/MEwBW9U" target="_blank" rel="noopener">BF2142 Reclamation</a></p></figcaption></figure> <figure><img src="/assets/battlerecorder_2.png" alt="重播中的電影式鏡頭" loading="lazy" /><figcaption><p>來源：ordinary_chicken @ <a href="https://discord.com/invite/MEwBW9U" target="_blank" rel="noopener">BF2142 Reclamation</a></p></figcaption></figure></div>
+
+## 設定
+
+<Steps>
+
+1. 在 `Battlefield 2142\mods\<MOD>` 裡建一個 `Demos` 資料夾。原版的 `<MOD>` 是 `bf2142`，模組版就是你的模組資料夾。
+
+1. 從[下載](#下載)抓 BattleDirector 並安裝。
+
+1. 打開 BattleDirector，先看一下它的 <mark class="ui">Quick Help</mark>。
+
+1. 在 <mark class="ui">Settings</mark> 裡，把 <mark class="ui">Game</mark> 設成 <mark class="ui">Battlefield 2142</mark>，<mark class="ui">Game EXE Location</mark> 指到你的 `BF2142.exe`。
+
+1. 選對 <mark class="ui">Mod</mark> 之後，錄影就會出現在 <mark class="ui">Launcher</mark> 分頁。
+
+</Steps>
+
+## 錄製對戰
+
+### 在單人模式或區網
+
+<Steps>
+
+1. 在遊戲裡按 `~` 叫出控制台。
+
+1. 輸入 `demo.recordDemo NAME`，按 `Enter`。看到 `recordingDemo` 就代表開始錄了。
+
+1. 想停的話，輸入 `demo.stopRecording` 再按 `Enter`，或等這局打完也可以。
+
+1. 錄影會存在 `Battlefield 2142\mods\<MOD>\Demos`。
+
+</Steps>
+
+### 在多人模式
+
+<Aside type="note">
+
+Reclamation 已經關掉遊戲內下載錄影的功能了。想要檔案的話，到他們的 [Discord](https://discord.com/invite/MEwBW9U) 找管理員要，記得附上你打的那場時間。
+
+</Aside>
+
+<Steps>
+
+1. 加入有開 BattleRecorder 的伺服器。
+
+1. 這局結束後，到 <mark class="ui">Community</mark> → <mark class="ui">Battle Recorder</mark>，在 <mark class="ui">Bookmarks</mark> 下載錄影，檔案會存到 `Documents\Battlefield 2142\Profiles\Default\demos`。
+
+1. 把它複製到 `Battlefield 2142\mods\<MOD>\Demos`，就能用 BattleDirector 看了。
+
+</Steps>
+
+裝了 OpenSpy 修正檔後，錄影不會出現在遊戲內建的 Battle Recorder 資料庫，所以請用 BattleDirector 來看。
+
+## 觀看對戰
+
+<Steps>
+
+1. 打開 BattleDirector。
+
+1. 在 <mark class="ui">Settings</mark> 裡依喜好調 <mark class="ui">FPS</mark>、<mark class="ui">FOV</mark>、<mark class="ui">Hide Nametags</mark> 和 <mark class="ui">Hide HUD</mark>，再選好 <mark class="ui">Resolution</mark>（需要的話勾選 <mark class="ui">Windowed</mark>）。
+
+   想要寬螢幕正常顯示，在第二個輸入框加上 `+widescreen 1`。其他[啟動參數](/zh-tw/advanced/addons-tweaks/custom-shortcuts/)也可以加在這裡。
+
+1. 在 <mark class="ui">Launcher</mark> 分頁選錄影時用的 <mark class="ui">Mod</mark>，選好錄影，按 <mark class="ui">Record New Track</mark>。
+
+1. 地圖載入後，按 <mark class="ui">JOIN GAME</mark>。
+
+</Steps>
+
+## 操作
+
+* `Q` 叫出播放輪盤，可以播放、暫停、調速度和倒轉。<em>千萬別</em>按 Restart，錄影會壞掉。
+* `T` 叫出鏡頭輪盤，可以換玩家，或在自由鏡頭和玩家鏡頭之間切換。
+
+**播放**
+
+| 按鍵 | 動作 |
+| --- | --- |
+| `1` | 暫停 |
+| `2` / `6` | 正常速度 |
+| `3` | 5% 速度 |
+| `4` | 25% 速度 |
+| `5` | 50% 速度 |
+| `7` | 150% 速度 |
+| `8` | 300% 速度 |
+
+**鏡頭**
+
+| 按鍵 | 動作 |
+| --- | --- |
+| `Space` / `Shift + Space` | 下一位 / 上一位玩家 |
+| 滑鼠右鍵 | 切換自由鏡頭和玩家鏡頭 |
+| 滑鼠滾輪 | 跟隨玩家時縮放 |
+| `W` `A` `S` `D` | 移動自由鏡頭 |
+| `Ctrl` / `Shift` | 自由鏡頭向下 / 向上移動 |
+
+**控制台指令**
+
+| 指令 | 動作 |
+| --- | --- |
+| `renderer.drawHud 0` / `1` | 隱藏 / 顯示 HUD |
+| `demo.adjustDemoFov 90` | 改 FOV，想拍出電影感可以試 40 - 50 |
+| `demo.ShutdownDemo` | 離開錄影 |
+
+## 下載
+
+<Tabs>
+<TabItem label="v1.7">
+
+<Embed url="https://www.moddb.com/games/battlefield-2/downloads/the-sir-community-battledirector-v1-7" title="BF2142 Battle Director 1.7 (20.05 MB)">
+
+來源：[GameWatcher](https://www.moddb.com/members/gamewatcher) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+<Embed url="https://www.moddb.com/downloads/start/151152/all" title="BF2142 Battle Director 1.7 (20.05 MB)">
+
+來源：[GameWatcher](https://www.moddb.com/members/gamewatcher) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="v1.6">
+
+<Embed url="https://www.moddb.com/games/battlefield-2/downloads/the-sir-community-bf2-bf2142-battle-director-1" title="BF2142 Battle Director 1.6 (5.74 MB)">
+
+來源：[GameWatcher](https://www.moddb.com/members/gamewatcher) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+<Embed url="https://www.moddb.com/downloads/start/162132/all" title="BF2142 Battle Director 1.6 (5.74 MB)">
+
+來源：[GameWatcher](https://www.moddb.com/members/gamewatcher) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## 已知問題
+
+* BattleDirector 開不起來，還顯示「See the logfile ... for details」？裝一下 [Visual C++ 2003 runtime](/zh-tw/help-centre/troubleshoot/#a06-install-microsoft-visual-c-2003-redistributable)。
+* 玩家的手勢（例如 Q 選單的「Thank you」）在重播裡看不到。
+* 錄影的主機玩家陣亡時，重播可能會卡住或當掉。
+* AVI 匯出基本上只能在視窗模式用，全螢幕匯出的 AVI 可能會壞掉。
+* AVI 超過 4 GB 就會壞掉。片段錄短一點，或改用 OBS 錄。例如 1520×855（3.6 GB）沒問題，1744×981（4.1 GB）就不行。
+
+## 感謝
+
+* higuy 和 HawkeAssault 的研究心得，出自 [BF2142 Reclamation](https://discord.com/invite/MEwBW9U)（[BattleDirector SOP](https://discord.com/channels/404188413915299870/404484616846704660/1301036476003389472)）
+* Cheiftain\_UK 提供錄影檢查清單，出自 [Battlerecorder](https://forum.realitymod.com/viewtopic.php?t=94558)
+* [DMFDxUconn](https://forums.bf2s.com/profile.php?id=4788) 分享 BattleRecorder 的使用心得，出自 [Battle Recorder Information](https://forums.bf2s.com/viewtopic.php?id=6845)

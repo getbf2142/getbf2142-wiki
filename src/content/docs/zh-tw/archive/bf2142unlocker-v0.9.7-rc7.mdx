@@ -1,0 +1,208 @@
+---
+title: BF2142Unlocker v0.9.7 RC7
+description: BF2142Unlocker RC7 的舊版設定教學。
+icon: lock-open
+prev: false
+next: false
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+<Aside type="danger">
+
+這是舊版指南，最新的設定方法請看 [BF2142Unlocker 指南](/zh-tw/advanced/addons-tweaks/bf2142unlocker/)。
+
+</Aside>
+
+BF2142Unlocker 可以列出伺服器、快速加入遊戲，離線時也能自己架主伺服器，用全部解鎖和戰績。這些在程式介面上點一點就好，不用自己改檔案。
+
+<details id="something-interesting-">
+
+<summary>用之前先知道這些</summary>
+
+* Unlocker 開的是主伺服器，真正的遊戲伺服器還是要在遊戲裡自己開。
+* `v0.9.7` 完全沒有網路卡也能開伺服器，`v0.9.4` 則至少要有一張網路卡，就算沒接網路也行。
+* 理論上用 `v0.9.7` 的話，沒網路、沒網路卡，主伺服器和遊戲伺服器也都能同時開。
+* 在 `v0.9.7`，<mark class="ui">Host</mark> 使用 `0.0.0.0`，<mark class="ui">Singleplayer</mark> 使用 `127.0.0.1`。
+
+</details>
+
+## 下載
+
+<Tabs>
+<TabItem label="64 位元">
+
+<Embed url="https://www.mediafire.com/file/xy2bdlgibsd364b/BF2142Unlocker_v0.9.7_rc7_win_64bit.zip/file" title="BF2142Unlocker v0.9.7 RC7, Windows 64-bit (16.78 MB)">
+
+來源：[Dankrad](https://github.com/Dankr4d)，出自 [BF2142 Remastered](https://discord.gg/nVdDkgA)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="32 位元">
+
+<Embed url="https://www.mediafire.com/file/8gs8autnir44irf/BF2142Unlocker_v0.9.7_rc7_win_32bit.zip/file" title="BF2142Unlocker v0.9.7 RC7, Windows 32-bit (17.22 MB)">
+
+來源：Dankrad，出自 [BF2142 Remastered](https://discord.gg/nVdDkgA)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## 基本設定
+
+下載並打開程式後，照順序設定：
+
+<Steps>
+
+1. **設定遊戲路徑**
+
+   選你的 Battlefield 2142 資料夾，通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`，不過也可能不一樣。
+
+1. **啟用 LAA-Patch**
+
+   讓遊戲最多能用 4 GB 記憶體，比較不會當機。
+
+1. **使用視窗模式**
+
+   勾選 <mark class="ui">Window Mode</mark>，設定解析度。
+
+   先用視窗模式比較好抓問題，確定都沒事再切全螢幕。
+
+1. **設定選項**
+
+   選你想玩的 <mark class="ui">Mod</mark>，設定 <mark class="ui">Player name</mark>。
+
+   再看一下 <mark class="ui">Video</mark>、<mark class="ui">Audio</mark> 和 <mark class="ui">HUD</mark>，需要的話調一調。
+
+1. **架設主伺服器**
+
+   按 <mark class="ui">Host</mark>。
+
+</Steps>
+
+## 開不了遊戲的快速解法
+
+在 <mark class="ui">Play</mark> 分頁按 <mark class="ui">Host</mark> 或 <mark class="ui">Singleplayer</mark> 之後，如果出現下面這些狀況，可能是 `127.0.0.1` 被擋住了：
+
+* 黑畫面之後就當掉
+* 片頭還沒出來，Unlocker 的終端機就沒有任何新訊息
+* 卡在登入畫面，或跳出視窗 [^1]
+* 在主選單看到「connection to server lost」
+* 地圖一載入完就當機（不是玩到一半才當）[^2]
+
+<Aside type="note">
+
+Unlocker 作者 Dankrad 研究後發現，遊戲啟動時會讀 `hosts` 檔案，而且好像會檢查裡面某些（修改過的）IP 位址，一找到就當機。這很可能就是大家一直遇到黑畫面當機的主因之一。
+
+</Aside>
+
+**快速解法：**
+
+<Steps>
+
+1. 到 `C:\Windows\System32\drivers\etc`，用文字編輯器打開 `hosts` 檔案。
+
+1. 把所有 `127.0.0.1` 的那幾行註解掉（在最前面加 `#`）。
+
+   只有玩 BF2142 時需要註解掉，玩完隨時可以改回來。
+
+1. 存檔。
+
+   存不了的話，先把檔案搬到桌面改好再搬回去，或用系統管理員身分打開編輯器。
+
+</Steps>
+
+**備用解法：**
+
+<Steps>
+
+1. 跟著[這些步驟](/zh-tw/getting-started/host-server/#disabling-network-adapters)停用用不到的網路卡。
+
+1. 在 Unlocker 按 <mark class="ui">Host</mark>。
+
+1. 遊戲視窗一跳出來就把它關掉。
+
+1. 在 <mark class="ui">IP-Address</mark> 欄填你的區網 IPv4 位址（在 `cmd` 輸入 `ipconfig` 就查得到）。
+
+1. 按 <mark class="ui">Connect</mark>。
+
+</Steps>
+
+快速解法用的是 `127.0.0.1`，不需要網路。`127.0.0.1` 不能用的話，備用解法會改走伺服器的網路介面連線。
+
+## 多人模式的快速解法
+
+想連上 OpenSpy 伺服器，先照下面改一下：
+
+<Steps>
+
+1. 到 `...\BF2142Unlocker_v0.9.7_rc7_win_64bit\bin\config`
+
+1. 用文字編輯器打開 `server.ini`。
+
+1. 在 `[OpenSpy]` 那一段，把：
+
+   ```batch
+   stella_prod="http://stella.prod.openspy.net/"
+   ```
+
+   改成：
+
+   ```batch
+   stella_prod="http://bf2142-pc.openspy.net/"
+   ```
+
+1. 存檔。
+
+</Steps>
+
+## 視窗模式畫面變形
+
+視窗模式下畫面變形，多半是 Windows 顯示縮放害的。
+
+<Steps>
+
+1. 打開遊戲資料夾。
+
+1. 在每個 `.exe`（`BF2142.exe`、`BF2142Patched.exe`、`BF2142Unlocker.exe`）上按右鍵 → <mark class="ui">Properties</mark> → <mark class="ui">Compatibility</mark> → <mark class="ui">Change high DPI settings</mark>。
+
+1. 勾選 <mark class="ui">Override high DPI scaling behavior</mark>，設成 <mark class="ui">Application</mark>。
+
+1. 按 <mark class="ui">Apply</mark> 和 <mark class="ui">OK</mark>。
+
+</Steps>
+
+## 開一台外面也連得進來的伺服器
+
+在 Unlocker 按 <mark class="ui">Host</mark> 只會開主伺服器，真正的遊戲伺服器還是要在遊戲裡自己開。
+
+<Steps>
+
+1. 照[架設伺服器](/zh-tw/getting-started/host-server/)的步驟開好遊戲伺服器。
+
+   「開始之前」那幾點也記得看。
+
+1. 把伺服器的 IPv4 位址傳給要加入的人。看你的設定，可能是區網 IP 或公開 IP。
+
+1. 請朋友在 Unlocker 的 <mark class="ui">IP-Address</mark> 欄填上這個位址，按 <mark class="ui">Connect</mark>，就會連上你的主伺服器。
+
+1. 再照[玩多人模式](/zh-tw/getting-started/play-multiplayer/)的步驟進遊戲伺服器。
+
+   懶得翻伺服器列表？按 <mark class="ui">Connect</mark> 之前先勾選 <mark class="ui">Auto join server</mark>，就會直接連進你的遊戲伺服器。
+
+</Steps>
+
+## 感謝
+
+特別感謝：
+
+* Dankrad 製作 BF2142Unlocker，並在 [BF2142 Remastered](https://discord.com/invite/nVdDkgA) 分享多人模式快速解法的細節
+* Dennie 找到開主機和單人模式當機的快速解法，出自 [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+
+[^1]: 正常來說不會出現登入畫面。出現的話，代表設定可能哪裡有問題。
+
+[^2]: 清掉快取後還是一樣的話，就是載入解鎖時出了問題。

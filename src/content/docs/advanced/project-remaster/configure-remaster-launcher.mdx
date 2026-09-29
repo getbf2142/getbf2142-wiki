@@ -1,0 +1,62 @@
+---
+title: Launch Project Remaster
+description: "Launch into action: set up the Remaster Launcher and start playing."
+slug: advanced/project-remaster/configure-remaster-launcher
+icon: square-rounded-number-2
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+You can launch the mod with the Remaster Launcher or BF2142 Hub. We recommend the Launcher, since it's where you toggle addons and bot settings. It's worth keeping both around though, as each has troubleshooting tools the other doesn't.
+
+<GuideSummary step={2} total={2} time="5 minutes">
+
+In the Remaster Launcher, turn off the 4GB Ram Patch, switch on the widescreen and visual fixes, match your resolution and click <mark class="ui">Start Game!</mark>
+
+</GuideSummary>
+
+## With BF2142 Hub
+
+<Aside type="tip">
+
+**BF2142 Hub** is the easiest way to get set up and launch mods: full unlocks in singleplayer, co-op and multiplayer, all from one launcher.
+
+</Aside>
+
+<Steps>
+
+1. Launch BF2142 Hub.
+
+1. In the <mark class="ui">Home</mark> tab, under <mark class="ui">Game Settings</mark>, pick the mod from the <mark class="ui">GAME MOD</mark> drop-down.
+
+1. Click <mark class="ui">Let's Play!!</mark>
+
+</Steps>
+
+## With the Remaster Launcher
+
+<Steps>
+
+1. Double-click the <mark class="ui">Remaster Launcher</mark> shortcut.
+
+   If <mark class="ui">Windows protected your PC</mark> appears, click <mark class="ui">More info</mark> → <mark class="ui">Run anyway</mark>. If <mark class="ui">User Account Control</mark> asks, click <mark class="ui">Yes</mark>.
+
+1. In the <mark class="ui">Play</mark> tab, under <mark class="ui">Launch-Settings</mark>, turn off <mark class="ui">4GB Ram Patch</mark>, as the OpenSpy patches already include it.[^1]
+
+1. Open <mark class="ui">Settings</mark> and, under <mark class="ui">General</mark>, turn on <mark class="ui">Unlock FPS (120HZ)</mark>, <mark class="ui">Widescreen Fix</mark>, [HUD-Fix](/advanced/addons-tweaks/hudfix/), <mark class="ui">Blood Patch</mark> and [ReShade](/advanced/addons-tweaks/reshade/).
+
+1. Set <mark class="ui">Resolution</mark> to match the one you use in-game.
+
+1. Back in the <mark class="ui">Play</mark> tab, click <mark class="ui">Start Game!</mark>
+
+1. _**That's it, Remaster is up and running. See you on the battlefield!**_
+
+</Steps>
+
+## What's next?
+
+* Crashes or graphics glitches? Try the troubleshooting tools in the Launcher or the Hub. The Launcher's built-in manual has fixes too.
+* Browse [Addons & Tweaks](/advanced/addons-tweaks/) for even more ways to customize your game.
+
+[^1]: BF2142 is a 32-bit game, so it can normally use only 2 GB of RAM. The 4 GB patch raises that limit and prevents out-of-memory crashes.

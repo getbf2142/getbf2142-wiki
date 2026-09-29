@@ -1,0 +1,77 @@
+---
+title: 自訂捷徑
+description: 用桌面捷徑加上自訂參數，一鍵啟動 BF2142 或任何模組。
+icon: click
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+在桌面捷徑加上<em>啟動參數</em>，就能直接開模組、用視窗模式，或設定選單裡沒有的解析度。
+
+## 建立捷徑
+
+<Steps>
+
+1. 打開遊戲資料夾，通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`。
+
+1. 在 `BF2142.exe` 上按右鍵 → <mark class="ui">Send to</mark> → <mark class="ui">Desktop (create shortcut)</mark>。Windows 11 要先按 <mark class="ui">Show more options</mark>。
+
+1. 在桌面的新捷徑上按右鍵 → <mark class="ui">Properties</mark>。
+
+1. 在 <mark class="ui">Target</mark> 裡，把啟動參數加在最後一個引號<em>後面</em>，參數之間用空格隔開。例如：
+
+   ```text
+   "C:\Program Files (x86)\Electronic Arts\Battlefield 2142\BF2142.exe" +menu 1 +fullscreen 1 +widescreen 1
+   ```
+
+1. <mark class="ui">Start in</mark> 維持遊戲資料夾就好，不用動，然後按 <mark class="ui">OK</mark>。
+
+1. 把捷徑改個好認的名字，例如「BF2142 Remaster」。
+
+</Steps>
+
+## 啟動參數
+
+參數有分大小寫，請一字不差照打，大寫字母也一樣。
+
+| 參數 | 作用 |
+| --- | --- |
+| `+menu 1` | 從主選單開始。每個捷徑都建議加上 |
+| `+modPath mods/<MOD>` | 啟動模組，`<MOD>` 是模組在 `Battlefield 2142\mods` 裡的資料夾名稱。預設是 `mods/bf2142` |
+| `+fullscreen 1` / `0` | 全螢幕，設 `0` 就是視窗模式 |
+| `+szx 1920 +szy 1080` | 設定畫面寬高，選單裡沒有的解析度也能用 |
+| `+wx 0 +wy 0` | 視窗模式下，把視窗放在螢幕的這個位置 |
+| `+widescreen 1` | 開啟寬螢幕。記得也裝[寬螢幕 HUD 修正](/zh-tw/advanced/addons-tweaks/hudfix/)，HUD 才不會被拉寬 |
+| `+joinServer <IP> +port <PORT>` | 直接進伺服器。伺服器有密碼的話，再加上 `+password <PASSWORD>` |
+
+<Aside type="caution">
+
+解析度只能用螢幕支援的，不然開遊戲可能會黑畫面。真的黑了，就把 `+szx` 和 `+szy` 拿掉再試一次。
+
+</Aside>
+
+## 範例
+
+**Project Remaster，全螢幕 1920×1080**
+
+```text
+"C:\Program Files (x86)\Electronic Arts\Battlefield 2142\BF2142.exe" +menu 1 +fullscreen 1 +widescreen 1 +szx 1920 +szy 1080 +modPath mods/Project_Remaster_v17
+```
+
+**原版，1600×900 視窗**
+
+```text
+"C:\Program Files (x86)\Electronic Arts\Battlefield 2142\BF2142.exe" +menu 1 +fullscreen 0 +szx 1600 +szy 900
+```
+
+## 你可能想知道
+
+* 有用 BF2142 Hub？它的 <mark class="ui">TURN ON WIDESCREEN</mark> 跟 `+widescreen 1` 效果一樣，所以只有要用其他參數時才需要捷徑。
+* Project Remaster 有自己的 [Remaster Launcher](/zh-tw/advanced/project-remaster/configure-remaster-launcher/)，這些都會幫你設好。
+* 模組開不起來？檢查 `+modPath` 裡的資料夾名稱，是不是跟 `Battlefield 2142\mods` 裡的一模一樣，而且要用正斜線（`mods/...`）。
+* 用模組架專用伺服器也是同一招，詳見[架設專用伺服器](/zh-tw/advanced/dedicated-server/host-dedicated-server/)。
+* 以前的自動登入參數（`+eaAccountName`、`+eaAccountPassword`、`+soldierName`）是給 EA 伺服器用的。別用它們，你的密碼會以明碼存起來。
+
+## 感謝
+
+* Koroush Ghazi 整理了完整的啟動參數列表，出自 [TweakGuides](https://tweakguides.dmegaming.com/BF2142_7.html)

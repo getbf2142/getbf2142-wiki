@@ -1,0 +1,102 @@
+---
+title: Offline Rewards
+description: Earn pins, ribbons, badges and medals in singleplayer and co-op.
+slug: advanced/addons-tweaks/offline-rewards
+icon: medal
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+Earn pins, ribbons, badges and medals against bots! This patch brings the ranked-server rewards to your singleplayer and LAN co-op games, and there's nothing quite like racking up a pile of medals in one round.
+
+In vanilla, many awards need things like 150 hours played or 300 EU wins, which you'll never reach in a single round. So we reworked them for quick co-op games:
+
+* Titan mode rewards are removed.
+* Impossible requirements are gone.
+* Most rewards can be earned in about 15 minutes.
+
+## Rewards catalogue
+
+Every reward and how to earn it:
+
+<Tabs>
+<TabItem label="v2">
+
+<Embed url="https://drive.google.com/file/d/1Z5y7vFvdRZHqzQprv4zCwsvl_vzeiL5d" title="Offline Rewards Catalogue v2" />
+
+</TabItem>
+
+<TabItem label="v1">
+
+<Embed url="https://drive.google.com/file/d/1NWUVSEbD-IXb-gXaO_t6aKgiQiSZhRmo" title="Offline Rewards Catalogue v1" />
+
+</TabItem>
+</Tabs>
+
+## Steps
+
+<Steps>
+
+1. Download the patch from [Downloads](#downloads).
+
+1. Open your game folder, where `BF2142.exe` lives, usually `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`.
+
+1. Rename the existing `python` folder to `python_o` as a backup.
+
+1. Copy the `python` folder from the `.zip` into your game folder.
+
+</Steps>
+
+## Downloads
+
+<Tabs>
+<TabItem label="v2">
+
+<Embed url="https://www.mediafire.com/file/35dhux0ys3sjxr2/BF2142_Offline_Rewards_v2.zip/file" title="BF2142 Offline Rewards Patch v2 (37 KB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1QelzAksf84NheB0HWL6fyvcCFxRIybjX" title="BF2142 Offline Rewards Patch v2 (37 KB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+<details>
+
+<summary>What's new</summary>
+
+* Supports all Remaster mod weapons (`constants.py`)
+* Fixed several rewards that couldn't be earned (`medal_data.py`)
+* Easier to turn logging on or off (`__init__.py`)
+* Code clean-up in `rank.py` and `unlocks.py`
+
+</details>
+
+</TabItem>
+
+<TabItem label="v1">
+
+<Embed url="https://drive.google.com/file/d/16WwI7T8NAv3oJaNS4BysAfJ2Uev2ugrd" title="BF2142 Offline Rewards Patch v1 (42 KB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## Good to know
+
+* Works with every mod, including vanilla.
+* Only affects singleplayer and co-op. Multiplayer is untouched, and you won't get kicked for having it installed.
+* Rewards only last for the current round and reset when it ends.
+* Want logs? Edit `python\bf2\__init__.py` and change `g_debug`, `g_debug_log` and `g_falog`.
+
+## Credits
+
+* [maiorBoltach](https://github.com/maiorBoltach) for the Python files behind the rewards emulation @ [bf2142stats\_emu](https://github.com/maiorBoltach/bf2142stats_emu)
+* Dennie for reworking the requirements and adding Remaster weapon support @ [BF2142 Remastered](https://discord.com/invite/nVdDkgA)

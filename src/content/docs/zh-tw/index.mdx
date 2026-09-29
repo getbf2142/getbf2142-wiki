@@ -1,0 +1,65 @@
+---
+title: GetBF2142
+description: "想再玩一次《戰地風雲 2142》？安裝、更新、連線對戰到模組，這裡一次教給你。"
+template: splash
+head:
+  - tag: title
+    content: GetBF2142 | 再戰《戰地風雲 2142》
+hero:
+  tagline: 想再玩一次《戰地風雲 2142》？安裝、更新、連線到模組，每篇教學都親自測過，下載也準備了備用連結。
+  actions:
+    - text: 快速上手
+      link: /zh-tw/getting-started/quick-start/
+      icon: rocket
+    - text: 完整指南
+      link: /zh-tw/getting-started/before-proceeding/
+      icon: open-book
+      variant: secondary
+    - text: 加入 Discord
+      link: https://discord.gg/7SBMKRy6q9
+      icon: discord
+      variant: minimal
+---
+
+import { CardGrid, LinkButton } from '@astrojs/starlight/components';
+import HomeCard from '~/components/HomeCard.astro';
+import HomeAboutBanner from '~/components/HomeAboutBanner.astro';
+
+## 想從哪裡開始？
+
+<CardGrid>
+	<HomeCard icon="bolt" title="快速上手" description="一頁搞定，從安裝到打第一場線上對戰。" href="/zh-tw/getting-started/quick-start/" />
+	<HomeCard icon="route" title="入門指南" description="一步步裝好遊戲、更新到 v1.51，再透過 OpenSpy 上線。" href="/zh-tw/getting-started/before-proceeding/" />
+	<HomeCard icon="flip-vertical" title="Project Remaster" description="社群製作的重製模組，加入高畫質畫面、新武器和更聰明的 BOT。" href="/zh-tw/advanced/project-remaster/" />
+	<HomeCard icon="puzzle" title="擴充與調整" description="加入更多 BOT、調整 FOV、修正寬螢幕 HUD，還有 ReShade。" href="/zh-tw/advanced/addons-tweaks/" />
+	<HomeCard icon="heart-handshake" title="說明中心" description="卡關了？常見問題和解法都在這裡。" href="/zh-tw/help-centre/" />
+	<HomeCard icon="book" title="遊戲資料" description="原版遊戲手冊，還有超詳細的遊戲攻略。" href="/zh-tw/documents/" />
+</CardGrid>
+
+<HomeAboutBanner src="/art/home-dropship-wide.webp" lightSrc="/art/home-dropship-wide-light.webp">
+
+## 約 15 分鐘就能開始玩
+
+不用到處找檔案，也不用自己摸索設定。下載點都經過測試，每一步都有清楚說明，照著做就能上線開打。
+
+<LinkButton href="/zh-tw/getting-started/quick-start/" icon="right-arrow">快速上手</LinkButton>
+
+</HomeAboutBanner>
+
+<HomeAboutBanner src="/art/home-titan-wide.webp" lightSrc="/art/home-titan-wide-light.webp" copySide="right">
+
+## BF2142 現在還值得玩嗎？
+
+就算過了二十年，自己跟 BOT 打、找朋友連區網，或來一場多階段的 _Titan 模式_，還是一樣好玩。而且一般筆電就跑得動。
+
+</HomeAboutBanner>
+
+<HomeAboutBanner>
+
+## 關於 GetBF2142
+
+GetBF2142 是一群 BF2142 老玩家自己維護的網站，沒有廣告，也不賺錢。我們只是希望更多人能輕鬆玩到這款遊戲。
+
+<LinkButton href="/zh-tw/about/" variant="secondary" icon="right-arrow">認識 GetBF2142</LinkButton>
+
+</HomeAboutBanner>

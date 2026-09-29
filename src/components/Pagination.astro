@@ -1,0 +1,113 @@
+---
+// Starlight's prev/next links, plus each page's icon (data-icon, set in src/routeData.ts).
+import PageIcon from './PageIcon.astro';
+
+const { dir, pagination } = Astro.locals.starlightRoute;
+const { prev, next } = pagination;
+const isRtl = dir === 'rtl';
+const iconOf = (link: typeof prev) => link?.attrs['data-icon'] as string | undefined;
+---
+
+<div class="pagination-links print:hidden" dir={dir}>
+	{
+		prev && (
+			<a href={prev.href} rel="prev">
+				<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true">
+					<path d={isRtl ? 'm9 6 6 6-6 6' : 'm15 6-6 6 6 6'} />
+				</svg>
+				<span class="text">
+					<span class="hint">{Astro.locals.t('page.previousLink')}</span>
+					<span class="link-title">
+						<PageIcon name={iconOf(prev)} />
+						<span>{prev.label}</span>
+					</span>
+				</span>
+			</a>
+		)
+	}
+	{
+		next && (
+			<a href={next.href} rel="next">
+				<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true">
+					<path d={isRtl ? 'm15 6-6 6 6 6' : 'm9 6 6 6-6 6'} />
+				</svg>
+				<span class="text">
+					<span class="hint">{Astro.locals.t('page.nextLink')}</span>
+					<span class="link-title">
+						<PageIcon name={iconOf(next)} />
+						<span>{next.label}</span>
+					</span>
+				</span>
+			</a>
+		)
+	}
+</div>
+
+<style>
+	.pagination-links {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+		gap: 0.75rem;
+	}
+	a {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.875rem 1rem;
+		border: 1px solid var(--hairline);
+		border-radius: 0.5rem;
+		color: var(--sl-color-gray-3);
+		text-decoration: none;
+		overflow-wrap: anywhere;
+		transition:
+			border-color 0.15s,
+			background-color 0.15s;
+	}
+	a:hover {
+		border-color: var(--sl-color-accent);
+		background: color-mix(in srgb, var(--sl-color-accent) 5%, transparent);
+	}
+	[rel='next'] {
+		flex-direction: row-reverse;
+		text-align: end;
+	}
+	.text {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+		min-width: 0;
+	}
+	.hint {
+		font-size: var(--sl-text-xs);
+	}
+	.link-title {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--sl-color-white);
+		font-size: var(--sl-text-lg);
+		font-weight: 500;
+		line-height: var(--sl-line-height-headings);
+	}
+	[rel='next'] .link-title {
+		justify-content: flex-end;
+	}
+	.link-title :global(.page-icon) {
+		flex: none;
+		color: var(--sl-color-gray-3);
+		transition: color 0.15s;
+	}
+	a:hover .link-title :global(.page-icon) {
+		color: var(--sl-color-text-accent);
+	}
+	.arrow {
+		flex: none;
+		width: 1.25rem;
+		height: 1.25rem;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+</style>

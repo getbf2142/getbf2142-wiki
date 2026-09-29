@@ -1,0 +1,82 @@
+---
+title: 建立帳號
+description: "建立 BF2142 帳號和士兵，順便調好畫面和音效。"
+icon: square-rounded-number-6
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+最後一步了！建好帳號和士兵，調一下畫面和音效，就可以開打。
+
+<GuideSummary step={6} time="5 分鐘">
+
+從 Hub 啟動遊戲，建好帳號和士兵，再設定解析度、關掉反鋸齒。
+
+</GuideSummary>
+
+## 步驟
+
+<Aside type="caution">
+
+Windows 防火牆跳出來時，私人網路和公用網路都要勾選允許，不然可能會連不上。
+
+</Aside>
+
+<Steps>
+
+1. 從 <mark class="ui">BF2142 Hub</mark> 啟動遊戲。按 <mark class="ui">Play</mark> 之前，也可以先在 Hub 調好畫面和遊戲設定。
+
+1. 片頭動畫前會黑畫面一下，這很正常。[^1]
+
+1. 在登入畫面按 <mark class="ui">CREATE NEW ACCOUNT</mark>，再按 <mark class="ui">ACCEPT TERMS</mark>。每個畫面可能要等個幾秒才會出來。[^2]
+
+1. 填好註冊資料，按 <mark class="ui">CREATE</mark>。
+
+   * Email 請填收得到信的，之後[重設密碼](/zh-tw/help-centre/faq/#how-to-reset-my-password)會用到。
+   * 記好你的 <mark class="ui">ACCOUNT NAME</mark> 和 <mark class="ui">PASSWORD</mark>。
+   * 伺服器是用明碼存密碼的，所以千萬別用你在其他地方用過的密碼。
+   * 其他欄位隨便填，不影響遊戲。
+
+   出現錯誤？看[疑難排解的 S01](/zh-tw/help-centre/troubleshoot/#s01-account-creation-error-when-creating-an-account)。
+
+1. 按 <mark class="ui">CREATE NEW SOLDIER</mark>，輸入你在遊戲裡想用的名字，然後確認。
+
+1. 建好士兵後，解析度可能會被重設成預設值。[^3]到 <mark class="ui">OPTIONS</mark> → <mark class="ui">VIDEO</mark> 重新設定解析度和更新率。_只能選螢幕支援的數值_，不然遊戲可能會當掉。
+
+1. 其他畫面設定可以直接拉滿，不過 <mark class="ui">ANTI-ALIASING</mark> 建議先設成 <mark class="ui">OFF</mark>。[^4]每個選項在做什麼，可以看 [Tweak Guide](https://tweakguides.dmegaming.com/BF2142_6.html)。
+
+1. <mark class="ui">AUDIO</mark> 也記得調一下，[Tweak Guide](https://tweakguides.dmegaming.com/BF2142_6.html) 裡也有不少實用建議。
+
+1. _**完成！Battlefield 2142 可以玩了，戰場上見！**_
+
+</Steps>
+
+## 接下來？
+
+**馬上開始玩**
+
+* [玩單人模式](/zh-tw/getting-started/play-singleplayer/)
+* [玩多人模式](/zh-tw/getting-started/play-multiplayer/)
+* [架設伺服器](/zh-tw/getting-started/host-server/)
+
+**升級你的遊戲**
+
+* [安裝 Project Remaster](/zh-tw/advanced/project-remaster/install-project-remaster/)，體驗高畫質、新武器和更聰明的 BOT。
+* 逛逛[擴充與調整](/zh-tw/advanced/addons-tweaks/)，加更多 BOT、調 FOV，或裝 ReShade。
+
+**多認識這款遊戲**
+
+* [遊戲手冊](/zh-tw/documents/manual/)和[遊戲指南](/zh-tw/documents/game-guide/)
+* [Tweak Guide](https://tweakguides.dmegaming.com/BF2142_1.html)
+* [模組製作](https://classic-battlefield-modding.fandom.com/wiki/Classic_Battlefield_Modding_Wikia)（給喜歡研究的玩家）
+
+哪裡怪怪的？翻翻[疑難排解](/zh-tw/help-centre/troubleshoot/)和[常見問題](/zh-tw/help-centre/faq/)。
+
+[^1]: 全螢幕模式下，遊戲啟動時畫面可能會閃幾下或變換大小，這也很正常。
+
+[^2]: 主伺服器在歐洲和美國，所以最久可能要等 10 秒左右。
+
+[^3]: BF2142 登入前和登入後用的是兩套不同的設定，新建的個人檔案只有預設值。
+
+[^4]: 在現在的顯卡上，舊的 DirectX 9 反鋸齒可能會讓畫面出錯，例如看得穿建築物。想要畫面平滑，可以在遊戲裡關掉，改從 NVIDIA 或 AMD 控制面板強制開啟。如果開了沒問題，用 <mark class="ui">4x</mark> 也可以。

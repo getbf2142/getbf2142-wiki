@@ -1,0 +1,110 @@
+---
+title: 安裝 Project Remaster
+description: "下載並安裝 Project Remaster，讓老遊戲換上高畫質和新內容。"
+icon: square-rounded-number-1
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+現在很多人玩 BF2142，第一個裝的就是 Project Remaster。它讓這款 2006 年的遊戲畫面更清楚、武器更多、BOT 更聰明，而且裝起來不難。
+
+<GuideSummary step={1} total={2} time="10 分鐘">
+
+要先裝好 v1.51 更新檔。下載模組後解壓縮到遊戲的 `mods` 資料夾，再在桌面建一個 Remaster Launcher 捷徑。在 OpenSpy 上玩的話，記得替 Remaster 另外建一個新士兵。
+
+</GuideSummary>
+
+<Embed url="https://www.youtube.com/watch?v=WnaceSKVyH4" />
+
+<details id="overview">
+
+<summary>Project Remaster 是什麼？</summary>
+
+這是一個大型社群模組，把 BF2142 的畫面、武器和 AI 全面翻新，但原本的玩法都保留下來。製作團隊是 [Project Remaster 團隊](https://prmp.boards.net/)，想追最新消息或找人幫忙，歡迎加入他們的 [Discord](https://discord.gg/nVdDkgA)。
+
+</details>
+
+<details id="features">
+
+<summary>裡面有什麼？</summary>
+
+* 士兵、武器、載具、地形和地圖的材質全部翻新
+* 字型、HUD、準心、小地圖和選單更清楚，專為現在的寬螢幕設計
+* 新武器，包括狙擊槍、發射器、機槍和手槍
+* 每個兵種最多 5 把主武器，還有新的副武器和小隊長裝備欄
+* 新增和重做的動作，爆炸效果也更真實
+* 可以在水裡游泳，按住 `Z` 潛水
+* BOT 更聰明：會從更遠的地方開打、搶據點、開載具
+* 更多地圖和配置支援 BOT（[看列表](/zh-tw/advanced/addons-tweaks/maps-with-bots/#project-remaster)），單人和合作模式也能部分支援 48 人的 Titan 模式
+* 新地圖，包括 Backstab、Operation Imra、Battle for Frankfurt 和 Tunis Harbour Assault
+* 內建 [ReShade](/zh-tw/advanced/addons-tweaks/reshade/)、[寬螢幕 HUD 修正](/zh-tw/advanced/addons-tweaks/hudfix/)和血腥效果
+* 附手冊和疑難排解工具的啟動器
+
+完整內容看 [v17 發行說明](https://www.moddb.com/mods/bf2142-project-remaster/news/project-remaster-update-v17)。
+
+</details>
+
+<details id="official-server">
+
+<summary>可以玩線上模式嗎？</summary>
+
+可以，區網、VLAN 或網路連線的多人模式都完整支援。只是大家的模組版本要一樣，而且開著模組去進原版伺服器會被踢出來。
+
+目前還沒有 v17 的公開伺服器。想跟朋友玩，可以自己[開區網遊戲](/zh-tw/getting-started/host-server/)。官方伺服器和活動的消息，可以關注 [Remaster Discord](https://discord.gg/nVdDkgA)。
+
+</details>
+
+## 開始之前
+
+* 遊戲要先更新到 [v1.51](/zh-tw/getting-started/download-and-install-v1_51-patch/)。
+* 透過 BF2142 Hub 在 OpenSpy 上玩？<strong>記得替 Remaster 另外建一個新士兵。</strong>用原版的士兵，模組的擴充裝備設定可能會出錯，重生時就會當機。
+
+## 步驟
+
+<Steps>
+
+1. 從[下載](#下載)抓模組。
+
+1. 解壓縮到遊戲的 `mods` 資料夾，通常是：\
+   `C:\Program Files (x86)\Electronic Arts\Battlefield 2142\mods`
+
+   從舊版更新？先把舊的模組資料夾刪掉。
+
+1. 打開 `mods\Project_Remaster_v17\Tools\Launcher`，在 `Remaster_Launcher.exe` 上按右鍵，選 <mark class="ui">Send to</mark> → <mark class="ui">Desktop (create shortcut)</mark>。
+
+1. 下一步：<GuideLink href="/advanced/project-remaster/configure-remaster-launcher/" label="啟動 Project Remaster" />
+
+</Steps>
+
+## 下載
+
+<Aside type="tip">
+
+**想搶先玩新版本？**
+
+團隊會先把測試版分享給測試員和贊助者。想一起測試，可以到 [Remaster Discord](https://discord.gg/nVdDkgA) 問問，或到 [Patreon](https://www.patreon.com/c/Sgt_Prof) 支持他們。
+
+</Aside>
+
+<Tabs>
+<TabItem label="v17">
+
+畫面全面翻新、武器更多、可以游泳、AI 更聰明，還有新地圖和一大堆錯誤修正。完整內容看 [v17 發行說明](https://www.moddb.com/mods/bf2142-project-remaster/news/project-remaster-update-v17)。
+
+<Embed url="https://www.moddb.com/mods/bf2142-project-remaster" title="Project Remaster v17 Final (2026-08-30) (2.52 GB)">
+
+來源：[illicitSoul](https://www.moddb.com/members/ainas) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+<Embed url="https://www.moddb.com/downloads/start/315609/all" title="Project Remaster v17 Final (2026-08-30) (2.52 GB)">
+
+來源：[illicitSoul](https://www.moddb.com/members/ainas) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+</Tabs>

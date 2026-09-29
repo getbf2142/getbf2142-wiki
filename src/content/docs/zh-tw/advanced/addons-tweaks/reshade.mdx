@@ -1,0 +1,93 @@
+---
+title: ReShade
+description: 用 ReShade 調整 BF2142 的光影和色彩。
+icon: beach
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+ReShade 用後製效果幫遊戲畫面調色、加光影。這套設定原本是 BF2 的 Project Reality 在用，後來 Project Remaster 團隊把它改成 BF2142 版。
+
+<div class="figure-row"><figure><img src="/assets/reshade_remagen.gif" alt="Breakthrough at Remagen 使用 ReShade 的效果" loading="lazy" /><figcaption><p>Breakthrough at Remagen</p></figcaption></figure> <figure><img src="/assets/reshade_street.gif" alt="Street 使用 ReShade 的效果" loading="lazy" /><figcaption><p>Street</p></figcaption></figure></div>
+
+最新的 ReShade 設定已經內建在 [Project Remaster](/zh-tw/advanced/project-remaster/install-project-remaster/) 裡。沒裝 Project Remaster？這篇也會教你怎麼加到原版 BF2142。（[ModDB 上的原版](https://www.moddb.com/downloads/bf2142-reshade)已經舊了。）
+
+## 步驟
+
+<Aside type="tip">
+
+<strong>有裝 Project Remaster？</strong>直接在 Remaster Launcher 的 <mark class="ui">Settings</mark> 分頁勾選 <mark class="ui">Reshade</mark>，再跳到[使用 ReShade](#使用-reshade)。想關掉的話，取消勾選就好。
+
+</Aside>
+
+<Steps>
+
+1. 從[下載](#下載)抓修正檔。
+
+1. 把檔案全部解壓縮到遊戲資料夾（通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`），有重複的就直接覆蓋。
+
+1. 遊戲裝在別的地方？用文字編輯器打開 `d3d9.ini`，把路徑改成你的位置。
+
+</Steps>
+
+## 使用 ReShade
+
+<Steps>
+
+1. 開遊戲。片頭動畫或登入畫面一出來，就看得到效果了。
+
+1. 按 <mark class="ui">Shift + F2</mark> 打開或關掉 ReShade 介面。
+
+1. 在 <mark class="ui">Home</mark> 分頁確認預設組合有載入，應該會看到 `Levels.fx`、`Vignette.fx` 這類著色器。
+
+   列表是空的？代表著色器還沒載入：
+
+   1. 到 <mark class="ui">Settings</mark> 分頁設定路徑（遊戲裝在別的地方的話，自己改一下）：
+      * Effect search path：`C:\Program Files (x86)\Electronic Arts\Battlefield 2142\reshade-shaders\Shaders`
+      * Texture search path：`C:\Program Files (x86)\Electronic Arts\Battlefield 2142\reshade-shaders\Textures`
+   2. 在 <mark class="ui">Home</mark> 分頁按 <mark class="ui">Reload</mark>。
+   3. 確認預設組合的下拉選單選的是 `...\Battlefield 2142\DefaultPreset.ini`。
+
+1. 按 <mark class="ui">Scroll Lock</mark> 開關效果。我們自己習慣在介面裡把快捷鍵改成 <mark class="ui">Shift + F1</mark>。
+
+1. 想微調著色器？在 <mark class="ui">Settings</mark> 分頁開啟 <mark class="ui">Configuration Mode</mark>，再回到 <mark class="ui">Home</mark> 分頁調整。
+
+1. 想調出自己的風格？按預設組合下拉選單旁邊的 <mark class="ui">+</mark> 新增一組。下載檔裡還附了第二組 `DefaultPreset2`，可以玩玩看。
+
+1. 某些地圖顏色怪怪的？試試關掉 LUT 著色器。
+
+</Steps>
+
+## 下載
+
+<Tabs>
+<TabItem label="v14">
+
+<Embed url="https://www.mediafire.com/file/omrlv57o1vh0k98/BF2142_Reshade_PRv14.zip/file" title="BF2142 ReShade & Shaders Patch v14 (4.2 MB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1W1SdhJ14TMcm9y3ttx9QSs4RKySJ0LyL" title="BF2142 ReShade & Shaders Patch v14 (4.2 MB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## 你可能想知道
+
+* 需要 Windows 7 以上。
+* 所有模組都能用，原版也可以。
+* 線上也能開，不會因此被伺服器踢出來。
+* 想移除的話，把你加進去的檔案刪掉就好。
+
+## 感謝
+
+* Project Remaster 團隊把這套著色器改成 BF2142 版，出自 [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+* [illicitSoul](https://www.moddb.com/members/ainas) 提供安裝說明，出自 [BF2142 Reshade](https://www.moddb.com/downloads/bf2142-reshade)
+* [phale](https://www.moddb.com/members/phale) 提供 ReShade 設定細節，出自 [Heat of Battle Reshade](https://www.moddb.com/mods/heat-of-battle2/downloads/heat-of-battle-reshade-20)

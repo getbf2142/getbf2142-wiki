@@ -1,0 +1,161 @@
+---
+title: BF2142Unlocker
+description: All unlocks and your own master server, even offline.
+slug: advanced/addons-tweaks/bf2142unlocker
+icon: lock-open
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+BF2142Unlocker runs a master server right on your PC, so you get all unlocks and stats even offline, without any manual patching. It also lists servers from several master servers and lets you join or host games from one simple window.
+
+<div class="figure-row"><figure><img src="/assets/unlocker_2.png" alt="Hosting a master server in BF2142Unlocker" loading="lazy" /><figcaption><p>Host a master server</p></figcaption></figure> <figure><img src="/assets/unlocker_1.png" alt="Joining a multiplayer game in BF2142Unlocker" loading="lazy" /><figcaption><p>Play multiplayer</p></figcaption></figure></div>
+
+<details id="special-remarks">
+
+<summary>Good to know</summary>
+
+* <mark class="ui">Host</mark> only starts the _master server_ (logins and unlocks). You still start the actual game server from inside the game.
+* You can host both even with no network connection at all.
+* <mark class="ui">Host</mark> listens on all networks (`0.0.0.0`), while <mark class="ui">Singleplayer</mark> only listens on this PC (`127.0.0.1`).
+* The Unlocker modifies the OpenSpy patches. To play on OpenSpy again, run BF2142 Hub as administrator and [reinstall the OpenSpy patches](/getting-started/apply-openspy-patches/).
+
+</details>
+
+## Downloads
+
+<Tabs>
+<TabItem label="RC11">
+
+<Aside type="caution">
+
+RC11 breaks LAN multiplayer: the game crashes when you click multiplayer after starting it through the offline or quick menu. Want to play LAN? Use RC10, or connect to OpenSpy and create a LAN server from there.
+
+</Aside>
+
+<Embed url="https://www.mediafire.com/file/pim2th4xuyjpd77/BF2142Unlocker_v0.9.7_rc11_win_64bit.zip/file" title="BF2142Unlocker v0.9.7 RC11, Windows 64-bit (23 MB)">
+
+Source: [Dankrad](https://github.com/Dankr4d) @ [BF2142 Remastered](https://discord.gg/nVdDkgA)
+
+</Embed>
+
+<details>
+
+<summary>What's new</summary>
+
+* Added a FESL SSL proxy. It handles the TLS 1.3 that OpenSpy now requires, while still supporting SSLv3 and older cipher suites for NovGames and other master servers.
+* Added the PACvsEU master server.
+* Known issue: LAN multiplayer is broken. The game crashes when you click multiplayer after starting it through the offline or quick menu.
+
+</details>
+
+</TabItem>
+
+<TabItem label="RC10">
+
+<Embed url="https://www.mediafire.com/file/ym6h881mvgevkg7/BF2142Unlocker_v0.9.7_rc10_win_64bit.zip/file" title="BF2142Unlocker v0.9.7 RC10, Windows 64-bit (21.3 MB)">
+
+Source: [Dankrad](https://github.com/Dankr4d) @ [BF2142 Remastered](https://discord.gg/nVdDkgA)
+
+</Embed>
+
+<details>
+
+<summary>What's new</summary>
+
+* In-game OpenSpy stats and buddy list work again (`server.ini` now stores the FESL address separately).
+* Fixed NovGames account creation.
+* Fewer crashes when the FESL server doesn't respond.
+
+</details>
+
+</TabItem>
+
+<TabItem label="RC9">
+
+<Embed url="https://www.mediafire.com/file/4enku1h05qbt6dr/BF2142Unlocker_v0.9.7_rc9_win_64bit.zip/file" title="BF2142Unlocker v0.9.7 RC9, Windows 64-bit (21.31 MB)">
+
+Source: [Dankrad](https://github.com/Dankr4d) @ [BF2142 Remastered](https://discord.gg/nVdDkgA)
+
+</Embed>
+
+<details>
+
+<summary>What's new</summary>
+
+* Removed the PlayBF2142 master server (it no longer lists any servers).
+* Fixed the OpenSpy master server address, so logging in and creating accounts work again.
+* Added a 2× anti-aliasing option.
+* Fixed a black-screen crash on startup when the master server's IP was in the Windows hosts file. Thanks to Dennie for tracking it down.
+* Build and compatibility fixes.
+
+</details>
+
+</TabItem>
+
+<TabItem label="RC7">
+
+RC7 has its own setup steps, so it lives in the [archived guide](/archive/bf2142unlocker-v0.9.7-rc7/).
+
+</TabItem>
+</Tabs>
+
+## Setting up
+
+<Aside type="caution">
+
+Some antivirus tools (like Norton) wrongly flag Unlocker files and quarantine them. The files are safe, so restore them and add the Unlocker folder to your antivirus exceptions.
+
+</Aside>
+
+<Steps>
+
+1. Extract the download and launch `BF2142Unlocker.exe`.
+
+1. Set the game path to your `Battlefield 2142` folder, usually `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`.
+
+1. Enable <mark class="ui">LAA-Patch</mark>. It lets the game use up to 4 GB of RAM and prevents crashes.
+
+1. Tick <mark class="ui">Window Mode</mark> and set your resolution. Switch to fullscreen once everything works, since windowed mode makes troubleshooting easier.
+
+1. Choose your <mark class="ui">Mod</mark>, set your <mark class="ui">Player name</mark>, and check the <mark class="ui">Video</mark>, <mark class="ui">Audio</mark> and <mark class="ui">HUD</mark> settings.
+
+1. Click <mark class="ui">Host</mark> to start your master server, then start a game from inside BF2142.
+
+</Steps>
+
+<details id="windowed-mode-distortion">
+
+<summary>The game looks distorted in windowed mode?</summary>
+
+Enable High DPI Aware for both game executables:
+
+1. In your `Battlefield 2142` folder, right-click `BF2142.exe` → <mark class="ui">Properties</mark> → <mark class="ui">Compatibility</mark> → <mark class="ui">Change high DPI settings</mark>.
+2. Tick <mark class="ui">Override high DPI scaling behavior</mark>, set it to <mark class="ui">Application</mark> and click <mark class="ui">OK</mark>.
+3. Repeat for `BF2142Patched.exe`.
+
+</details>
+
+## Hosting a game for friends
+
+<Aside type="caution">
+
+Allow `BF2142.exe` and `BF2142Patched.exe` (in the game folder) and `BF2142Unlocker.exe` (in the Unlocker folder) through Windows Firewall on both private and public networks: <mark class="ui">Control Panel</mark> → <mark class="ui">Windows Defender Firewall</mark> → <mark class="ui">Allow an app or feature through Windows Defender Firewall</mark>.
+
+</Aside>
+
+<Steps>
+
+1. Click <mark class="ui">Host</mark>, then start your game server as described in [Host a server](/getting-started/host-server/), including the notes under _Before you start_. For internet play, forward the two extra Unlocker ports too.
+
+1. Share your IPv4 address with your friends: local for LAN, public for the internet.
+
+1. Your friends enter that address in the Unlocker's <mark class="ui">IP-Address</mark> box, tick <mark class="ui">Auto join server</mark> and click <mark class="ui">Connect</mark>. That connects them to your master server and game server in one go.
+
+</Steps>
+
+## Credits
+
+* Dankrad for creating and maintaining BF2142Unlocker @ [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+* Dennie for tracking down the host / singleplayer crash @ [BF2142 Remastered](https://discord.com/invite/nVdDkgA)

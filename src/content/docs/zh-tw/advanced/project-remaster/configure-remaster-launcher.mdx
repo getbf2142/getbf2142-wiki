@@ -1,0 +1,61 @@
+---
+title: 啟動 Project Remaster
+description: "設定 Remaster Launcher，啟動 Project Remaster。"
+icon: square-rounded-number-2
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+Remaster Launcher 和 BF2142 Hub 都能啟動模組。建議先用 Launcher，模組和 BOT 的設定都能在裡面調。兩個程式都有自己的疑難排解工具，最好兩個都留著。
+
+<GuideSummary step={2} total={2} time="5 分鐘">
+
+在 Remaster Launcher 關掉 4GB Ram Patch，打開寬螢幕和畫面修正，解析度設成跟遊戲裡一樣，再按 <mark class="ui">Start Game!</mark>
+
+</GuideSummary>
+
+## 使用 BF2142 Hub
+
+<Aside type="tip">
+
+用 **BF2142 Hub** 可以一次設定好並啟動模組，單人、合作和多人模式也都有全部解鎖。
+
+</Aside>
+
+<Steps>
+
+1. 打開 BF2142 Hub。
+
+1. 在 <mark class="ui">Home</mark> 分頁的 <mark class="ui">Game Settings</mark> 底下，從 <mark class="ui">GAME MOD</mark> 下拉選單選模組。
+
+1. 按 <mark class="ui">Let's Play!!</mark>
+
+</Steps>
+
+## 使用 Remaster Launcher
+
+<Steps>
+
+1. 點兩下 <mark class="ui">Remaster Launcher</mark> 捷徑。
+
+   看到 <mark class="ui">Windows protected your PC</mark> 的話，按 <mark class="ui">More info</mark> → <mark class="ui">Run anyway</mark>。如果跳出 <mark class="ui">User Account Control</mark>，按 <mark class="ui">Yes</mark>。
+
+1. 在 <mark class="ui">Play</mark> 分頁的 <mark class="ui">Launch-Settings</mark> 底下，關掉 <mark class="ui">4GB Ram Patch</mark>，OpenSpy 修正檔裡已經有了。[^1]
+
+1. 打開 <mark class="ui">Settings</mark>，在 <mark class="ui">General</mark> 底下開啟 <mark class="ui">Unlock FPS (120HZ)</mark>、<mark class="ui">Widescreen Fix</mark>、[HUD-Fix](/zh-tw/advanced/addons-tweaks/hudfix/)、<mark class="ui">Blood Patch</mark> 和 [ReShade](/zh-tw/advanced/addons-tweaks/reshade/)。
+
+1. <mark class="ui">Resolution</mark> 設成跟你遊戲裡用的一樣。
+
+1. 回到 <mark class="ui">Play</mark> 分頁，按 <mark class="ui">Start Game!</mark>
+
+1. _**完成！Project Remaster 可以玩了，戰場上見！**_
+
+</Steps>
+
+## 接下來？
+
+* 當機或畫面怪怪的？試試 Launcher 或 Hub 的疑難排解工具，Launcher 內建的手冊裡也有解法。
+* 逛逛[擴充與調整](/zh-tw/advanced/addons-tweaks/)，還有更多方法打造你自己的遊戲。
+
+[^1]: BF2142 是 32 位元遊戲，本來最多只能用 2 GB 記憶體。4 GB 修正會把上限拉高，避免記憶體不夠而當機。

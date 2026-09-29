@@ -1,0 +1,166 @@
+---
+title: BattleRecorder
+description: Record your matches and replay them from any angle.
+slug: advanced/addons-tweaks/battlerecorder-and-battledirector
+icon: movie
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+Relive your best BF2142 moments from a whole new angle! The game's built-in _BattleRecorder_ records your matches, and _BattleDirector_ lets you replay them with a free camera, perfect for highlights and cinematic shots.
+
+<div class="figure-row"><figure><img src="/assets/battlerecorder_1.png" alt="A replay in BattleDirector" loading="lazy" /><figcaption><p>Source: ordinary_chicken @ <a href="https://discord.com/invite/MEwBW9U" target="_blank" rel="noopener">BF2142 Reclamation</a></p></figcaption></figure> <figure><img src="/assets/battlerecorder_2.png" alt="A cinematic shot from a replay" loading="lazy" /><figcaption><p>Source: ordinary_chicken @ <a href="https://discord.com/invite/MEwBW9U" target="_blank" rel="noopener">BF2142 Reclamation</a></p></figcaption></figure></div>
+
+## Setting up
+
+<Steps>
+
+1. Create a `Demos` folder in `Battlefield 2142\mods\<MOD>`, where `<MOD>` is `bf2142` for vanilla or your mod's folder.
+
+1. Download and install BattleDirector from [Downloads](#downloads).
+
+1. Open BattleDirector and give its <mark class="ui">Quick Help</mark> a read.
+
+1. In <mark class="ui">Settings</mark>, set <mark class="ui">Game</mark> to <mark class="ui">Battlefield 2142</mark> and <mark class="ui">Game EXE Location</mark> to your `BF2142.exe`.
+
+1. Your recordings appear in the <mark class="ui">Launcher</mark> tab once you select the right <mark class="ui">Mod</mark>.
+
+</Steps>
+
+## Recording a match
+
+### In singleplayer or LAN
+
+<Steps>
+
+1. In-game, press `~` to open the console.
+
+1. Type `demo.recordDemo NAME` and press `Enter`. You'll see `recordingDemo` if it worked.
+
+1. To stop, type `demo.stopRecording` and press `Enter`, or just let the match end.
+
+1. Your demo is saved in `Battlefield 2142\mods\<MOD>\Demos`.
+
+</Steps>
+
+### In multiplayer
+
+<Aside type="note">
+
+Reclamation has turned off in-game demo downloads. Ask an admin on their [Discord](https://discord.com/invite/MEwBW9U) for the file, with the time of your match.
+
+</Aside>
+
+<Steps>
+
+1. Join a server with BattleRecorder enabled.
+
+1. After the round, go to <mark class="ui">Community</mark> → <mark class="ui">Battle Recorder</mark> and download the demo under <mark class="ui">Bookmarks</mark>. It's saved to `Documents\Battlefield 2142\Profiles\Default\demos`.
+
+1. Copy it to `Battlefield 2142\mods\<MOD>\Demos` to watch it in BattleDirector.
+
+</Steps>
+
+With the OpenSpy patches installed, demos don't show up in the game's own Battle Recorder library, so use BattleDirector to watch them.
+
+## Watching a match
+
+<Steps>
+
+1. Start BattleDirector.
+
+1. In <mark class="ui">Settings</mark>, set <mark class="ui">FPS</mark>, <mark class="ui">FOV</mark>, <mark class="ui">Hide Nametags</mark> and <mark class="ui">Hide HUD</mark> to your liking, and choose your <mark class="ui">Resolution</mark> (tick <mark class="ui">Windowed</mark> if needed).
+
+   For true widescreen, add `+widescreen 1` to the second input box, along with any [other launch options](/advanced/addons-tweaks/custom-shortcuts/) you like.
+
+1. In the <mark class="ui">Launcher</mark> tab, select the <mark class="ui">Mod</mark> the demo was recorded with, pick the demo and click <mark class="ui">Record New Track</mark>.
+
+1. When the map has loaded, click <mark class="ui">JOIN GAME</mark>.
+
+</Steps>
+
+## Controls
+
+* `Q` opens the Play Rose for start, pause, speed and rewind. _Don't_ press Restart, as it breaks the recording.
+* `T` opens the Camera Rose to switch players, or toggle between free and player camera.
+
+**Playback**
+
+| Key | Action |
+| --- | --- |
+| `1` | Pause |
+| `2` / `6` | Normal speed |
+| `3` | 5% speed |
+| `4` | 25% speed |
+| `5` | 50% speed |
+| `7` | 150% speed |
+| `8` | 300% speed |
+
+**Camera**
+
+| Key | Action |
+| --- | --- |
+| `Space` / `Shift + Space` | Next / previous player |
+| Right mouse button | Toggle free camera and player camera |
+| Mouse wheel | Zoom while following a player |
+| `W` `A` `S` `D` | Move the free camera |
+| `Ctrl` / `Shift` | Move the free camera down / up |
+
+**Console commands**
+
+| Command | Action |
+| --- | --- |
+| `renderer.drawHud 0` / `1` | Hide / show the HUD |
+| `demo.adjustDemoFov 90` | Change the FOV, try 40 - 50 for cinematic shots |
+| `demo.ShutdownDemo` | Exit the demo |
+
+## Downloads
+
+<Tabs>
+<TabItem label="v1.7">
+
+<Embed url="https://www.moddb.com/games/battlefield-2/downloads/the-sir-community-battledirector-v1-7" title="BF2142 Battle Director 1.7 (20.05 MB)">
+
+Source: [GameWatcher](https://www.moddb.com/members/gamewatcher) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+<Embed url="https://www.moddb.com/downloads/start/151152/all" title="BF2142 Battle Director 1.7 (20.05 MB)">
+
+Source: [GameWatcher](https://www.moddb.com/members/gamewatcher) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="v1.6">
+
+<Embed url="https://www.moddb.com/games/battlefield-2/downloads/the-sir-community-bf2-bf2142-battle-director-1" title="BF2142 Battle Director 1.6 (5.74 MB)">
+
+Source: [GameWatcher](https://www.moddb.com/members/gamewatcher) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+<Embed url="https://www.moddb.com/downloads/start/162132/all" title="BF2142 Battle Director 1.6 (5.74 MB)">
+
+Source: [GameWatcher](https://www.moddb.com/members/gamewatcher) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## Known issues
+
+* BattleDirector won't start and says "See the logfile ... for details"? Install the [Visual C++ 2003 runtime](/help-centre/troubleshoot/#a06-install-microsoft-visual-c-2003-redistributable).
+* Player gestures (like "Thank you" from the Q menu) don't play back.
+* Recording can pause or crash when the host player dies.
+* AVI exports usually only work in windowed mode, as fullscreen AVIs can be corrupt.
+* AVI files over 4 GB break. Keep clips small, or record with OBS instead. For example, 1520×855 (3.6 GB) works, while 1744×981 (4.1 GB) doesn't.
+
+## Credits
+
+* higuy and HawkeAssault for their findings @ [BF2142 Reclamation](https://discord.com/invite/MEwBW9U) ([BattleDirector SOP](https://discord.com/channels/404188413915299870/404484616846704660/1301036476003389472))
+* Cheiftain\_UK for the recording checklist @ [Battlerecorder](https://forum.realitymod.com/viewtopic.php?t=94558)
+* [DMFDxUconn](https://forums.bf2s.com/profile.php?id=4788) for BattleRecorder insights @ [Battle Recorder Information](https://forums.bf2s.com/viewtopic.php?id=6845)

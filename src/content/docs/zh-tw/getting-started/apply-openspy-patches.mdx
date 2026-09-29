@@ -1,0 +1,95 @@
+---
+title: 安裝 OpenSpy 修正檔
+description: "讓 BF2142 連上 OpenSpy，重新打線上。"
+icon: square-rounded-number-4
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+OpenSpy 修正檔會讓 BF2142 改連到現在還活著的登入伺服器。裝好後，你就能建帳號、找伺服器、加入遊戲了。
+
+<GuideSummary step={4} time="3 分鐘">
+
+用系統管理員身分打開 Hub，在 <mark class="ui">Redirects\*</mark> 選 <mark class="ui">OpenSpy</mark>，按 <mark class="ui">Install</mark>。四個勾勾都變綠色就搞定了。
+
+</GuideSummary>
+
+<details id="openspy">
+
+<summary>OpenSpy 是什麼？為什麼需要它？</summary>
+
+像 BF2142 這種線上遊戲，需要一台<em>主伺服器</em>來處理登入、士兵資料、伺服器列表和遊戲進度。原本這台是 GameSpy 在管，但 [GameSpy 在 2014 年關站](https://en.wikipedia.org/wiki/GameSpy#Shutdown)後就沒了。
+
+[OpenSpy](https://openspy.net/) 是 GameSpy 的開源替代方案。裝了 OpenSpy 修正檔，遊戲就會改連到它，你就能重新登入、玩線上模式。
+
+</details>
+
+<details id="project-reclamation">
+
+<summary>誰在營運伺服器？</summary>
+
+主要是 **Project Reclamation**。這是玩家社群發起的專案，靠 OpenSpy 讓 BF2142 的線上功能重新活過來。BF2142 Hub 也是他們做的。
+
+<figure><img src="/assets/reclamation_orig.png" alt="BF2142 伺服器瀏覽器中的 Reclamation 伺服器" width="563" loading="lazy" /></figure>
+
+伺服器有歐洲和美國兩區。歐洲大約從 GMT 晚上 6 點開始熱鬧，美國則是 GMT 午夜左右，週末人最多。模式有 Conquest、Conquest Co-op 和 Titan[^1]。
+
+想進他們的伺服器，需要 OpenSpy 修正檔（就是這篇）和 [Reclamation 地圖包](/zh-tw/getting-started/install-map-pack/)。英語玩家大多聚在他們的 [Discord](https://discord.com/invite/MEwBW9U)。
+
+</details>
+
+<details id="gadgets-x26-unlocks">
+
+<summary>我會得到所有解鎖嗎？</summary>
+
+會！連上 OpenSpy 後，每個新士兵不管單人還是多人，都能用全部的解鎖內容。拿來在 Conquest Co-op 打 BOT 練手剛剛好。
+
+</details>
+
+<details id="openspy-alternatives">
+
+<summary>OpenSpy 有替代品嗎？</summary>
+
+有幾個，像是 [NovGames](https://novgames.ru/) 和 [PlayBF2142](http://play2142.ru/)。不過 OpenSpy 加上 Reclamation 社群，還是目前最熱鬧、最穩的選擇。想試試 NovGames 的話，BF2142 Hub 可以直接切換。
+
+</details>
+
+## 步驟
+
+<Aside type="caution">
+
+BF2142 Hub 在 32 位元的 Windows XP 跑不動。用 XP 的話，請改照[這些步驟](/zh-tw/getting-started/before-proceeding/#im-using-windows-xp-32-bit)。
+
+</Aside>
+
+<Steps>
+
+1. 在桌面的 <mark class="ui">BF2142 Hub</mark> 捷徑上按右鍵 → <mark class="ui">Properties</mark>。
+
+1. 到 <mark class="ui">Compatibility</mark> 分頁，勾選 <mark class="ui">Run this program as an administrator</mark>，再按 <mark class="ui">OK</mark>。這樣安裝時才不會卡在權限問題。
+
+1. 打開 BF2142 Hub。如果跳出 <mark class="ui">User Account Control</mark>，按 <mark class="ui">Yes</mark>。
+
+1. 切到 <mark class="ui">Help</mark> 分頁（問號圖示），看看 <mark class="ui">GamePath</mark> 是不是你的遊戲資料夾。不對的話，按齒輪圖示改一下。
+
+1. 在 <mark class="ui">Redirects\*</mark> 下拉選單選 <mark class="ui">OpenSpy</mark>，按 <mark class="ui">Install</mark>。如果跳出 `mdIBF.DNS` 錯誤，不用理它。
+
+1. 按 <mark class="ui">Yes</mark> 確認，看到 <mark class="ui">Patch completed, Enjoy!</mark> 後按 <mark class="ui">Confirm</mark>。
+
+1. 檢查 `Patch 1.51`、`BF2142.exe`、`RendDX9.d` 和 `RendDX9ori.dll` 旁邊是不是都有<mark class="ui ui-green">綠色</mark>勾勾。沒有的話，從第 5 步再來一次，或改用[手動安裝](/zh-tw/help-centre/troubleshoot/#a05-install-openspy-patches-manually)。
+
+1. 下一步：<GuideLink href="/getting-started/install-map-pack/" label="安裝地圖包" />
+
+   只有要玩 Reclamation 伺服器才需要，不然直接看 <GuideLink href="/getting-started/create-account/" label="建立帳號" />
+
+</Steps>
+
+<Aside type="tip">
+
+遇到當機、開不起來或畫面怪怪的，Hub 的 <mark class="ui">Help</mark> 分頁有現成的診斷工具可以用。如果開視窗模式又有調 Windows 顯示縮放，畫面跑掉的話，請[開啟 High DPI Aware](/zh-tw/help-centre/troubleshoot/#a01-enable-high-dpi-aware)。
+
+</Aside>
+
+[^1]: Reclamation 的伺服器會依線上人數換地圖和模式。至少要有 20 個玩家，才會開 Titan。

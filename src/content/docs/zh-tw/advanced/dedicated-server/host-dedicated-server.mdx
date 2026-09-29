@@ -1,0 +1,80 @@
+---
+title: 架設專用伺服器
+description: 架一台非排名的 BF2142 專用伺服器，原版和模組都行。
+icon: square-rounded-number-3
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+這篇會帶你架一台<em>非排名</em>的專用伺服器。原版可以用內建的啟動器，模組版就要改用捷徑啟動。
+
+<GuideSummary step={3} total={3} time="15 分鐘">
+
+想讓區網以外的玩家加入，就要轉發連接埠 `29900` 和 `17567`。原版用 `BF2142ServerLauncher.exe` 設定並啟動伺服器。模組版要先把模組複製到伺服器的 `mods` 資料夾，再用 `+modPath mods/<MOD>` 啟動 `BF2142_w32ded.exe`。兩種都要開啟 <mark class="ui">Internet</mark>，並關掉 NAT 協商。
+
+</GuideSummary>
+
+## 開始之前
+
+* 想讓外面的玩家也能加入？到路由器把這些連接埠轉發到你電腦的區網 IP（[怎麼設定](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide)）：
+  * `29900`（UDP，或兩者都選）
+  * `17567`（兩者都選）
+* 伺服器裝在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142 Server`，下面就簡稱<em>伺服器資料夾</em>。
+* 伺服器資料夾裡的檔案存不了？先複製到桌面改好，再複製回去。
+
+## 架設原版伺服器
+
+<Steps>
+
+1. 在伺服器資料夾點兩下 `BF2142ServerLauncher.exe`。
+
+1. 按 <mark class="ui">Add</mark> 圖示，新增一組設定。
+
+1. 設好 <mark class="ui">Server Settings</mark> 和 <mark class="ui">Map List</mark>。打開 <mark class="ui">Internet</mark>，關掉 <mark class="ui">AllowNATNegotiation</mark>。
+
+   不想讓伺服器出現在公開列表上？<mark class="ui">Internet</mark> 保持關閉就好。
+
+1. 啟動器裡沒有的設定，可以直接改 `Documents\Battlefield 2142\ServerConfigs.con`，詳見[伺服器設定列表](/zh-tw/advanced/addons-tweaks/server-settings/#伺服器設定列表)。
+
+1. 按 <mark class="ui">Start</mark>。
+
+</Steps>
+
+## 架設模組伺服器
+
+伺服器啟動器不支援模組，所以要改用捷徑啟動。下面以 [Project Remaster](/zh-tw/advanced/project-remaster/install-project-remaster/) 為例，記得換成你自己模組的資料夾名稱。
+
+<Steps>
+
+1. 把模組資料夾（例如 `Project_Remaster_v17`）從 `Battlefield 2142\mods` 複製到伺服器資料夾的 `mods`。
+
+1. 在伺服器資料夾裡，對 `BF2142_w32ded.exe` 按右鍵 → <mark class="ui">Send to</mark> → <mark class="ui">Desktop (create shortcut)</mark>。
+
+1. 在新捷徑上按右鍵 → <mark class="ui">Properties</mark>，在 <mark class="ui">Target</mark> 最後面加上 `+modPath mods/Project_Remaster_v17`：
+
+   ```
+   "C:\Program Files (x86)\Electronic Arts\Battlefield 2142 Server\BF2142_w32ded.exe" +modPath mods/Project_Remaster_v17
+   ```
+
+1. 打開伺服器資料夾裡的 `mods\Project_Remaster_v17\Settings\ServerSettings.con`。把 `sv.internet` 設成 `1`、`sv.allowNATNegotiation` 設成 `0`，其他想調的[伺服器設定](/zh-tw/advanced/addons-tweaks/server-settings/#伺服器設定列表)也一起加上去。
+
+   不想讓伺服器出現在公開列表上？把 `sv.internet` 設成 `0`。
+
+1. 打開 `mods\Project_Remaster_v17\Settings\mapList.con`，每張地圖加一行，例如：
+
+   ```
+   mapList.append Suez_Canal gpm_coop 16
+   ```
+
+   （[地圖輪換的更多說明](https://www.moddb.com/members/antniquiler/blogs/installing-a-battlefield-2142-dedicated-server-on-linux-part-2)。）
+
+1. 點兩下捷徑，伺服器就跑起來了。
+
+</Steps>
+
+<Aside type="note">
+
+模組伺服器和原版伺服器讀設定的地方不一樣：原版讀 `Documents\Battlefield 2142`，模組版讀模組裡的 `Settings` 資料夾。
+
+</Aside>

@@ -1,0 +1,233 @@
+---
+// Fork of Starlight's SidebarSublist. Two kinds of groups:
+// - Sections (first entry is an overview page, see src/routeData.ts): the label links to the overview.
+//   Collapsed by default; Starlight's restore point keeps whatever the reader opened across page loads.
+// - Chapters (plain headings like "Getting Started"): always expanded, not collapsible.
+import { Badge } from '@astrojs/starlight/components';
+import SidebarRestorePoint from '@astrojs/starlight/components/SidebarRestorePoint.astro';
+import type { StarlightRouteData } from '@astrojs/starlight/route-data';
+import { useT } from '~/lib/i18n';
+import { isOverview } from '~/routeData';
+import PageIcon from './PageIcon.astro';
+
+type SidebarEntry = StarlightRouteData['sidebar'][number];
+
+interface Props {
+	sublist: SidebarEntry[];
+	/** Indent this list under its parent section. */
+	nested?: boolean;
+}
+
+const { sublist, nested } = Astro.props;
+const t = useT(Astro.locals.starlightRoute.locale);
+
+const isExternal = (href: string) => /^https?:/.test(href);
+const iconOf =(e: SidebarEntry) => (e.type === 'link' ? (e.attrs['data-icon'] as string | undefined) : undefined);
+// Keep Starlight-only attributes, but don't render our data-* markers onto the <a>.
+const linkAttrs = (e: Extract<SidebarEntry, { type: 'link' }>) => {
+	const { 'data-icon': _i, 'data-overview': _o, 'data-hidden': _h, 'data-divider': _d, ...rest } = e.attrs;
+	return rest;
+};
+---
+
+<ul class:list={{ nested }}>
+	{
+		sublist.map((entry) => {
+			if (entry.type === 'link') {
+				return (
+					<>
+						{'data-divider' in entry.attrs && <li class="sep" role="separator" />}
+						<li>
+							<a href={entry.href} aria-current={entry.isCurrent ? 'page' : undefined} {...linkAttrs(entry)}>
+								<PageIcon name={iconOf(entry)} />
+								<span>{entry.label}</span>
+								{entry.badge && <Badge variant={entry.badge.variant} class={entry.badge.class} text={entry.badge.text} />}
+									{isExternal(entry.href) && (
+										<svg class="external" viewBox="0 0 24 24" aria-label={t('external.newTab')}>
+											<path d="M7 17 17 7M9 7h8v8" />
+										</svg>
+									)}
+							</a>
+						</li>
+					</>
+				);
+			}
+			const [first, ...rest] = entry.entries;
+			if (!isOverview(first)) {
+				return (
+					<li class="chapter">
+						<p class="chapter-label">{entry.label}</p>
+						<Astro.self sublist={entry.entries} />
+					</li>
+				);
+			}
+			return (
+				<li>
+					<details>
+						<summary>
+							<a class="section-link" href={first.href} aria-current={first.isCurrent ? 'page' : undefined}>
+								<PageIcon name={iconOf(first)} />
+								<span>{entry.label}</span>
+							</a>
+							<svg class="caret" viewBox="0 0 24 24" aria-hidden="true">
+								<path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</summary>
+						<SidebarRestorePoint />
+						<Astro.self sublist={rest} nested />
+					</details>
+				</li>
+			);
+		})
+	}
+</ul>
+
+<style>
+	ul {
+		--sl-sidebar-item-padding-inline: 0.5rem;
+		list-style: none;
+		padding: 0;
+	}
+	li {
+		overflow-wrap: anywhere;
+	}
+	li + li {
+		margin-top: 0.125rem;
+	}
+	/* The guide line sits under the centre of the section's icon (link padding + half the icon). */
+	.nested > li {
+		margin-inline-start: calc(var(--sl-sidebar-item-padding-inline) + 0.525rem - 0.5px);
+		border-inline-start: 1px solid var(--hairline);
+		padding-inline-start: 0.375rem;
+	}
+	/* Space items with padding, not margin, so the guide line runs unbroken. */
+	.nested > li + li:not(.sep) {
+		margin-top: 0;
+		padding-top: 0.125rem;
+	}
+	/* Chapters ("Getting Started") split the tree; always open, so just a label above their items. */
+	li.chapter,
+	li + li.chapter {
+		margin-top: 1.5rem;
+	}
+	li.chapter:first-child {
+		margin-top: 0;
+	}
+	/* A standalone page after a chapter (e.g. Disclaimer) gets the same breathing room. */
+	li.chapter + li:not(.chapter) {
+		margin-top: 1.5rem;
+	}
+	/* Separates external resources from the section's own pages. */
+	.nested > li.sep {
+		height: 1px;
+		margin-block: 0.375rem;
+		margin-inline-end: 0.5rem;
+		padding: 0;
+		border: 0;
+		border-inline-start: 0;
+		background: var(--hairline);
+	}
+	.chapter-label {
+		margin: 0 0 0.25rem;
+		padding: 0 var(--sl-sidebar-item-padding-inline);
+		font-family: var(--font-display);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--sl-color-gray-3);
+	}
+	/* Hanzi need more size and less tracking than Latin capitals. */
+	:global(:lang(zh-TW)) .chapter-label {
+		font-size: 0.875rem;
+		letter-spacing: 0.02em;
+	}
+
+	summary {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		cursor: pointer;
+		user-select: none;
+		list-style: none;
+	}
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+		padding: 0.375rem var(--sl-sidebar-item-padding-inline);
+		border-radius: 0.375rem;
+		font-size: var(--sl-text-sm);
+		line-height: 1.35;
+		color: var(--sl-color-gray-2);
+		text-decoration: none;
+		transition:
+			color 0.15s,
+			background-color 0.15s;
+	}
+	.section-link {
+		flex: 1;
+		min-width: 0;
+		font-weight: 500;
+		color: var(--sl-color-gray-1);
+	}
+	a:hover,
+	a:focus-visible {
+		color: var(--sl-color-white);
+		background: var(--sl-color-gray-6);
+	}
+	a[aria-current='page'],
+	a[aria-current='page']:hover {
+		font-weight: 500;
+		color: var(--sl-color-text-accent);
+		background: color-mix(in srgb, var(--sl-color-accent) 14%, transparent);
+		box-shadow: inset 2px 0 0 var(--sl-color-text-accent);
+	}
+	a :global(.page-icon) {
+		flex: none;
+		font-size: 1.05rem;
+		opacity: 0.8;
+	}
+	a[aria-current='page'] :global(.page-icon) {
+		opacity: 1;
+	}
+	.external {
+		flex: none;
+		width: 0.875rem;
+		height: 0.875rem;
+		margin-inline-start: auto;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		opacity: 0.6;
+	}
+
+	.caret {
+		flex: none;
+		width: 1.75rem;
+		height: 1.75rem;
+		padding: 0.375rem;
+		border-radius: 0.375rem;
+		color: var(--sl-color-gray-3);
+		transition:
+			transform 0.2s ease-in-out,
+			background-color 0.15s;
+	}
+	summary:hover .caret {
+		color: var(--sl-color-white);
+	}
+	.caret:hover {
+		background: var(--sl-color-gray-6);
+	}
+	[open] > summary .caret {
+		transform: rotate(90deg);
+	}
+	:global([dir='rtl']) .caret {
+		transform: rotate(180deg);
+	}
+</style>

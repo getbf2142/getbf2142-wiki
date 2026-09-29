@@ -1,0 +1,75 @@
+---
+title: Install BF2142 Hub
+description: "Get connected: how to download and install BF2142 Hub."
+slug: getting-started/download-and-install-bf2142-hub
+icon: square-rounded-number-3
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+BF2142 Hub is your all-in-one companion for the game: it installs the OpenSpy patches in one click, downloads maps, launches mods, and comes with handy troubleshooting tools.
+
+<GuideSummary step={3} time="2 minutes">
+
+Download and install BF2142 Hub 2. You'll use it in the next guide to get online.
+
+</GuideSummary>
+
+<details id="why-is-bf2142-hub-necessary">
+
+<summary>Why do I need BF2142 Hub?</summary>
+
+Mainly for the OpenSpy patches. You need them to get past the login screen, see servers and play online. The [next guide](/getting-started/apply-openspy-patches/) explains how that works.
+
+On top of that, the Hub's troubleshooting and diagnostic tools are great for fixing video problems, crashes and other issues.
+
+The Hub is made and maintained by the [Reclamation team](https://battlefield2142.co/). For updates and support, join their [Discord](https://discord.com/invite/MEwBW9U).
+
+</details>
+
+<details id="can-i-install-openspy-patches-without-bf2142-hub">
+
+<summary>Can I install the OpenSpy patches without the Hub?</summary>
+
+You can ([here's how](/help-centre/troubleshoot/#a05-install-openspy-patches-manually)), but we don't recommend it. If OpenSpy ever changes its server addresses, manual patches stop working, while the Hub always installs the latest version.
+
+</details>
+
+## Steps
+
+<Aside type="caution">
+
+The Hub is a 64-bit app and won't run on 32-bit Windows XP. On XP, use the [XP install package](https://www.moddb.com/mods/bf2142-reclamation-xp-install-package/downloads/bf2142-reclamation-xp-install-package) instead ([why?](https://battlefield2142.co/faq#notwin32)).
+
+</Aside>
+
+<Steps>
+
+1. Download <mark class="ui">BF2142 Hub 2</mark> from [Downloads](#downloads).
+
+1. Double-click the file to run the installer. If <mark class="ui">User Account Control</mark> asks, click <mark class="ui">Yes</mark>.
+
+1. Follow the wizard to finish the installation.
+
+1. Next up: <GuideLink href="/getting-started/apply-openspy-patches/" label="Apply OpenSpy patches" />
+
+   _Don't skip this_, as you can't log in without them now that EA's online services are gone.
+
+</Steps>
+
+## Downloads
+
+<Aside type="note">
+
+Some Hub features, like downloading maps, may show an `mdIBF.DNS` error at the moment. Installing the OpenSpy patches still works, and you can grab maps from [ModDB](/getting-started/install-map-pack/#downloads) instead. The Hub's author is working on a new version, so follow the [Reclamation Discord](https://discord.com/invite/MEwBW9U) for news.
+
+</Aside>
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/downloads/bf2142-hub-2" title="BF2142 Hub 2 (1.24 MB)">
+
+Source: [BF2142 Reclamation](https://battlefield2142.co/)
+
+</Embed>

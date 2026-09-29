@@ -1,0 +1,52 @@
+---
+title: 安裝伺服器修正檔
+description: 安裝 OpenSpy 修正檔，讓專用伺服器能上線。
+icon: square-rounded-number-2
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+跟遊戲一樣，專用伺服器也要裝 OpenSpy 修正檔才能上線。原因可以看[這篇](/zh-tw/getting-started/apply-openspy-patches/)。
+
+<GuideSummary step={2} total={3} time="5 分鐘">
+
+把 `BF2142_w32ded.exe` 搬到修正檔旁邊，用系統管理員身分執行修正檔。依序按 <mark class="ui">Open & Verify</mark> 和 <mark class="ui">Patch!</mark>，兩個勾勾都變綠後，再把檔案搬回去。
+
+</GuideSummary>
+
+## 步驟
+
+<Steps>
+
+1. 從[下載](#下載)抓伺服器修正檔，解壓縮到桌面。
+
+1. 把 `BF2142_w32ded.exe` 從 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142 Server` 搬到剛剛解壓縮的資料夾。
+
+1. 在那個資料夾裡，對 `BF2142_Server_Patch.exe` 按右鍵 → <mark class="ui">Run as administrator</mark>。如果跳出 <mark class="ui">User Account Control</mark>，按 <mark class="ui">Yes</mark>。
+
+1. 按 <mark class="ui">Open & Verify</mark>，選 `BF2142_w32ded.exe`，等第 1 步的勾勾變綠。
+
+1. 按 <mark class="ui">Patch!</mark>，等第 2 步的勾勾變綠。
+
+1. 把 `BF2142_w32ded.exe` 搬回 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142 Server`。
+
+1. 下一步：<GuideLink href="/advanced/dedicated-server/host-dedicated-server/" label="架設專用伺服器" />
+
+</Steps>
+
+## 下載
+
+<Embed url="https://www.moddb.com/downloads/start/211249/all" title="BF2142 Server Patch (20 KB)">
+
+來源：[BF2142 Reclamation](https://battlefield2142.co/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1YCNd2G1NcWEctS74aIpaMfHOTP1NxLow" title="BF2142 Server Patch (20 KB)">
+
+來源：[GetBF2142](/zh-tw/)
+
+</Embed>

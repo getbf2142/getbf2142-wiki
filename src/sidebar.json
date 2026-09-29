@@ -1,0 +1,441 @@
+[
+	{
+		"label": "Help Centre",
+		"translations": {
+			"zh-TW": "說明中心"
+		},
+		"items": [
+			{
+				"label": "Help Centre",
+				"translations": {
+					"zh-TW": "說明中心"
+				},
+				"slug": "help-centre",
+				"attrs": {
+					"data-overview": ""
+				}
+			},
+			{
+				"label": "Troubleshoot",
+				"translations": {
+					"zh-TW": "疑難排解"
+				},
+				"slug": "help-centre/troubleshoot"
+			},
+			{
+				"label": "FAQ",
+				"translations": {
+					"zh-TW": "常見問題"
+				},
+				"slug": "help-centre/faq"
+			},
+			{
+				"label": "Discord",
+				"translations": {
+					"zh-TW": "Discord"
+				},
+				"link": "https://discord.gg/7SBMKRy6q9",
+				"attrs": {
+					"target": "_blank",
+					"rel": "noopener",
+					"data-icon": "brand-discord"
+				}
+			}
+		]
+	},
+	{
+		"label": "Getting Started",
+		"translations": {
+			"zh-TW": "入門指南"
+		},
+		"items": [
+			{
+				"label": "Quick start",
+				"translations": {
+					"zh-TW": "快速上手"
+				},
+				"slug": "getting-started/quick-start"
+			},
+			{
+				"label": "Before proceeding",
+				"translations": {
+					"zh-TW": "開始之前"
+				},
+				"slug": "getting-started/before-proceeding"
+			},
+			{
+				"label": "Install BF2142",
+				"translations": {
+					"zh-TW": "安裝 BF2142"
+				},
+				"slug": "getting-started/download-and-install-bf2142"
+			},
+			{
+				"label": "Install v1.51 patch",
+				"translations": {
+					"zh-TW": "安裝 v1.51 更新檔"
+				},
+				"slug": "getting-started/download-and-install-v1_51-patch"
+			},
+			{
+				"label": "Install BF2142 Hub",
+				"translations": {
+					"zh-TW": "安裝 BF2142 Hub"
+				},
+				"slug": "getting-started/download-and-install-bf2142-hub"
+			},
+			{
+				"label": "Apply OpenSpy patches",
+				"translations": {
+					"zh-TW": "安裝 OpenSpy 修正檔"
+				},
+				"slug": "getting-started/apply-openspy-patches"
+			},
+			{
+				"label": "Install the map pack",
+				"translations": {
+					"zh-TW": "安裝地圖包"
+				},
+				"slug": "getting-started/install-map-pack"
+			},
+			{
+				"label": "Create an account",
+				"translations": {
+					"zh-TW": "建立帳號"
+				},
+				"slug": "getting-started/create-account"
+			},
+			{
+				"label": "Play Singleplayer",
+				"translations": {
+					"zh-TW": "玩單人模式"
+				},
+				"slug": "getting-started/play-singleplayer"
+			},
+			{
+				"label": "Play Multiplayer",
+				"translations": {
+					"zh-TW": "玩多人模式"
+				},
+				"slug": "getting-started/play-multiplayer"
+			},
+			{
+				"label": "Host a server",
+				"translations": {
+					"zh-TW": "架設伺服器"
+				},
+				"slug": "getting-started/host-server"
+			}
+		]
+	},
+	{
+		"label": "Advanced",
+		"translations": {
+			"zh-TW": "進階"
+		},
+		"items": [
+			{
+				"label": "Project Remaster",
+				"translations": {
+					"zh-TW": "Project Remaster"
+				},
+				"items": [
+					{
+						"label": "Project Remaster",
+						"translations": {
+							"zh-TW": "Project Remaster"
+						},
+						"slug": "advanced/project-remaster",
+						"attrs": {
+							"data-overview": ""
+						}
+					},
+					{
+						"label": "Install Project Remaster",
+						"translations": {
+							"zh-TW": "安裝 Project Remaster"
+						},
+						"slug": "advanced/project-remaster/install-project-remaster"
+					},
+					{
+						"label": "Launch Project Remaster",
+						"translations": {
+							"zh-TW": "啟動 Project Remaster"
+						},
+						"slug": "advanced/project-remaster/configure-remaster-launcher"
+					}
+				]
+			},
+			{
+				"label": "Addons / Tweaks",
+				"translations": {
+					"zh-TW": "擴充與調整"
+				},
+				"items": [
+					{
+						"label": "Addons / Tweaks",
+						"translations": {
+							"zh-TW": "擴充與調整"
+						},
+						"slug": "advanced/addons-tweaks",
+						"attrs": {
+							"data-overview": ""
+						}
+					},
+					{
+						"label": "Offline Rewards",
+						"translations": {
+							"zh-TW": "離線獎勵"
+						},
+						"slug": "advanced/addons-tweaks/offline-rewards"
+					},
+					{
+						"label": "ReShade",
+						"translations": {
+							"zh-TW": "ReShade"
+						},
+						"slug": "advanced/addons-tweaks/reshade"
+					},
+					{
+						"label": "Widescreen HUD",
+						"translations": {
+							"zh-TW": "寬螢幕 HUD"
+						},
+						"slug": "advanced/addons-tweaks/hudfix"
+					},
+					{
+						"label": "More Bots",
+						"translations": {
+							"zh-TW": "增加 BOT"
+						},
+						"slug": "advanced/addons-tweaks/add-more-bots"
+					},
+					{
+						"label": "Unlimited Sprint",
+						"translations": {
+							"zh-TW": "無限衝刺"
+						},
+						"slug": "advanced/addons-tweaks/unlimited-sprint"
+					},
+					{
+						"label": "Field of View",
+						"translations": {
+							"zh-TW": "視野 FOV"
+						},
+						"slug": "advanced/addons-tweaks/fov"
+					},
+					{
+						"label": "Maps w/ Bots",
+						"translations": {
+							"zh-TW": "支援 BOT 的地圖"
+						},
+						"slug": "advanced/addons-tweaks/maps-with-bots"
+					},
+					{
+						"label": "Server Settings",
+						"translations": {
+							"zh-TW": "伺服器設定"
+						},
+						"slug": "advanced/addons-tweaks/server-settings"
+					},
+					{
+						"label": "Frostbite Chat",
+						"translations": {
+							"zh-TW": "Frostbite Chat"
+						},
+						"slug": "advanced/addons-tweaks/frostbite-chat"
+					},
+					{
+						"label": "BF2142Unlocker",
+						"translations": {
+							"zh-TW": "BF2142Unlocker"
+						},
+						"slug": "advanced/addons-tweaks/bf2142unlocker"
+					},
+					{
+						"label": "BattleRecorder",
+						"translations": {
+							"zh-TW": "BattleRecorder"
+						},
+						"slug": "advanced/addons-tweaks/battlerecorder-and-battledirector"
+					},
+					{
+						"label": "Custom Shortcuts",
+						"translations": {
+							"zh-TW": "自訂捷徑"
+						},
+						"slug": "advanced/addons-tweaks/custom-shortcuts"
+					},
+					{
+						"label": "Mouse Skip Fix",
+						"translations": {
+							"zh-TW": "滑鼠跳動修正"
+						},
+						"slug": "advanced/addons-tweaks/mouse-skip-fix"
+					},
+					{
+						"label": "Tweak Guide",
+						"translations": {
+							"zh-TW": "改動指南"
+						},
+						"link": "https://tweakguides.dmegaming.com/BF2142_1.html",
+						"attrs": {
+							"target": "_blank",
+							"rel": "noopener",
+							"data-icon": "book",
+							"data-divider": ""
+						}
+					},
+					{
+						"label": "Modding Wiki",
+						"translations": {
+							"zh-TW": "模組製作"
+						},
+						"link": "https://classic-battlefield-modding.fandom.com/wiki/Classic_Battlefield_Modding_Wikia",
+						"attrs": {
+							"target": "_blank",
+							"rel": "noopener",
+							"data-icon": "tools"
+						}
+					},
+					{
+						"label": "ModDB Addons",
+						"translations": {
+							"zh-TW": "ModDB 擴充"
+						},
+						"link": "https://www.moddb.com/games/battlefield-2142/addons",
+						"attrs": {
+							"target": "_blank",
+							"rel": "noopener",
+							"data-icon": "packages"
+						}
+					}
+				]
+			},
+			{
+				"label": "Dedicated Server",
+				"translations": {
+					"zh-TW": "專用伺服器"
+				},
+				"items": [
+					{
+						"label": "Dedicated Server",
+						"translations": {
+							"zh-TW": "專用伺服器"
+						},
+						"slug": "advanced/dedicated-server",
+						"attrs": {
+							"data-overview": ""
+						}
+					},
+					{
+						"label": "Install the server",
+						"translations": {
+							"zh-TW": "安裝伺服器"
+						},
+						"slug": "advanced/dedicated-server/install-server"
+					},
+					{
+						"label": "Install the server patch",
+						"translations": {
+							"zh-TW": "安裝伺服器修正檔"
+						},
+						"slug": "advanced/dedicated-server/install-server-patch"
+					},
+					{
+						"label": "Host a dedicated server",
+						"translations": {
+							"zh-TW": "架設專用伺服器"
+						},
+						"slug": "advanced/dedicated-server/host-dedicated-server"
+					}
+				]
+			},
+			{
+				"label": "Ranked Server",
+				"translations": {
+					"zh-TW": "排名伺服器"
+				},
+				"link": "https://prmp.boards.net/board/9/guides",
+				"attrs": {
+					"target": "_blank",
+					"rel": "noopener",
+					"data-icon": "trophy"
+				}
+			}
+		]
+	},
+	{
+		"label": "Documents",
+		"translations": {
+			"zh-TW": "遊戲資料"
+		},
+		"items": [
+			{
+				"label": "Documents",
+				"translations": {
+					"zh-TW": "遊戲資料"
+				},
+				"slug": "documents",
+				"attrs": {
+					"data-hidden": "",
+					"data-overview": ""
+				}
+			},
+			{
+				"label": "Manual",
+				"translations": {
+					"zh-TW": "遊戲手冊"
+				},
+				"slug": "documents/manual"
+			},
+			{
+				"label": "Game Guide",
+				"translations": {
+					"zh-TW": "遊戲指南"
+				},
+				"slug": "documents/game-guide"
+			}
+		]
+	},
+	{
+		"label": "Archive",
+		"translations": {
+			"zh-TW": "封存資料"
+		},
+		"items": [
+			{
+				"label": "Archive",
+				"translations": {
+					"zh-TW": "封存資料"
+				},
+				"slug": "archive",
+				"attrs": {
+					"data-hidden": "",
+					"data-overview": ""
+				}
+			},
+			{
+				"label": "BF2142Unlocker v0.9.7 RC7",
+				"translations": {
+					"zh-TW": "BF2142Unlocker v0.9.7 RC7"
+				},
+				"slug": "archive/bf2142unlocker-v0.9.7-rc7"
+			}
+		]
+	},
+	{
+		"label": "About",
+		"translations": {
+			"zh-TW": "關於我們"
+		},
+		"slug": "about"
+	},
+	{
+		"label": "Disclaimer",
+		"translations": {
+			"zh-TW": "免責聲明"
+		},
+		"slug": "disclaimer"
+	}
+]

@@ -1,0 +1,74 @@
+---
+title: 安裝 BF2142 Hub
+description: "下載並安裝 BF2142 Hub，準備連上 OpenSpy。"
+icon: square-rounded-number-3
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+BF2142 Hub 是個小工具，可以裝 OpenSpy 修正檔、下載地圖、啟動模組，出問題時也能拿來排查。
+
+<GuideSummary step={3} time="2 分鐘">
+
+下載並安裝 BF2142 Hub 2，下一篇就會用它來連線。
+
+</GuideSummary>
+
+<details id="why-is-bf2142-hub-necessary">
+
+<summary>為什麼要裝 BF2142 Hub？</summary>
+
+主要是用來裝 OpenSpy 修正檔。裝好後才能登入、看到伺服器、玩線上模式。原因在[下一篇](/zh-tw/getting-started/apply-openspy-patches/)會講。
+
+Hub 也有診斷工具，畫面怪怪的或當機時可以幫你找原因。
+
+Hub 是 [Reclamation 團隊](https://battlefield2142.co/)做的，也由他們維護。想追更新或找人幫忙，歡迎加入他們的 [Discord](https://discord.com/invite/MEwBW9U)。
+
+</details>
+
+<details id="can-i-install-openspy-patches-without-bf2142-hub">
+
+<summary>不用 Hub 也能裝 OpenSpy 修正檔嗎？</summary>
+
+可以，看[手動安裝步驟](/zh-tw/help-centre/troubleshoot/#a05-install-openspy-patches-manually)就好。不過 OpenSpy 如果換了伺服器位址，手動裝的檔案可能就會失效，用 Hub 則每次都會裝到最新版。
+
+</details>
+
+## 步驟
+
+<Aside type="caution">
+
+Hub 是 64 位元程式，32 位元的 Windows XP 跑不動。用 XP 的話，請改用 [XP 安裝包](https://www.moddb.com/mods/bf2142-reclamation-xp-install-package/downloads/bf2142-reclamation-xp-install-package)（[為什麼？](https://battlefield2142.co/faq#notwin32)）。
+
+</Aside>
+
+<Steps>
+
+1. 從[下載](#下載)抓 <mark class="ui">BF2142 Hub 2</mark>。
+
+1. 點兩下執行安裝程式。如果跳出 <mark class="ui">User Account Control</mark>，按 <mark class="ui">Yes</mark>。
+
+1. 跟著安裝精靈裝完。
+
+1. 下一步：<GuideLink href="/getting-started/apply-openspy-patches/" label="安裝 OpenSpy 修正檔" />
+
+   _千萬別跳過_，EA 的線上服務早就停了，沒裝就登不進去。
+
+</Steps>
+
+## 下載
+
+<Aside type="note">
+
+Hub 目前有些功能（例如下載地圖）可能會跳 `mdIBF.DNS` 錯誤。裝 OpenSpy 修正檔還是沒問題，地圖就改從 [ModDB](/zh-tw/getting-started/install-map-pack/#下載) 下載。作者正在做新版，想知道最新進度可以關注 [Reclamation Discord](https://discord.com/invite/MEwBW9U)。
+
+</Aside>
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/downloads/bf2142-hub-2" title="BF2142 Hub 2 (1.24 MB)">
+
+來源：[BF2142 Reclamation](https://battlefield2142.co/)
+
+</Embed>

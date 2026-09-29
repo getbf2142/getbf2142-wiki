@@ -1,0 +1,85 @@
+---
+title: 安裝地圖包
+description: "安裝 Reclamation 地圖包，加入社群伺服器。"
+icon: square-rounded-number-5
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+Reclamation 伺服器用的是他們自己的地圖版本。想加入，就要裝地圖包，或至少裝好伺服器正在輪的那幾張。有哪些地圖？看[地圖列表](https://www.battlefield2142.co/maps/v3.html)。
+
+<GuideSummary step={5} time="15 分鐘" optional>
+
+只有要玩 Reclamation 伺服器才需要。下載地圖包後用 Hub 的 <mark class="ui">MapPack Installer \*</mark> 安裝，或只挑你需要的地圖下載。
+
+</GuideSummary>
+
+<details id="is-this-pack-optional-or-mandatory">
+
+<summary>我一定要裝嗎？</summary>
+
+只有要玩 Reclamation 伺服器才需要。只玩單機、區網或重製版的話，跳過就好。
+
+</details>
+
+<details id="i-already-have-an-older-map-pack">
+
+<summary>我已經有舊版地圖包，還要裝新版嗎？</summary>
+
+要喔。地圖包在 2026 年 6 月 19 日更新過，伺服器用的是最新版。下載新版後，用一樣的方法裝就好。
+
+</details>
+
+<details id="where-can-i-find-the-installed-maps">
+
+<summary>地圖會放在哪裡？</summary>
+
+在遊戲資料夾的 `\mods\bf2142\Levels` 裡，每張地圖各一個資料夾，直接放在 `Levels` 底下。
+
+</details>
+
+## 安裝完整地圖包
+
+<Aside type="note">
+
+Hub 下載時跳出 `mdIBF.DNS` 錯誤？直接從[下載](#下載)抓地圖包，再從第 3 步接著做。
+
+</Aside>
+
+<Steps>
+
+1. 打開 BF2142 Hub。
+
+1. 在 <mark class="ui">Download</mark> 分頁點兩下 <mark class="ui">BF2142 Reclamation MapPack</mark>，瀏覽器會打開下載頁面。
+
+1. 從那個頁面或[下載](#下載)抓 `Reclamation_mappack_2025.1.zip`（5.88 GB）。
+
+1. 回到 Hub，按 <mark class="ui">MapPack Installer \*</mark>，選剛剛下載的 `.zip`。這時會跳出一個命令視窗，跑完會自己關掉。
+
+</Steps>
+
+想自己手動裝？把 `.zip` 裡的地圖資料夾全部解壓縮到 `\mods\bf2142\Levels`，中間不要多一層資料夾。
+
+## 安裝個別地圖
+
+只想裝伺服器現在在用的地圖？可以一張一張下載：
+
+<Steps>
+
+1. 打開 BF2142 Hub。
+
+1. 在 <mark class="ui">Download</mark> 分頁按 <mark class="ui">Individual Maps</mark>。
+
+1. 在 <mark class="ui">Available Maps</mark> 選地圖，按 <mark class="ui">>></mark> 下載。想移除的話，在 <mark class="ui">Installed Maps</mark> 選地圖，按 <mark class="ui">\<\<</mark>。
+
+</Steps>
+
+## 下載
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/downloads/bf2142-reclamation-map-pack-march-21st-2025" title="BF2142 Reclamation Map Pack, June 19th 2026 (5.88 GB)">
+
+來源：[HawkeAssault](https://www.moddb.com/members/hawkeassault) @ [ModDB](https://www.moddb.com/)
+
+</Embed>

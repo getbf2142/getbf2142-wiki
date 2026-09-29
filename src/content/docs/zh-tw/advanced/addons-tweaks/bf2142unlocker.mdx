@@ -1,0 +1,160 @@
+---
+title: BF2142Unlocker
+description: 自己架主伺服器，離線也能用全部解鎖。
+icon: lock-open
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+BF2142Unlocker 會在你的電腦上跑一台主伺服器，離線也能用全部解鎖和戰績，不用自己動手改檔案。它還能列出不同主伺服器上的遊戲，想加入或自己開一場都很方便。
+
+<div class="figure-row"><figure><img src="/assets/unlocker_2.png" alt="在 BF2142Unlocker 架設主伺服器" loading="lazy" /><figcaption><p>架設主伺服器</p></figcaption></figure> <figure><img src="/assets/unlocker_1.png" alt="在 BF2142Unlocker 加入多人遊戲" loading="lazy" /><figcaption><p>玩多人模式</p></figcaption></figure></div>
+
+<details id="special-remarks">
+
+<summary>先看一下這幾點</summary>
+
+* <mark class="ui">Host</mark> 只會開<em>主伺服器</em>（管登入和解鎖）。真正的遊戲伺服器，還是要在遊戲裡自己開。
+* 就算完全沒網路，兩個也都能開。
+* <mark class="ui">Host</mark> 會接受所有網路的連線（`0.0.0.0`），<mark class="ui">Singleplayer</mark> 則只接受這台電腦（`127.0.0.1`）。
+* Unlocker 會改動 OpenSpy 修正檔。想回 OpenSpy 玩的話，用系統管理員身分打開 BF2142 Hub，[重裝 OpenSpy 修正檔](/zh-tw/getting-started/apply-openspy-patches/)。
+
+</details>
+
+## 下載
+
+<Tabs>
+<TabItem label="RC11">
+
+<Aside type="caution">
+
+RC11 的區網多人模式壞掉了：從離線或快速選單開遊戲後，一按多人模式就會當機。想玩區網？改用 RC10，或連上 OpenSpy 再從那裡開區網伺服器。
+
+</Aside>
+
+<Embed url="https://www.mediafire.com/file/pim2th4xuyjpd77/BF2142Unlocker_v0.9.7_rc11_win_64bit.zip/file" title="BF2142Unlocker v0.9.7 RC11, Windows 64-bit (23 MB)">
+
+來源：[Dankrad](https://github.com/Dankr4d) @ [BF2142 Remastered](https://discord.gg/nVdDkgA)
+
+</Embed>
+
+<details>
+
+<summary>更新內容</summary>
+
+* 新增 FESL SSL 代理，支援 OpenSpy 現在要求的 TLS 1.3，也同時支援 NovGames 和其他主伺服器用的 SSLv3 和舊版加密套件。
+* 新增 PACvsEU 主伺服器。
+* 已知問題：區網多人模式壞掉。從離線或快速選單開遊戲後，一按多人模式就會當機。
+
+</details>
+
+</TabItem>
+
+<TabItem label="RC10">
+
+<Embed url="https://www.mediafire.com/file/ym6h881mvgevkg7/BF2142Unlocker_v0.9.7_rc10_win_64bit.zip/file" title="BF2142Unlocker v0.9.7 RC10, Windows 64-bit (21.3 MB)">
+
+來源：[Dankrad](https://github.com/Dankr4d) @ [BF2142 Remastered](https://discord.gg/nVdDkgA)
+
+</Embed>
+
+<details>
+
+<summary>更新內容</summary>
+
+* 遊戲裡的 OpenSpy 戰績和好友列表又能用了（`server.ini` 現在會另外存 FESL 位址）。
+* 修好 NovGames 建帳號的問題。
+* FESL 伺服器沒回應時比較不會當機了。
+
+</details>
+
+</TabItem>
+
+<TabItem label="RC9">
+
+<Embed url="https://www.mediafire.com/file/4enku1h05qbt6dr/BF2142Unlocker_v0.9.7_rc9_win_64bit.zip/file" title="BF2142Unlocker v0.9.7 RC9, Windows 64-bit (21.31 MB)">
+
+來源：[Dankrad](https://github.com/Dankr4d) @ [BF2142 Remastered](https://discord.gg/nVdDkgA)
+
+</Embed>
+
+<details>
+
+<summary>更新內容</summary>
+
+* 拿掉 PlayBF2142 主伺服器（上面已經沒有任何伺服器了）。
+* 修正 OpenSpy 主伺服器位址，登入和建帳號又能用了。
+* 新增 2× 反鋸齒選項。
+* 修好 Windows hosts 檔案裡有主伺服器 IP 時，一開遊戲就黑畫面當機的問題。感謝 Dennie 找出原因。
+* 建置和相容性修正。
+
+</details>
+
+</TabItem>
+
+<TabItem label="RC7">
+
+RC7 的設定步驟不一樣，請看[舊版指南](/zh-tw/archive/bf2142unlocker-v0.9.7-rc7/)。
+
+</TabItem>
+</Tabs>
+
+## 設定
+
+<Aside type="caution">
+
+有些防毒軟體（例如 Norton）會誤判 Unlocker 的檔案，直接丟進隔離區。這些檔案是安全的，把它們還原，再把 Unlocker 資料夾加進防毒軟體的例外清單就好。
+
+</Aside>
+
+<Steps>
+
+1. 解壓縮下載的檔案，執行 `BF2142Unlocker.exe`。
+
+1. 遊戲路徑設成你的 `Battlefield 2142` 資料夾，通常在 `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`。
+
+1. 開啟 <mark class="ui">LAA-Patch</mark>，讓遊戲最多能用 4 GB 記憶體，比較不會當機。
+
+1. 勾選 <mark class="ui">Window Mode</mark> 並設定解析度。先用視窗模式比較好抓問題，確定都沒事再切全螢幕。
+
+1. 選好 <mark class="ui">Mod</mark>、設定 <mark class="ui">Player name</mark>，再檢查一下 <mark class="ui">Video</mark>、<mark class="ui">Audio</mark> 和 <mark class="ui">HUD</mark> 設定。
+
+1. 按 <mark class="ui">Host</mark> 開啟主伺服器，然後就能進 BF2142 開打了。
+
+</Steps>
+
+<details id="windowed-mode-distortion">
+
+<summary>視窗模式下畫面變形？</summary>
+
+幫兩個遊戲執行檔都開啟 High DPI Aware：
+
+1. 在 `Battlefield 2142` 資料夾裡，對 `BF2142.exe` 按右鍵 → <mark class="ui">Properties</mark> → <mark class="ui">Compatibility</mark> → <mark class="ui">Change high DPI settings</mark>。
+2. 勾選 <mark class="ui">Override high DPI scaling behavior</mark>，設成 <mark class="ui">Application</mark>，按 <mark class="ui">OK</mark>。
+3. `BF2142Patched.exe` 也照做一次。
+
+</details>
+
+## 和朋友連線
+
+<Aside type="caution">
+
+記得在 Windows 防火牆允許這幾個程式使用私人和公用網路：`BF2142.exe` 和 `BF2142Patched.exe`（在遊戲資料夾），還有 `BF2142Unlocker.exe`（在 Unlocker 資料夾）。路徑是<mark class="ui">Control Panel</mark> → <mark class="ui">Windows Defender Firewall</mark> → <mark class="ui">Allow an app or feature through Windows Defender Firewall</mark>。
+
+</Aside>
+
+<Steps>
+
+1. 按 <mark class="ui">Host</mark>，再照[架設伺服器](/zh-tw/getting-started/host-server/)開好遊戲伺服器，「開始之前」那幾點也別漏看。要透過網路連線的話，Unlocker 還多用了兩個連接埠，也要一起轉發。
+
+1. 把你的 IPv4 位址傳給朋友：同一個區網就給區網 IP，透過網路就給公開 IP。
+
+1. 朋友在 Unlocker 的 <mark class="ui">IP-Address</mark> 欄填上這個位址，勾選 <mark class="ui">Auto join server</mark>，按 <mark class="ui">Connect</mark>，就會一次連上你的主伺服器和遊戲伺服器。
+
+</Steps>
+
+## 感謝
+
+* Dankrad 製作並維護 BF2142Unlocker，出自 [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+* Dennie 找出開主機和單人模式當機的原因，出自 [BF2142 Remastered](https://discord.com/invite/nVdDkgA)

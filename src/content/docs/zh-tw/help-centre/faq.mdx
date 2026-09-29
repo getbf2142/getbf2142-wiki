@@ -1,0 +1,194 @@
+---
+title: 常見問題
+description: 大家最常問的 BF2142 問題，這裡快速幫你解答。
+icon: message-question
+---
+
+玩家最常問的問題都整理在這裡。沒找到答案？可以看看 [Reclamation FAQ](https://battlefield2142.co/faq/)，或直接到 Discord 問。
+
+## 入門
+
+<details id="does-bf2142-run-on-windows-10-and-11">
+
+<summary>Windows 10 和 11 可以玩嗎？</summary>
+
+可以。照著[入門指南](/zh-tw/getting-started/before-proceeding/)設定好，在新版 Windows 上也玩得很順。有狀況的話，翻翻[疑難排解](/zh-tw/help-centre/troubleshoot/)。
+
+</details>
+
+<details id="do-i-need-an-ea-account">
+
+<summary>我需要 EA 帳號嗎？可以用舊帳號嗎？</summary>
+
+不用。BF2142 的 EA 伺服器早就關了，以前的 EA 和 GameSpy 帳號、士兵和戰績也都不能用了。直接在遊戲登入畫面透過 OpenSpy [建一個新帳號](/zh-tw/getting-started/create-account/)。
+
+</details>
+
+<details id="which-edition-should-i-get">
+
+<summary>該選哪個版本？</summary>
+
+選標準版就好，這裡的指南都是用它寫的。反正更新到 v1.51 之後，每個版本玩起來都一樣。詳情看[安裝 BF2142](/zh-tw/getting-started/download-and-install-bf2142/#下載)。
+
+</details>
+
+## 帳號與解鎖
+
+<details id="how-to-get-all-the-unlocks">
+
+<summary>怎樣拿到全部解鎖？</summary>
+
+裝好 [OpenSpy 修正檔](/zh-tw/getting-started/apply-openspy-patches/)後，只要保持連線，每個新士兵在單人和區網都能用全部解鎖內容。
+
+想離線也能用？[BF2142Unlocker](/zh-tw/advanced/addons-tweaks/bf2142unlocker/) 會直接在你的電腦上跑一台主伺服器。
+
+</details>
+
+<details id="how-to-reset-my-password">
+
+<summary>忘記密碼怎麼辦？</summary>
+
+到 [account.openspy.net](https://account.openspy.net/login)，合作夥伴代碼選 <mark class="ui">20 - EA</mark>。記得要用註冊時填的 Email。
+
+</details>
+
+## 遊戲設定
+
+<details id="how-to-change-the-game-language">
+
+<summary>怎麼換遊戲語言？</summary>
+
+有裝 Remaster 模組的話，直接在 <mark class="ui">Remaster Launcher</mark> 切換就好。
+
+沒裝的話，要改登錄檔：
+
+1. 按 <mark class="ui">Win + R</mark>，輸入 `regedit` 後按 <mark class="ui">Enter</mark>。
+2. 找到 `HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Electronic Arts\EA GAMES\Battlefield 2142`。
+3. 把 <mark class="ui">Locale</mark> 改成下表的代碼。
+
+找不到這些機碼？先[安裝登錄檔](/zh-tw/help-centre/troubleshoot/#a04-install-the-registry-files)。
+
+| 代碼 | 語言 |
+| --- | --- |
+| cs | 捷克語 |
+| da | 丹麥語 |
+| de | 德語 |
+| el | 希臘語 |
+| en\_UK | 英語（英國） |
+| en\_US | 英語（美國） |
+| es | 西班牙語 |
+| fi | 芬蘭語 |
+| fr\_FR | 法語 |
+| hu | 匈牙利語 |
+| it | 義大利語 |
+| ja | 日語 |
+| ko | 韓語 |
+| nl | 荷蘭語 |
+| no | 挪威語 |
+| pl | 波蘭語 |
+| pt\_BR | 葡萄牙語（巴西） |
+| pt\_PT | 葡萄牙語（葡萄牙） |
+| ru | 俄語 |
+| sv | 瑞典語 |
+| th | 泰語 |
+| zh\_CN | 中文（簡體） |
+| zh\_tw | 中文（繁體） |
+
+</details>
+
+<details id="how-do-i-play-in-windowed-mode-or-at-a-custom-resolution">
+
+<summary>怎麼用視窗模式或自訂解析度玩？</summary>
+
+解析度可以在開遊戲前用 BF2142 Hub 設定，也可以在遊戲裡的 <mark class="ui">OPTIONS</mark> → <mark class="ui">VIDEO</mark> 調。
+
+想開視窗模式，或用選單裡沒有的解析度，就要從桌面捷徑啟動，在 <mark class="ui">Target</mark> 最後面加上啟動參數。例如加上 `+fullscreen 0 +szx 1600 +szy 900`，就會開成 1600×900 的視窗。做法詳見[自訂捷徑](/zh-tw/advanced/addons-tweaks/custom-shortcuts/)。記得只用螢幕支援的解析度。
+
+</details>
+
+<details id="how-do-i-play-in-widescreen">
+
+<summary>怎麼開寬螢幕？</summary>
+
+在 BF2142 Hub 勾選 <mark class="ui">TURN ON WIDESCREEN</mark>，或在捷徑加上 `+widescreen 1`。不過原版 HUD 還是會被拉寬，所以最好也裝[寬螢幕 HUD 修正](/zh-tw/advanced/addons-tweaks/hudfix/)。Project Remaster 兩個都內建了。
+
+</details>
+
+<details id="how-to-change-field-of-view-in-game">
+
+<summary>可以調整 FOV 嗎？</summary>
+
+遊戲選單裡沒有，但可以改設定檔。看 [視野 FOV](/zh-tw/advanced/addons-tweaks/fov/)。
+
+</details>
+
+<details id="how-to-adjust-the-ticket-counts-team-ratio-and-respawn-time-in-singleplayer">
+
+<summary>單人模式可以改兵力、隊伍比例或重生時間嗎？</summary>
+
+可以，選單裡沒有的設定也能改很多。看[伺服器設定](/zh-tw/advanced/addons-tweaks/server-settings/)。
+
+</details>
+
+## BOT
+
+<details id="how-to-play-with-bots">
+
+<summary>怎麼跟 BOT 打？</summary>
+
+BOT 只會出現在 Conquest Co-op（`gpm_coop`）模式。
+
+* <strong>單人模式：</strong>預設就是這個模式，什麼都不用做。
+* <strong>區網：</strong>開伺服器時選 Conquest Co-op 就好。
+
+</details>
+
+<details id="how-to-add-more-bots">
+
+<summary>BOT 可以超過 16 個嗎？</summary>
+
+可以！現在的電腦跑 64 個以上的 BOT 通常都沒問題。看[增加 BOT](/zh-tw/advanced/addons-tweaks/add-more-bots/)。
+
+</details>
+
+<details id="are-there-more-conquestcoop-maps-with-bot-support">
+
+<summary>有更多支援 BOT 的地圖嗎？</summary>
+
+很多喔，Project Remaster、Reclamation 地圖包裡都有。看[支援 BOT 的地圖](/zh-tw/advanced/addons-tweaks/maps-with-bots/)。
+
+</details>
+
+<details id="can-i-play-titan-mode-with-bots">
+
+<summary>可以和 BOT 玩 Titan 模式嗎？</summary>
+
+原版不行，BOT 只會玩 Conquest Co-op。[Project Remaster](/zh-tw/advanced/project-remaster/install-project-remaster/) 則有部分支援，可以在單人和合作模式打 48 人的 Titan。BOT 還不會登上 Titan，但 Titan 的砲塔會自己開火。
+
+</details>
+
+## 其他
+
+<details id="how-to-use-battlerecorder-and-battledirector">
+
+<summary>可以錄製和重播我的對戰嗎？</summary>
+
+可以。用 BattleRecorder 錄，再用 BattleDirector 播。看 [BattleRecorder 指南](/zh-tw/advanced/addons-tweaks/battlerecorder-and-battledirector/)。
+
+</details>
+
+<details id="can-i-play-project-remaster-online">
+
+<summary>可以在線上玩 Project Remaster 嗎？</summary>
+
+可以，只要大家的模組版本一樣，再加入你開的[區網或線上伺服器](/zh-tw/getting-started/host-server/)就行。但開著模組去進 Reclamation 這類原版伺服器，會被踢出來。
+
+</details>
+
+<details id="can-i-play-this-game-on-linux-steam-deck-or-mac">
+
+<summary>可以在 Linux、Steam Deck 或 Mac 玩嗎？</summary>
+
+Linux 和 Steam Deck 都可以。舊款 Intel Mac 有官方的 Mac 版，新款 Mac 就要靠 Windows 或相容層。詳情看[安裝 BF2142](/zh-tw/getting-started/download-and-install-bf2142/)。
+
+</details>

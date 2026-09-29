@@ -1,0 +1,119 @@
+---
+title: Install v1.51 patch
+description: "Stay ahead: how to update BF2142 to the latest version."
+slug: getting-started/download-and-install-v1_51-patch
+icon: square-rounded-number-2
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+import GuideSummary from '~/components/GuideSummary.astro';
+import GuideLink from '~/components/GuideLink.astro';
+
+v1.51 is the final official version of BF2142, and the one everything else expects. This quick update gets you there.
+
+<GuideSummary step={2} time="10 minutes">
+
+Run the v1.51 Full Installer. It removes the disc check, so the game can start.
+
+Already on v1.51 with the Deluxe Edition, EA App or Origin? Skip this one.
+
+</GuideSummary>
+
+<details id="why-is-this-patch-needed">
+
+<summary>Why do I need this patch?</summary>
+
+* **No more disc check.** The DRM[^1] is officially removed, so the game launches without the DVD. The [Tweak Guide](https://tweakguides.dmegaming.com/BF2142_4.html) has more on this.
+* **Widescreen support** for a wider view on modern screens.
+* **Northern Strike included for free,** EA's farewell gift before DICE moved on.
+* **The final features and bug fixes.**
+* **Required by almost everything today.** OpenSpy, the Reclamation servers and Project Remaster all need v1.51.
+
+</details>
+
+<details id="how-do-i-check-the-game-version">
+
+<summary>How do I check my game version?</summary>
+
+Open this file with a text editor and look for the version number:\
+`C:\Program Files (x86)\Electronic Arts\Battlefield 2142\mods\bf2142\Mod.desc`
+
+Quick tell: if the game still asks for the disc, you're not on v1.51 yet.
+
+</details>
+
+<details id="can-i-skip-this-patch">
+
+<summary>Can I skip this patch?</summary>
+
+Only if you're already on v1.51, e.g. you installed the Deluxe Edition or got the game through EA App / Origin. Otherwise the game won't start without the disc.
+
+</details>
+
+## Steps
+
+<Steps>
+
+1. Download <mark class="ui">Patch v1.51 Full Installer</mark> from [Downloads](#downloads) → [Standalone Installer](#standalone-installer).
+
+1. Double-click the file to run it. Give it a moment, as it unpacks files before anything appears.
+
+1. If <mark class="ui">User Account Control</mark> asks, click <mark class="ui">Yes</mark>.
+
+1. If <mark class="ui">Windows protected your PC</mark> appears, click <mark class="ui">More info</mark> → <mark class="ui">Run anyway</mark>.[^2]
+
+1. Follow the wizard to finish the installation.
+
+1. Next up: <GuideLink href="/getting-started/download-and-install-bf2142-hub/" label="Install BF2142 Hub" />
+
+   Then apply the OpenSpy patches with it. _Don't skip these_, as you can't log in without them now that EA's online services are gone.
+
+</Steps>
+
+## Downloads
+
+<Tabs>
+<TabItem label="Standalone Installer">
+
+Updates any version (v1.00, v1.01 or v1.50) straight to v1.51 in one go. Unlike EA's official patches, you don't need to install them one by one.
+
+<Aside type="caution">
+
+Some antivirus tools and browsers flag or block this installer. If you'd rather not risk it, use the official EA patches in the next tab instead. To get past a browser block, see [this video](https://www.youtube.com/watch?v=0nyKWOAbqD4).
+
+</Aside>
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/downloads/battlefield-2142-update-v151-full" title="BF2142 Patch v1.51 Full Installer (2.29 GB)">
+
+Source: [LordSte](https://www.moddb.com/members/lordste) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+
+<TabItem label="Incremental Installers">
+
+Mirrors of EA's original patches. Install them _in this order_:
+
+1. **v1.50** updates v1.00 or v1.01 to v1.50
+2. **v1.51** updates v1.50 to v1.51
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/downloads/battlefield-2142-update-150" title="BF2142 Patch v1.50 Installer (523 MB)">
+
+Source: [RhodN](https://www.moddb.com/members/grafix1) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+<Embed url="https://www.moddb.com/games/battlefield-2142/downloads/battlefield-2142-v151-patch-final" title="BF2142 Patch v1.51 Installer (1.95 GB)">
+
+Source: [ytres](https://www.moddb.com/members/sdgsdgsdgsdg) @ [ModDB](https://www.moddb.com/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+[^1]: DRM is copy protection. Here, it checks for the game disc every time you launch.
+
+[^2]: No <mark class="ui">More info</mark> option? Right-click the installer → <mark class="ui">Properties</mark>, tick <mark class="ui">Unblock</mark>, click <mark class="ui">OK</mark>, then run it again.

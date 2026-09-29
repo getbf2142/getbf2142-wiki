@@ -1,0 +1,153 @@
+---
+title: Host a server
+description: "Be the host: set up your own BF2142 server straight from the game."
+slug: getting-started/host-server
+icon: server
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+Hosting from inside the game is quick and easy, perfect for a game night. Just keep in mind:
+
+* The in-game menu offers fewer settings, though you can change almost anything by [editing the server settings](/advanced/addons-tweaks/server-settings/).
+* The host has to play on the server too.
+
+Need a proper always-on server? Set up a [dedicated server](/advanced/dedicated-server/install-server/) instead.
+
+<GuideSummary>
+
+Host from <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark> → <mark class="ui">CREATE</mark>. A LAN server works right away. For friends online, forward ports `29900` and `17567`, or skip port forwarding with a virtual LAN like Radmin VPN.
+
+</GuideSummary>
+
+## Which kind of server?
+
+| Server | Who can join | Port forwarding |
+| --- | --- | --- |
+| [LAN](#hosting-a-lan-server) | Anyone on your home network, or friends anywhere through a [virtual LAN](#lan-over-internet) | Not needed |
+| [Private](#hosting-a-private-server) | Friends who know your public IP | Needed |
+| [Public](#hosting-a-public-server) | Anyone, via the online server browser | Needed |
+
+## Before you start
+
+<details id="important-notes">
+
+<summary>Good to know</summary>
+
+* When Windows Firewall asks, allow the game (or BF2142Unlocker) on both private and public networks.
+* Only the host needs port forwarding, and only for private or public servers.
+* On a private or public server, players on your home network join with your _local_ IP, while everyone else uses your _public_ IP.
+* If you launch the game with a mod, your server runs that mod too.
+
+</details>
+
+<details id="disabling-network-adapters">
+
+<summary>Disable unused network adapters</summary>
+
+If your PC has several network adapters (e.g. from Hamachi, VirtualBox, VMware or a VPN), the game may pick the wrong one. Disable the ones you don't need:[^1]
+
+1. Go to <mark class="ui">Control Panel</mark> → <mark class="ui">Network and Sharing Center</mark> → <mark class="ui">Change adapter settings</mark>.
+2. Right-click an adapter → <mark class="ui">Disable</mark>.
+
+Can't disable it there? Use <mark class="ui">PowerShell</mark> (run as administrator):
+
+* Disable: `Disable-NetAdapter -Name "Adapter Name"`
+* Enable: `Enable-NetAdapter -Name "Adapter Name"`
+
+([Why this works](https://superuser.com/questions/610733/networking-games-cant-see-join-anyone-elses-lan-servers-unless-i-host))
+
+</details>
+
+<details id="port-forwarding">
+
+<summary>Set up port forwarding</summary>
+
+In your router's settings, forward these ports to your PC's local IPv4 address:
+
+* `29900` (UDP or both): login service
+* `17567` (both): game service
+
+Using BF2142Unlocker? Also forward:
+
+* `8085` (TCP or both): unlock service
+* `18300` (TCP or both): login service
+
+New to port forwarding? [This guide](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide) explains it step by step.
+
+**Players still can't connect?**
+
+* Changed port forwarding while the server was running? Restart the server.
+* Your ISP may use CGNAT, which blocks port forwarding. Ask them to opt you out, or play over a [virtual LAN](#lan-over-internet) instead.
+
+</details>
+
+<details id="lan-over-internet">
+
+<summary>Play "LAN" over the internet</summary>
+
+Can't set up port forwarding? A virtual LAN is the next best thing. Apps like [Hamachi](https://vpn.net/), [GameRanger](https://www.gameranger.com/) or [Radmin VPN](https://www.radmin-vpn.com/) connect you and your friends as if you were on the same network:
+
+1. Everyone installs the app and joins the same network or room.
+2. Host a [LAN server](#hosting-a-lan-server) and share the IP address the app gives you.
+
+No port forwarding needed.
+
+</details>
+
+## Hosting a LAN server
+
+<Steps>
+
+1. [Disable unused network adapters](#disabling-network-adapters).
+
+1. Select <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark>.
+
+1. In the <mark class="ui">CREATE</mark> tab, pick your settings and click <mark class="ui">START SERVER</mark>.
+
+1. Your server's local IP appears on the loading screen. Share it if friends can't find the server.
+
+</Steps>
+
+## Hosting a private server
+
+Not listed in the server browser, so only friends with your public IP can join.
+
+<Steps>
+
+1. Close the game, [disable unused network adapters](#disabling-network-adapters) and [set up port forwarding](#port-forwarding).
+
+1. Find your public IPv4 address at [whatismyip.com](https://www.whatismyip.com/) and share it with your friends.
+
+1. Log in to the game and select <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark>.
+
+1. In the <mark class="ui">CREATE</mark> tab, pick your settings and click <mark class="ui">START SERVER</mark>.
+
+</Steps>
+
+## Hosting a public server
+
+Listed in the online server browser, so anyone can join.
+
+<Steps>
+
+1. Close the game, [disable unused network adapters](#disabling-network-adapters) and [set up port forwarding](#port-forwarding).
+
+1. Turn on internet mode for your profile:
+
+   1. Open `Documents\Battlefield 2142\Profiles\Global.con` with a text editor and find `GlobalSettings.setDefaultUser`, e.g. `0001`.
+   2. Open `ServerSettings.con` in the folder with that name (e.g. `Profiles\0001`).
+   3. Change `GameServerSettings.setInternet 0` to `1` and save.
+
+1. Log in to the game and select <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark>.
+
+1. In the <mark class="ui">CREATE</mark> tab, pick your settings and click <mark class="ui">START SERVER</mark>.
+
+1. Check that it worked: press `Esc` and open the online server browser. Your server should be listed.
+
+   Listed, but nobody can join? Your port forwarding isn't quite right yet. See [the tips](#port-forwarding).
+
+</Steps>
+
+[^1]: Hosting over a VLAN or VPN? Keep both your main connection (Wi-Fi or Ethernet) and the VLAN/VPN adapter enabled. Virtual adapters usually take priority, so your server tends to use them by default. Run `ipconfig` in <mark class="ui">Command Prompt</mark> to see the order.

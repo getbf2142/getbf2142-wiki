@@ -1,0 +1,65 @@
+---
+title: GetBF2142
+description: "Your go-to hub for getting Battlefield 2142 running again: installs, patches, multiplayer and mods."
+template: splash
+head:
+  - tag: title
+    content: GetBF2142 | Play Battlefield 2142 again
+hero:
+  tagline: Your go-to hub for getting Battlefield 2142 running again. Installs, patches, multiplayer and mods, all tested and mirrored.
+  actions:
+    - text: Quick start
+      link: /getting-started/quick-start/
+      icon: rocket
+    - text: Full guide
+      link: /getting-started/before-proceeding/
+      icon: open-book
+      variant: secondary
+    - text: Join our Discord
+      link: https://discord.gg/7SBMKRy6q9
+      icon: discord
+      variant: minimal
+---
+
+import { CardGrid, LinkButton } from '@astrojs/starlight/components';
+import HomeCard from '~/components/HomeCard.astro';
+import HomeAboutBanner from '~/components/HomeAboutBanner.astro';
+
+## Where do you want to go?
+
+<CardGrid>
+	<HomeCard icon="bolt" title="Quick start" description="The short version: from nothing to your first online match on one page." href="/getting-started/quick-start/" />
+	<HomeCard icon="route" title="Getting Started" description="The full guide. Install the game, patch to v1.51 and get online with OpenSpy." href="/getting-started/before-proceeding/" />
+	<HomeCard icon="flip-vertical" title="Project Remaster" description="The community remaster: HD visuals, new weapons and smarter bots." href="/advanced/project-remaster/" />
+	<HomeCard icon="puzzle" title="Addons & Tweaks" description="More bots, FOV, widescreen HUD, ReShade and more." href="/advanced/addons-tweaks/" />
+	<HomeCard icon="heart-handshake" title="Help Centre" description="Fixes for common problems and answers to frequent questions." href="/help-centre/" />
+	<HomeCard icon="book" title="Documents" description="The original game manual and an in-depth game guide." href="/documents/" />
+</CardGrid>
+
+<HomeAboutBanner src="/art/home-dropship-wide.webp" lightSrc="/art/home-dropship-wide-light.webp">
+
+## Play in 15 minutes
+
+No hunting for files or guessing at settings. Every download is tested, every step is explained, and you'll be online before you know it.
+
+<LinkButton href="/getting-started/quick-start/" icon="right-arrow">Quick start</LinkButton>
+
+</HomeAboutBanner>
+
+<HomeAboutBanner src="/art/home-titan-wide.webp" lightSrc="/art/home-titan-wide-light.webp" copySide="right">
+
+## Why BF2142 still rocks
+
+Twenty years on, it's still a great time: bot matches for relaxed solo sessions, quick LAN parties with friends, and it runs smoothly even on a budget laptop. And then there's _Titan mode_, with huge, multi-stage battles you won't find in any other game.
+
+</HomeAboutBanner>
+
+<HomeAboutBanner>
+
+## About GetBF2142
+
+We're a fan-run project with no ads and no revenue, just people who love this game and want it to be easy for everyone to play again.
+
+<LinkButton href="/about/" variant="secondary" icon="right-arrow">Read our story</LinkButton>
+
+</HomeAboutBanner>

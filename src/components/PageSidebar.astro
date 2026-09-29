@@ -1,0 +1,22 @@
+---
+// Starlight's right sidebar. An empty TOC (section overviews, see src/routeData.ts) keeps the
+// column so the page lines up with the rest of the site, but shows nothing in it.
+import Default from '@astrojs/starlight/components/PageSidebar.astro';
+
+const { toc } = Astro.locals.starlightRoute;
+const empty = toc && toc.items.length === 0;
+---
+
+{
+	empty ? (
+		<>
+			<div class="sl-hidden lg:sl-block" />
+			{/* No mobile "On this page" bar either, so don't reserve room for it. */}
+			<Fragment set:html="<style>:root { --sl-mobile-toc-height: 0rem; }</style>" />
+		</>
+	) : (
+		<Default>
+			<slot />
+		</Default>
+	)
+}

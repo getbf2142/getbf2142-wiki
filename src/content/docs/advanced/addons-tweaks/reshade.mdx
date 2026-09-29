@@ -1,0 +1,94 @@
+---
+title: ReShade
+description: Give BF2142's visuals a big boost with ReShade.
+slug: advanced/addons-tweaks/reshade
+icon: beach
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Embed from '~/components/Embed.astro';
+
+ReShade adds a layer of post-processing shaders on top of the game, giving the visuals a big boost. It first became popular in Project Reality for BF2, and the Project Remaster team adapted it for BF2142.
+
+<div class="figure-row"><figure><img src="/assets/reshade_remagen.gif" alt="ReShade on Breakthrough at Remagen" loading="lazy" /><figcaption><p>Breakthrough at Remagen</p></figcaption></figure> <figure><img src="/assets/reshade_street.gif" alt="ReShade on Street" loading="lazy" /><figcaption><p>Street</p></figcaption></figure></div>
+
+The latest ReShade setup comes built into [Project Remaster](/advanced/project-remaster/install-project-remaster/). Don't use the mod? This guide shows you how to add it to vanilla BF2142 too. (The [original ModDB release](https://www.moddb.com/downloads/bf2142-reshade) is outdated.)
+
+## Steps
+
+<Aside type="tip">
+
+**Using Project Remaster?** Just tick <mark class="ui">Reshade</mark> in the Remaster Launcher's <mark class="ui">Settings</mark> tab and jump to [Using ReShade](#using-reshade). Untick it to turn it off again.
+
+</Aside>
+
+<Steps>
+
+1. Download the patch from [Downloads](#downloads).
+
+1. Extract everything into your game folder, usually `C:\Program Files (x86)\Electronic Arts\Battlefield 2142`, and overwrite any files.
+
+1. Installed the game somewhere else? Open `d3d9.ini` with a text editor and update the paths to match.
+
+</Steps>
+
+## Using ReShade
+
+<Steps>
+
+1. Launch the game. You'll see the effect as soon as the intro or login screen appears.
+
+1. Press <mark class="ui">Shift + F2</mark> to open or close the ReShade overlay.
+
+1. On the <mark class="ui">Home</mark> tab, check that the preset has loaded. You should see shaders like `Levels.fx` and `Vignette.fx`.
+
+   Empty list? The shaders haven't loaded yet:
+
+   1. On the <mark class="ui">Settings</mark> tab, set the paths (adjust if your game is elsewhere):
+      * Effect search path: `C:\Program Files (x86)\Electronic Arts\Battlefield 2142\reshade-shaders\Shaders`
+      * Texture search path: `C:\Program Files (x86)\Electronic Arts\Battlefield 2142\reshade-shaders\Textures`
+   2. On the <mark class="ui">Home</mark> tab, click <mark class="ui">Reload</mark>.
+   3. Check that the preset drop-down points to `...\Battlefield 2142\DefaultPreset.ini`.
+
+1. Toggle the effect on and off with <mark class="ui">Scroll Lock</mark>. We like rebinding it to <mark class="ui">Shift + F1</mark> in the overlay.
+
+1. To fine-tune the shaders, enable <mark class="ui">Configuration Mode</mark> on the <mark class="ui">Settings</mark> tab, then adjust them on the <mark class="ui">Home</mark> tab.
+
+1. Want your own look? Click <mark class="ui">+</mark> next to the preset drop-down to create a preset. The download also includes a second one, `DefaultPreset2`, to try.
+
+1. Seeing odd colours on some maps? Try turning off the LUT shader.
+
+</Steps>
+
+## Downloads
+
+<Tabs>
+<TabItem label="v14">
+
+<Embed url="https://www.mediafire.com/file/omrlv57o1vh0k98/BF2142_Reshade_PRv14.zip/file" title="BF2142 ReShade & Shaders Patch v14 (4.2 MB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+<Embed url="https://drive.google.com/file/d/1W1SdhJ14TMcm9y3ttx9QSs4RKySJ0LyL" title="BF2142 ReShade & Shaders Patch v14 (4.2 MB)">
+
+Source: [GetBF2142](/)
+
+</Embed>
+
+</TabItem>
+</Tabs>
+
+## Good to know
+
+* Needs Windows 7 or newer.
+* Works with every mod, including vanilla.
+* Safe for multiplayer, you won't get kicked for using it.
+* To uninstall, delete the files you added.
+
+## Credits
+
+* The Project Remaster team for adapting this excellent shader for BF2142 @ [BF2142 Remastered](https://discord.com/invite/nVdDkgA)
+* [illicitSoul](https://www.moddb.com/members/ainas) for the setup instructions @ [BF2142 Reshade](https://www.moddb.com/downloads/bf2142-reshade)
+* [phale](https://www.moddb.com/members/phale) for ReShade setup details @ [Heat of Battle Reshade](https://www.moddb.com/mods/heat-of-battle2/downloads/heat-of-battle-reshade-20)

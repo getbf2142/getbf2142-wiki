@@ -1,0 +1,83 @@
+---
+title: 玩多人模式
+description: "加入區網或公開伺服器，和其他玩家一起玩。"
+icon: users
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+想跟朋友連區網，還是上公開伺服器？下面兩種都有教。
+
+<GuideSummary>
+
+到 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">ONLINE</mark>，在 <mark class="ui">ADVANCED</mark> 分頁把篩選全部取消勾選，再按 <mark class="ui">UPDATE LIST</mark>。玩 Reclamation 要用沒裝模組的原版，還要裝他們的地圖包。區網遊戲則在 <mark class="ui">LOCAL</mark>。
+
+</GuideSummary>
+
+<Aside type="note">
+
+* **Reclamation 和其他原版伺服器**要用沒裝模組的原版遊戲，`\mods\bf2142` 裡不能有額外的模組或改過的檔案。Reclamation 另外還要[地圖包](/zh-tw/getting-started/install-map-pack/)。
+* **模組伺服器**則要跟伺服器裝一模一樣的模組和檔案。
+
+</Aside>
+
+## 加入區網伺服器
+
+區網伺服器會出現在遊戲的本機伺服器列表，同一個網路裡的人都能加入。
+
+<Steps>
+
+1. 選 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark>。
+
+1. 在 <mark class="ui">JOIN</mark> 分頁按 <mark class="ui">UPDATE LIST</mark>。還沒看到伺服器的話，多按幾次。
+
+1. 在伺服器上點兩下就能加入。
+
+</Steps>
+
+<details id="server-is-not-showing-up-in-the-local-server-browser">
+
+<summary>看不到伺服器？</summary>
+
+先確認你跟主機在同一個網路，再改用 IP 直接連：
+
+1. 選 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">ONLINE</mark>。
+2. 在 <mark class="ui">ADVANCED</mark> 分頁按 <mark class="ui">CONNECT TO IP</mark>。
+3. 輸入伺服器的區網 IP（通常是 `192.168.x.x`），按 <mark class="ui">OK</mark>。主機在載入畫面就看得到這個 IP。[^1]
+
+還是找不到？電腦如果有好幾張網路卡，像是 Hamachi、VirtualBox、VMware 或 VPN 建立的虛擬網卡，遊戲可能會抓錯。先在主機上[停用用不到的網路卡](/zh-tw/getting-started/host-server/#disabling-network-adapters)，再檢查其他玩家的電腦。
+
+</details>
+
+## 加入公開伺服器
+
+公開伺服器會列在線上伺服器瀏覽器，任何人都能加入。
+
+<Steps>
+
+1. 選 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">ONLINE</mark>。
+
+1. 在 <mark class="ui">ADVANCED</mark> 分頁把篩選全部取消勾選，再按 <mark class="ui">UPDATE LIST</mark>。篩選沒關的話，列表通常會是空的。
+
+   <figure><img src="/assets/pic7_orig.png" alt="已取消勾選所有篩選的 ADVANCED 分頁" width="375" loading="lazy" /></figure>
+
+1. 在伺服器上點兩下就能加入。
+
+</Steps>
+
+## 加入私人伺服器
+
+私人伺服器不會出現在列表上，但只要知道主機的公開 IP，一樣可以透過網路連進去。
+
+<Steps>
+
+1. 選 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">ONLINE</mark>。
+
+1. 在 <mark class="ui">ADVANCED</mark> 分頁按 <mark class="ui">CONNECT TO IP</mark>。
+
+1. 輸入伺服器的公開 IP 和連接埠（預設是 `17567`），按 <mark class="ui">OK</mark>。
+
+</Steps>
+
+[^1]: 用 VLAN 或 VPN 在玩？請填那個程式給你的 IP，不是你平常的區網 IP。

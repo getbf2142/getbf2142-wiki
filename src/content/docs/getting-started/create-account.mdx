@@ -1,0 +1,83 @@
+---
+title: Create an account
+description: "Ready, set, play: create your BF2142 account and dial in your settings."
+slug: getting-started/create-account
+icon: square-rounded-number-6
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideSummary from '~/components/GuideSummary.astro';
+
+The last step! Create your account and soldier, set up your video and audio, and you're ready to play.
+
+<GuideSummary step={6} time="5 minutes">
+
+Launch the game from the Hub, create an account and a soldier, then set your resolution and turn anti-aliasing off.
+
+</GuideSummary>
+
+## Steps
+
+<Aside type="caution">
+
+Whenever Windows Firewall asks, allow the game on both private and public networks, otherwise you may run into connection problems.
+
+</Aside>
+
+<Steps>
+
+1. Launch the game through <mark class="ui">BF2142 Hub</mark>. You can tweak the video and game settings in the Hub before hitting <mark class="ui">Play</mark>.
+
+1. Expect a short black screen before the intro, that's normal.[^1]
+
+1. On the login screen, click <mark class="ui">CREATE NEW ACCOUNT</mark>, then <mark class="ui">ACCEPT TERMS</mark>. Each screen can take a few seconds to appear.[^2]
+
+1. Fill in the registration form and click <mark class="ui">CREATE</mark>.
+
+   * Use a real email address if you can, as you'll need it to [reset your password](/help-centre/faq/#how-to-reset-my-password).
+   * Remember your <mark class="ui">ACCOUNT NAME</mark> and <mark class="ui">PASSWORD</mark>.
+   * Your password is stored in plain text on the server, so use one you don't use anywhere else.
+   * The other details don't really matter.
+
+   Got an error? See [S01 in Troubleshoot](/help-centre/troubleshoot/#s01-account-creation-error-when-creating-an-account).
+
+1. Click <mark class="ui">CREATE NEW SOLDIER</mark>, enter the name you want to use in-game, and confirm.
+
+1. You'll probably notice the resolution has changed, since your new profile starts with default settings.[^3] Go to <mark class="ui">OPTIONS</mark> → <mark class="ui">VIDEO</mark> and set the resolution and refresh rate. _Only pick values your monitor supports_, as the wrong ones are the most common cause of crashes.
+
+1. Tune the rest of your video settings. We recommend maxing everything out except <mark class="ui">ANTI-ALIASING</mark>, which is safest <mark class="ui">OFF</mark>.[^4] The [Tweak Guide](https://tweakguides.dmegaming.com/BF2142_6.html) explains every option.
+
+1. Don't forget your <mark class="ui">AUDIO</mark> settings. The [Tweak Guide](https://tweakguides.dmegaming.com/BF2142_6.html) has great tips there too.
+
+1. _**That's it, Battlefield 2142 is up and running. See you on the battlefield!**_
+
+</Steps>
+
+## What's next?
+
+**Jump in**
+
+* [Play Singleplayer](/getting-started/play-singleplayer/)
+* [Play Multiplayer](/getting-started/play-multiplayer/)
+* [Host a server](/getting-started/host-server/)
+
+**Level up your game**
+
+* [Install Project Remaster](/advanced/project-remaster/install-project-remaster/). For many players, it's the only way to play now.
+* Browse [Addons & Tweaks](/advanced/addons-tweaks/) for more bots, a wider FOV, ReShade and more.
+
+**Learn the game**
+
+* [Manual](/documents/manual/) and [Game Guide](/documents/game-guide/)
+* [Tweak Guide](https://tweakguides.dmegaming.com/BF2142_1.html)
+* [Modding Wiki](https://classic-battlefield-modding.fandom.com/wiki/Classic_Battlefield_Modding_Wikia) (for tinkerers)
+
+Something not working? The [Troubleshoot](/help-centre/troubleshoot/) and [FAQ](/help-centre/faq/) pages have you covered.
+
+[^1]: In fullscreen, the game may flicker or resize a few times while starting. That's normal too.
+
+[^2]: The master servers are in Europe and the US, so a response can take up to about 10 seconds.
+
+[^3]: BF2142 keeps separate settings before and after you log in, and your new profile only has the defaults.
+
+[^4]: On modern graphics cards, the old DirectX 9 anti-aliasing can cause glitches like seeing through buildings. If you want smoothing, turn it off in-game and force it in your NVIDIA or AMD control panel instead. No issues? Feel free to use <mark class="ui">4x</mark>.
