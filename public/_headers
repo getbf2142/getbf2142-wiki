@@ -1,0 +1,12 @@
+# Cloudflare Pages response headers. Security headers (CSP, HSTS, etc.) live in Cloudflare Transform Rules.
+
+# Content-hashed Astro bundles: new filenames on every build
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Stable filenames: purge the URL in Cloudflare if an image is replaced without renaming
+/assets/*
+  Cache-Control: public, max-age=604800
+
+/art/*
+  Cache-Control: public, max-age=604800
