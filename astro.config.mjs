@@ -30,11 +30,13 @@ export default defineConfig({
 				// PNG/ICO fallbacks for the SVG favicon: iOS home screen, older browsers and search results.
 				{ tag: 'link', attrs: { rel: 'icon', href: '/favicon.ico', sizes: '32x32' } },
 				{ tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } },
-				{ tag: 'meta', attrs: { property: 'og:image', content: 'https://docs.getbf2142.net/og.jpg' } },
+				{ tag: 'meta', attrs: { property: 'og:image', content: 'https://docs.getbf2142.net/og-v2.jpg' } },
 				{ tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
-				{ tag: 'meta', attrs: { property: 'og:image:height', content: '590' } },
+				{ tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
+				{ tag: 'meta', attrs: { property: 'og:image:alt', content: 'GETBF2142 — Your gateway to 2142.' } },
 				{ tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
-				{ tag: 'meta', attrs: { name: 'twitter:image', content: 'https://docs.getbf2142.net/og.jpg' } },
+				{ tag: 'meta', attrs: { name: 'twitter:image', content: 'https://docs.getbf2142.net/og-v2.jpg' } },
+				{ tag: 'meta', attrs: { name: 'twitter:image:alt', content: 'GETBF2142 — Your gateway to 2142.' } },
 			],
 			social: [
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/7SBMKRy6q9' },
