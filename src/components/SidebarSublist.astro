@@ -7,6 +7,7 @@ import { Badge } from '@astrojs/starlight/components';
 import SidebarRestorePoint from '@astrojs/starlight/components/SidebarRestorePoint.astro';
 import type { StarlightRouteData } from '@astrojs/starlight/route-data';
 import { useT } from '~/lib/i18n';
+import { isExternalHref } from '~/lib/urls';
 import { isOverview } from '~/routeData';
 import PageIcon from './PageIcon.astro';
 
@@ -21,7 +22,6 @@ interface Props {
 const { sublist, nested } = Astro.props;
 const t = useT(Astro.locals.starlightRoute.locale);
 
-const isExternal = (href: string) => /^https?:/.test(href);
 const iconOf =(e: SidebarEntry) => (e.type === 'link' ? (e.attrs['data-icon'] as string | undefined) : undefined);
 // Keep Starlight-only attributes, but don't render our data-* markers onto the <a>.
 const linkAttrs = (e: Extract<SidebarEntry, { type: 'link' }>) => {
@@ -42,7 +42,7 @@ const linkAttrs = (e: Extract<SidebarEntry, { type: 'link' }>) => {
 								<PageIcon name={iconOf(entry)} />
 								<span>{entry.label}</span>
 								{entry.badge && <Badge variant={entry.badge.variant} class={entry.badge.class} text={entry.badge.text} />}
-									{isExternal(entry.href) && (
+									{isExternalHref(entry.href) && (
 										<svg class="external" viewBox="0 0 24 24" aria-label={t('external.newTab')}>
 											<path d="M7 17 17 7M9 7h8v8" />
 										</svg>

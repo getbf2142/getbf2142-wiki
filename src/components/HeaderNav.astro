@@ -1,22 +1,19 @@
 ---
 // Top bar dropdown menus (desktop). Opens on hover or keyboard focus — no JavaScript needed.
-import { getCollection } from 'astro:content';
+import { getDocIconsByHref } from '~/lib/docIcons';
 import { useT } from '~/lib/i18n';
+import { isExternalHref, normalizeHref } from '~/lib/urls';
 import { getNavMenus, type NavLink } from '~/nav';
 import PageIcon from './PageIcon.astro';
 
-const normalize = (href: string) => href.replace(/\/$/, '') || '/';
-const pageIcons = new Map(
-	(await getCollection('docs')).flatMap((e) => (e.data.icon ? [[normalize(`/${e.id}`), e.data.icon]] : [])),
-);
-const current = normalize(Astro.url.pathname);
+const pageIcons = await getDocIconsByHref();
+const current = normalizeHref(Astro.url.pathname);
 const locale = Astro.locals.starlightRoute.locale;
 const t = useT(locale);
 const navMenus = getNavMenus(locale);
 
-const isExternal = (link: NavLink) => /^https?:/.test(link.href);
-const iconOf = (link: NavLink) => link.icon ?? pageIcons.get(normalize(link.href));
-const menuHasCurrent = (items: NavLink[]) => items.some((i) => normalize(i.href) === current);
+const iconOf = (link: NavLink) => link.icon ?? pageIcons.get(normalizeHref(link.href));
+const menuHasCurrent = (items: NavLink[]) => items.some((i) => normalizeHref(i.href) === current);
 ---
 
 <nav class="header-nav" aria-label={t('nav.main')}>
@@ -38,12 +35,12 @@ const menuHasCurrent = (items: NavLink[]) => items.some((i) => normalize(i.href)
 									<li>
 										<a
 											href={item.href}
-											aria-current={normalize(item.href) === current ? 'page' : undefined}
-											{...(isExternal(item) ? { target: '_blank', rel: 'noopener' } : {})}
+											aria-current={normalizeHref(item.href) === current ? 'page' : undefined}
+											{...(isExternalHref(item.href) ? { target: '_blank', rel: 'noopener' } : {})}
 										>
 											<PageIcon name={iconOf(item)} />
 											<span class="label">{item.label}</span>
-											{isExternal(item) && (
+											{isExternalHref(item.href) && (
 												<svg class="external" viewBox="0 0 24 24" aria-label={t('external.newTab')}>
 													<path d="M7 17 17 7M9 7h8v8" />
 												</svg>

@@ -1,3 +1,4 @@
+import { localize } from './lib/i18n';
 import sidebar from './sidebar.json';
 
 // Top bar menus (desktop only). Internal links pick up their page icon automatically;
@@ -34,17 +35,17 @@ function addonsTweaks(): NavLink[] {
 		.find((item) => item.label === 'Addons / Tweaks');
 	return (section?.items ?? [])
 		.filter((item) => !('data-overview' in (item.attrs ?? {})))
-		.map((item) =>
-			item.slug
-				? { label: item.label, zh: item.translations?.['zh-TW'], href: `/${item.slug}/` }
+		.map((item) => ({
+			label: item.label,
+			zh: item.translations?.['zh-TW'],
+			href: item.slug ? `/${item.slug}/` : item.link!,
+			...(item.slug
+				? {}
 				: {
-						label: item.label,
-						zh: item.translations?.['zh-TW'],
-						href: item.link!,
 						icon: item.attrs?.['data-icon'],
 						divider: 'data-divider' in (item.attrs ?? {}),
-					},
-		);
+					}),
+		}));
 }
 
 const menus: NavMenu[] = [
@@ -102,13 +103,12 @@ const menus: NavMenu[] = [
 /** Menus for a locale ('zh-tw' or undefined for English): labels translated, internal links prefixed. */
 export function getNavMenus(locale?: string): NavMenu[] {
 	if (!locale) return menus;
-	const prefix = `/${locale}`;
 	return menus.map((m) => ({
 		label: m.zh ?? m.label,
 		items: m.items.map((i) => ({
 			...i,
 			label: i.zh ?? i.label,
-			href: i.href.startsWith('/') ? prefix + i.href : i.href,
+			href: localize(i.href, locale),
 		})),
 	}));
 }

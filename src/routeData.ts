@@ -1,5 +1,6 @@
-import { getCollection } from 'astro:content';
 import { defineRouteMiddleware, type StarlightRouteData } from '@astrojs/starlight/route-data';
+import { getDocIconsByHref } from '~/lib/docIcons';
+import { normalizeHref } from '~/lib/urls';
 
 type SidebarEntry = StarlightRouteData['sidebar'][number];
 type SidebarLink = Extract<SidebarEntry, { type: 'link' }>;
@@ -14,16 +15,6 @@ type SidebarGroup = Extract<SidebarEntry, { type: 'group' }>;
  * - Every link gets `data-icon` from its page's `icon` frontmatter (external links set it in sidebar.json).
  */
 
-const normalize = (href: string) => href.replace(/\/$/, '') || '/';
-
-let iconsByHref: Map<string, string> | undefined;
-async function getIcons() {
-	iconsByHref ??= new Map(
-		(await getCollection('docs')).flatMap((e) => (e.data.icon ? [[normalize(`/${e.id}`), e.data.icon]] : [])),
-	);
-	return iconsByHref;
-}
-
 export const isOverview = (e: SidebarEntry | undefined): e is SidebarLink => e?.type === 'link' && 'data-overview' in e.attrs;
 const isHidden = (e: SidebarEntry): boolean =>
 	e.type === 'link' ? 'data-hidden' in e.attrs : isOverview(e.entries[0]) && isHidden(e.entries[0]);
@@ -31,7 +22,10 @@ const isHidden = (e: SidebarEntry): boolean =>
 function annotate(entries: SidebarEntry[], icons: Map<string, string>) {
 	for (const e of entries) {
 		if (e.type === 'group') annotate(e.entries, icons);
-		else if (!e.attrs['data-icon'] && icons.has(normalize(e.href))) e.attrs['data-icon'] = icons.get(normalize(e.href))!;
+		else if (!e.attrs['data-icon']) {
+			const icon = icons.get(normalizeHref(e.href));
+			if (icon) e.attrs['data-icon'] = icon;
+		}
 	}
 }
 
@@ -53,7 +47,7 @@ const flattenInternal = (entries: SidebarEntry[]): SidebarLink[] =>
 
 export const onRequest = defineRouteMiddleware(async (context) => {
 	const route = context.locals.starlightRoute;
-	annotate(route.sidebar, await getIcons());
+	annotate(route.sidebar, await getDocIconsByHref());
 
 	// Section cards read the unpruned tree so hidden sections (Documents, Archive) still list their pages.
 	const section = findCurrentSection(route.sidebar);

@@ -1,5 +1,6 @@
 ---
 // Lists a section's pages as cards (GitBook-style section page). Entries come from src/routeData.ts.
+import { isExternalHref } from '~/lib/urls';
 import PageIcon from './PageIcon.astro';
 
 const entries = Astro.locals.sectionEntries ?? [];
@@ -9,7 +10,7 @@ const links = entries.flatMap((e) => (e.type === 'link' ? [e] : []));
 <ul class="section-cards not-content">
 	{
 		links.map((link) => {
-			const external = !link.href.startsWith('/');
+			const external = isExternalHref(link.href);
 			return (
 				<>
 					{'data-divider' in link.attrs && <li class="sep" role="separator" />}
