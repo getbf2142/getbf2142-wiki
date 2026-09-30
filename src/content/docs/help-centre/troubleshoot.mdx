@@ -515,9 +515,11 @@ Installed the game through EA App or Origin? Don't use this, reinstall the game 
 
 </Aside>
 
-1. Open the [registry file generator](https://www.regfiles.net/registry/battlefield-2142-registry), set your game <mark class="ui">PATH</mark> and <mark class="ui">CDKEY</mark>, and download the file.
-2. Open the file in a text editor and set <mark class="ui">Version</mark> to `1.51` and <mark class="ui">BuildNr</mark> to `1.10.77.0`.
-3. Save it, then double-click the file to install it.
+1. Download the registry file from [MediaFire](https://www.mediafire.com/file/vwd9140uo53b9pg/BF2142.reg/file) or [Google Drive](https://drive.google.com/file/d/141v3COav38ZlbidwwuuCFbkT7Y0EJe4i).[^3]
+2. Open the file in a text editor and set <mark class="ui">InstallDir</mark> to your game folder. Use double backslashes, e.g. `D:\\Games\\Battlefield 2142`.
+3. Replace `x9392XXXXXXXXXXXXXXXXXXXX` with your CD key, which is the serial key you used during [installation](/getting-started/download-and-install-bf2142/#steps).
+4. Remove the hyphens from the key and put `x9392` in front, e.g. `ABCD-EFGH-IJKL-MNOP-QRST` becomes `x9392ABCDEFGHIJKLMNOPQRST`.
+5. Save it, then double-click the file to install it.
 
 </details>
 
@@ -616,3 +618,5 @@ RemasterInstallPath : Does not exist
 [^1]: Start with 1024×768 at 60 Hz (4:3) in the Hub. If that works, try 1600×900 at 60 Hz (16:9) with widescreen turned on.
 
 [^2]: For the Standard Edition, e.g. `E6HH-DWUG-U8X1-R8F0-1911`.
+
+[^3]: Based on the original RegFiles.net registry, now offline: [Battlefield 2142 registry](https://web.archive.org/web/20240713224616/https://www.regfiles.net/registry/battlefield-2142-registry) (Wayback Machine).

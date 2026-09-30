@@ -514,9 +514,11 @@ import Embed from '~/components/Embed.astro';
 
 </Aside>
 
-1. 打開[登錄檔產生器](https://www.regfiles.net/registry/battlefield-2142-registry)，填好遊戲的 <mark class="ui">PATH</mark> 和 <mark class="ui">CDKEY</mark>，下載檔案。
-2. 用文字編輯器打開檔案，把 <mark class="ui">Version</mark> 改成 `1.51`，<mark class="ui">BuildNr</mark> 改成 `1.10.77.0`。
-3. 存檔後，點兩下檔案匯入。
+1. 從 [MediaFire](https://www.mediafire.com/file/vwd9140uo53b9pg/BF2142.reg/file) 或 [Google Drive](https://drive.google.com/file/d/141v3COav38ZlbidwwuuCFbkT7Y0EJe4i) 下載登錄檔。[^3]
+2. 用文字編輯器打開檔案，把 <mark class="ui">InstallDir</mark> 改成遊戲資料夾的路徑。反斜線要寫兩個，例如 `D:\\Games\\Battlefield 2142`。
+3. 把 `x9392XXXXXXXXXXXXXXXXXXXX` 換成你的 CD Key，也就是[安裝時](/zh-tw/getting-started/download-and-install-bf2142/#步驟)用的序號。
+4. 去掉 Key 裡的連字號，前面加上 `x9392`，例如 `ABCD-EFGH-IJKL-MNOP-QRST` 要寫成 `x9392ABCDEFGHIJKLMNOPQRST`。
+5. 存檔後，點兩下檔案匯入。
 
 </details>
 
@@ -615,3 +617,5 @@ RemasterInstallPath : Does not exist
 [^1]: 先在 Hub 用 1024×768、60 Hz（4:3）試試。沒問題的話，再試 1600×900、60 Hz（16:9）並開啟寬螢幕。
 
 [^2]: 標準版可以用 `E6HH-DWUG-U8X1-R8F0-1911` 這組。
+
+[^3]: 參考自已下線的 RegFiles.net 原版登錄檔：[Battlefield 2142 registry](https://web.archive.org/web/20240713224616/https://www.regfiles.net/registry/battlefield-2142-registry)（Wayback Machine）。
