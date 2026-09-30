@@ -46,14 +46,14 @@ import { Aside, Steps } from '@astrojs/starlight/components';
 
    * `overrideMenuSettings 1` lets the file override the game's 16-bot limit. It must come before the other lines.
    * `maxBotsIncludeHumans 0` means human players don't count towards the bot total.
-   * `setMaxNBots` is the number of bots. Around 48 is a good start, as too many can slow down or crash lower-end PCs.
+   * `setMaxNBots` is the total number of bots in the game, split evenly between both sides by default for team balance. For example, 64 means 32 on each side. For an uneven split, tweak it in <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark>, or add `sv.autoBalanceTeam` and `sv.teamRatioPercent` as described in [Server Settings](/advanced/addons-tweaks/server-settings/). Around 48 is a good start, as too many can slow down or crash lower-end PCs.
    * `setBotSkill` goes from 0 to 1, and higher means tougher bots.
 
 1. Lots of bots means lots of UAVs, sentry guns and drones. If some stop appearing, raise `aiSettings.setMaxNAutoControllers`, the limit for AI-controlled equipment.
 
 1. Save the file.
 
-   Can't save? Copy the file to your desktop, edit it there, then copy it back.
+   Can't save? Drag the file to your desktop, edit it there, then drag it back.
 
 </Steps>
 

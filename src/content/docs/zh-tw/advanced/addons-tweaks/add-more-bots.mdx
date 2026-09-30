@@ -45,14 +45,14 @@ import { Aside, Steps } from '@astrojs/starlight/components';
 
    * `overrideMenuSettings 1` 讓這個檔案蓋過遊戲 16 個 BOT 的上限，一定要放在其他幾行前面。
    * `maxBotsIncludeHumans 0` 代表真人玩家不算在 BOT 數量裡。
-   * `setMaxNBots` 是 BOT 數量。可以先從 48 個試起，開太多的話，效能差一點的電腦可能會變慢或當掉。
+   * `setMaxNBots` 是整場遊戲的 BOT 總數，為了團隊平衡，預設會平均分配給兩邊陣營。例如設 64，就是每邊 32 個。想要不平均的話，可以在 <mark class="ui">MULTIPLAY</mark> → <mark class="ui">LOCAL</mark> 裡調整，或參考[伺服器設定](/zh-tw/advanced/addons-tweaks/server-settings/)加入 `sv.autoBalanceTeam` 和 `sv.teamRatioPercent`。可以先從 48 個試起，開太多的話，效能差一點的電腦可能會變慢或當掉。
    * `setBotSkill` 範圍是 0 - 1，數字越高 BOT 越強。
 
 1. BOT 變多之後，無人機、自動砲塔和偵察機也會跟著變多。如果有些突然不出現了，把 `aiSettings.setMaxNAutoControllers` 調高一點，這是 AI 控制裝備的上限。
 
 1. 存檔。
 
-   存不了？先把檔案複製到桌面改好，再複製回去。
+   存不了？先把檔案拖到桌面改好，再拖回原本的資料夾。
 
 </Steps>
 
