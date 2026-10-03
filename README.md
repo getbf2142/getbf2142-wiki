@@ -74,8 +74,8 @@ getbf2142/
 │   ├── styles/
 │   │   └── global.css      # Site-wide styles (also in Starlight customCss)
 │   ├── content.config.ts   # Content collections schema
-│   ├── nav.ts              # Desktop header menus (derived from sidebar.json)
-│   ├── routeData.ts        # Route middleware; sidebar marker conventions
+│   ├── nav.ts              # Desktop header menus; download list shared with /downloads/
+│   ├── routeData.ts        # Route middleware; sidebar markers and prev/next rules
 │   └── sidebar.json        # Sidebar tree (loaded in astro.config.mjs)
 ├── astro.config.mjs        # Site URL, locales, redirects, Starlight options
 ├── AGENTS.md               # Dev server background mode notes for agents

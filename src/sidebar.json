@@ -12,7 +12,8 @@
 				},
 				"slug": "help-centre",
 				"attrs": {
-					"data-overview": ""
+					"data-overview": "",
+					"data-standalone": ""
 				}
 			},
 			{
@@ -42,6 +43,16 @@
 				}
 			}
 		]
+	},
+	{
+		"label": "Downloads",
+		"translations": {
+			"zh-TW": "下載"
+		},
+		"slug": "downloads",
+		"attrs": {
+			"data-index": ""
+		}
 	},
 	{
 		"label": "Getting Started",
@@ -179,7 +190,8 @@
 						},
 						"slug": "advanced/addons-tweaks",
 						"attrs": {
-							"data-overview": ""
+							"data-overview": "",
+							"data-standalone": ""
 						}
 					},
 					{

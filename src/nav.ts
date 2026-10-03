@@ -48,6 +48,18 @@ function addonsTweaks(): NavLink[] {
 		}));
 }
 
+// Shared by the top bar's Downloads menu and the /downloads/ page.
+export const downloadLinks: NavLink[] = [
+	{ label: 'Battlefield 2142', href: '/getting-started/download-and-install-bf2142/', icon: 'disc' },
+	{ label: 'v1.51 Patch', zh: 'v1.51 更新檔', href: '/getting-started/download-and-install-v1_51-patch/', icon: 'bandage' },
+	{ label: 'BF2142 Hub', href: '/getting-started/download-and-install-bf2142-hub/', icon: 'apps' },
+	{ label: 'Reclamation Map Pack', zh: 'Reclamation 地圖包', href: '/getting-started/install-map-pack/', icon: 'map-2' },
+	{ label: 'Project Remaster', href: '/advanced/project-remaster/install-project-remaster/', icon: 'flip-vertical' },
+	{ label: 'BF2142Unlocker', href: '/advanced/addons-tweaks/bf2142unlocker/' },
+	{ label: 'Dedicated Server', zh: '專用伺服器', href: '/advanced/dedicated-server/install-server/', icon: 'server' },
+	{ label: 'Server Patch', zh: '伺服器修正檔', href: '/advanced/dedicated-server/install-server-patch/', icon: 'server-bolt' },
+];
+
 const menus: NavMenu[] = [
 	{
 		label: 'Docs',
@@ -60,19 +72,7 @@ const menus: NavMenu[] = [
 	{
 		label: 'Downloads',
 		zh: '下載',
-		items: [
-			{ label: 'Battlefield 2142', href: '/getting-started/download-and-install-bf2142/', icon: 'disc' },
-			{ label: 'v1.51 Patch', zh: 'v1.51 更新檔', href: '/getting-started/download-and-install-v1_51-patch/', icon: 'bandage' },
-			{ label: 'BF2142 Hub', href: '/getting-started/download-and-install-bf2142-hub/', icon: 'apps' },
-			{ label: 'Reclamation Map Pack', zh: 'Reclamation 地圖包', href: '/getting-started/install-map-pack/', icon: 'map-2' },
-			{ label: 'Mouse Skip Fix', zh: '滑鼠跳動修正', href: '/advanced/addons-tweaks/mouse-skip-fix/', icon: 'mouse' },
-			{ label: 'Widescreen HUD Fix', zh: '寬螢幕 HUD 修正', href: '/advanced/addons-tweaks/hudfix/' },
-			{ label: 'Project Remaster', href: '/advanced/project-remaster/install-project-remaster/', icon: 'flip-vertical' },
-			{ label: 'Dedicated Server', zh: '專用伺服器', href: '/advanced/dedicated-server/install-server/', icon: 'server' },
-			{ label: 'Server Patch', zh: '伺服器修正檔', href: '/advanced/dedicated-server/install-server-patch/', icon: 'server-bolt' },
-			{ label: 'BF2142Unlocker', href: '/advanced/addons-tweaks/bf2142unlocker/' },
-			{ label: 'BattleDirector', href: '/advanced/addons-tweaks/battlerecorder-and-battledirector/' },
-		],
+		items: downloadLinks,
 	},
 	{
 		label: 'Tweaks',

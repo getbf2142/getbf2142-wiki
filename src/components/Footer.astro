@@ -10,6 +10,8 @@ const { entry, locale } = Astro.locals.starlightRoute;
 const t = useT(locale);
 const isSplash = entry.data.template === 'splash';
 const showHelp = !isSplash && !Astro.locals.sectionEntries;
+const troubleshootHref = localize('/help-centre/troubleshoot/', locale);
+const onTroubleshoot = Astro.url.pathname.replace(/\/?$/, '/') === troubleshootHref;
 ---
 
 {
@@ -17,6 +19,12 @@ const showHelp = !isSplash && !Astro.locals.sectionEntries;
 		<aside class="help not-content" aria-label={t('footer.label')}>
 			<p>{t('footer.prompt')}</p>
 			<div class="help-actions">
+				{!onTroubleshoot && (
+					<a href={troubleshootHref}>
+						<Fragment set:html={iconSvg('settings')} />
+						{t('footer.troubleshoot')}
+					</a>
+				)}
 				<a href="https://discord.gg/7SBMKRy6q9" target="_blank" rel="noopener">
 					<Fragment set:html={iconSvg('brand-discord')} />
 					{t('footer.discord')}

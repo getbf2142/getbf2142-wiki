@@ -1,0 +1,25 @@
+---
+// Every download as a card, from the same list as the top bar's Downloads menu (src/nav.ts).
+import { getDocIconsByHref } from '~/lib/docIcons';
+import { localize } from '~/lib/i18n';
+import { normalizeHref } from '~/lib/urls';
+import { downloadLinks } from '~/nav';
+import SectionCards from './SectionCards.astro';
+
+const locale = Astro.locals.starlightRoute.locale;
+const pageIcons = await getDocIconsByHref();
+
+const entries = downloadLinks.map((link) => {
+	const href = localize(link.href, locale);
+	return {
+		type: 'link' as const,
+		label: (locale && link.zh) || link.label,
+		href,
+		isCurrent: false,
+		badge: undefined,
+		attrs: { 'data-icon': link.icon ?? pageIcons.get(normalizeHref(href)) },
+	};
+});
+---
+
+<SectionCards entries={entries} />

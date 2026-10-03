@@ -1,9 +1,15 @@
 ---
 // Lists a section's pages as cards (GitBook-style section page). Entries come from src/routeData.ts.
+import type { StarlightRouteData } from '@astrojs/starlight/route-data';
 import { isExternalHref } from '~/lib/urls';
 import PageIcon from './PageIcon.astro';
 
-const entries = Astro.locals.sectionEntries ?? [];
+interface Props {
+	entries?: StarlightRouteData['sidebar'];
+}
+
+// Pass `entries` to list something other than the current sidebar section.
+const entries = Astro.props.entries ?? Astro.locals.sectionEntries ?? [];
 const links = entries.flatMap((e) => (e.type === 'link' ? [e] : []));
 ---
 
